@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin/internal pages if any
+Disallow: /admin/
+Disallow: /_vite/
+
+# Sitemap
+Sitemap: https://awen28.com/sitemap.xml
