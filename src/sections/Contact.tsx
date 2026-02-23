@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 const contactLinks = [
   { icon: Mail, label: 'Email', value: 'info@awen28.com', href: 'mailto:info@awen28.com' },
@@ -9,13 +8,8 @@ const contactLinks = [
   { icon: MapPin, label: 'Location', value: 'Tirol, Austria', href: '#' },
 ];
 
-// EmailJS configuration
-// TODO: Replace these with your actual EmailJS credentials
-const EMAILJS_CONFIG = {
-  SERVICE_ID: 'YOUR_SERVICE_ID',     // e.g., 'service_abc123'
-  TEMPLATE_ID: 'YOUR_TEMPLATE_ID',   // e.g., 'template_xyz789'
-  PUBLIC_KEY: 'YOUR_PUBLIC_KEY',     // e.g., 'user_123abc'
-};
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_ACCESS_KEY = '64b0ac3c-c692-4110-b2ad-4e797a4288f3';
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -33,32 +27,39 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Check if EmailJS is configured
-    if (EMAILJS_CONFIG.SERVICE_ID === 'YOUR_SERVICE_ID') {
-      alert('EmailJS is not configured yet. Please check SETUP_EMAILJS.md for instructions.');
-      return;
-    }
-
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
-      await emailjs.sendForm(
-        EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.TEMPLATE_ID,
-        formRef.current!,
-        EMAILJS_CONFIG.PUBLIC_KEY
-      );
+      const formDataObj = new FormData();
+      formDataObj.append('access_key', WEB3FORMS_ACCESS_KEY);
+      formDataObj.append('name', formData.name);
+      formDataObj.append('email', formData.email);
+      formDataObj.append('project', formData.project);
+      formDataObj.append('message', formData.message);
+      formDataObj.append('from_name', 'AWEN28 Website');
+      formDataObj.append('subject', `New Message from ${formData.name} - ${formData.project}`);
 
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', project: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 5000);
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        body: formDataObj,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', project: '', message: '' });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 5000);
+      } else {
+        setSubmitStatus('error');
+      }
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Web3Forms Error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
