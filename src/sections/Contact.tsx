@@ -31,18 +31,24 @@ const Contact = () => {
     setSubmitStatus('idle');
 
     try {
-      const formDataObj = new FormData();
-      formDataObj.append('access_key', WEB3FORMS_ACCESS_KEY);
-      formDataObj.append('name', formData.name);
-      formDataObj.append('email', formData.email);
-      formDataObj.append('project', formData.project);
-      formDataObj.append('message', formData.message);
-      formDataObj.append('from_name', 'AWEN28 Website');
-      formDataObj.append('subject', `New Message from ${formData.name} - ${formData.project}`);
+      const payload = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        name: formData.name,
+        email: formData.email,
+        project: formData.project,
+        message: formData.message,
+        from_name: 'AWEN28 Website',
+        subject: `New Message from ${formData.name} - ${formData.project}`,
+        botcheck: '',
+      };
 
       const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
-        body: formDataObj,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
@@ -56,6 +62,7 @@ const Contact = () => {
           setSubmitStatus('idle');
         }, 5000);
       } else {
+        console.error('Web3Forms error:', data);
         setSubmitStatus('error');
       }
     } catch (error) {
