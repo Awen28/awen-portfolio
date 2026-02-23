@@ -1,0 +1,212 @@
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { Home, ArrowLeft, Search, Compass } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
+
+const NotFound = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true });
+
+  return (
+    <div className="min-h-screen flex flex-col" style={{ background: '#FAF9F7' }}>
+      <SEO 
+        title="Page Not Found | AWEN28"
+        description="The page you are looking for does not exist. Return to AWEN28 homepage."
+      />
+
+      {/* Header */}
+      <header className="py-6 px-6 md:px-8">
+        <div className="max-w-7xl mx-auto">
+          <Link 
+            to="/"
+            className="flex items-center gap-2 text-sm tracking-wider uppercase"
+            style={{ color: '#525048' }}
+          >
+            <div 
+              className="w-8 h-8 rounded-lg flex items-center justify-center"
+              style={{ background: '#525048' }}
+            >
+              <span className="text-white font-serif text-lg">A</span>
+            </div>
+            <span className="font-serif">AWEN28</span>
+          </Link>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main 
+        ref={sectionRef}
+        className="flex-1 flex items-center justify-center px-6 md:px-8 py-20"
+      >
+        <div className="max-w-2xl mx-auto text-center">
+          {/* 404 Illustration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.6 }}
+            className="relative mb-12"
+          >
+            {/* Background decoration */}
+            <motion.div
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.1, 1],
+              }}
+              transition={{ 
+                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="absolute inset-0 w-48 h-48 mx-auto opacity-10"
+              style={{
+                background: 'radial-gradient(circle, #B29F86 0%, transparent 70%)',
+                borderRadius: '50%',
+              }}
+            />
+            
+            {/* Compass Icon */}
+            <motion.div
+              animate={{ rotate: -10 }}
+              transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+              className="relative w-32 h-32 mx-auto rounded-full flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, #E9CFB9 0%, #B29F86 100%)',
+                boxShadow: '0 20px 40px rgba(178, 159, 134, 0.3)',
+              }}
+            >
+              <Compass className="w-16 h-16 text-white" strokeWidth={1.5} />
+            </motion.div>
+
+            {/* 404 Numbers */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            >
+              <span 
+                className="font-serif text-9xl md:text-[12rem] font-bold opacity-10"
+                style={{ 
+                  color: '#B29F86',
+                  WebkitTextStroke: '2px #B29F86',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                404
+              </span>
+            </motion.div>
+          </motion.div>
+
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <h1 
+              className="font-serif text-5xl md:text-6xl mb-6"
+              style={{ color: '#525048' }}
+            >
+              Page not found
+            </h1>
+            <p 
+              className="text-xl md:text-2xl mb-4"
+              style={{ color: 'rgba(82, 80, 72, 0.7)' }}
+            >
+              Looks like you have wandered off the map.
+            </p>
+            <p 
+              className="text-lg mb-12 max-w-md mx-auto"
+              style={{ color: 'rgba(82, 80, 72, 0.5)' }}
+            >
+              The page you are looking for does not exist or has been moved.
+            </p>
+          </motion.div>
+
+          {/* Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105"
+              style={{
+                background: '#525048',
+                color: '#FAF9F7',
+              }}
+            >
+              <Home className="w-4 h-4" />
+              Back to Home
+            </Link>
+            
+            <button
+              onClick={() => window.history.back()}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105"
+              style={{
+                background: 'transparent',
+                color: '#525048',
+                border: '1px solid rgba(82, 80, 72, 0.2)',
+              }}
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Go Back
+            </button>
+          </motion.div>
+
+          {/* Suggested Links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="mt-16 pt-12 border-t"
+            style={{ borderColor: 'rgba(82, 80, 72, 0.1)' }}
+          >
+            <p 
+              className="text-sm mb-6 flex items-center justify-center gap-2"
+              style={{ color: 'rgba(82, 80, 72, 0.5)' }}
+            >
+              <Search className="w-4 h-4" />
+              Popular destinations
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              {[
+                { label: 'Our Work', href: '/#work' },
+                { label: 'Services', href: '/#services' },
+                { label: 'About', href: '/#about' },
+                { label: 'Contact', href: '/#contact' },
+                { label: 'Suremate', href: '/suremate' },
+                { label: 'kiBook', href: '/kibook' },
+              ].map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="px-5 py-2 rounded-full text-sm transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: 'rgba(178, 159, 134, 0.1)',
+                    color: '#525048',
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="py-8 px-6 md:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-sm" style={{ color: 'rgba(82, 80, 72, 0.4)' }}>
+            © {new Date().getFullYear()} AWEN28. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default NotFound;

@@ -18,6 +18,7 @@ import ForgotCode from './pages/ForgotCode';
 import DownloadSurematePro from './pages/DownloadSurematePro';
 import AgentPortal from './pages/AgentPortal';
 import Callback from './pages/Callback';
+import NotFound from './pages/NotFound';
 import Navigation from './sections/Navigation';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -99,6 +100,7 @@ function App() {
           <Route path="/download-suremate-pro" element={<DownloadSurematePro />} />
           <Route path="/agentportal" element={<AgentPortal />} />
           <Route path="/callback" element={<Callback />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </HelmetProvider>
