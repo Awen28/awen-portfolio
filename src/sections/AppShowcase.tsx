@@ -32,7 +32,7 @@ const projects = [
     name: 'Elow',
     category: 'iOS App',
     description: 'Create your unique sound. AI composer transforms emotions into original soundscapes.',
-    image: '/apps/Elow_homescreen.png',
+    image: '/apps/elow_homescreen.png',
     color: '#525048',
     year: '2026',
     tags: ['AI', 'Audio'],

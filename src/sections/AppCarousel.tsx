@@ -71,7 +71,7 @@ const apps = [
     name: 'Elow',
     category: 'Productivity',
     description: 'Flow-State Timer für maximale Produktivität. Intelligente Fokus-Zeiten.',
-    image: '/apps/Elow_homescreen.png',
+    image: '/apps/elow_homescreen.png',
     icon: '/apps/Elow Logo.png',
     color: '#3b82f6',
     stats: { rating: '4.8', downloads: '800' },

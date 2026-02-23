@@ -28,7 +28,7 @@ const apps = [
     id: 'elow',
     name: 'Elow',
     description: 'Create your unique sound. Our AI transforms your ideas into original songs. Just describe your mood and let the music flow.',
-    image: '/apps/Elow_homescreen.png',
+    image: '/apps/elow_homescreen.png',
     icon: '/apps/Elow Logo.png',
     color: '#3b82f6',
     stats: { rating: '4.7', downloads: '5.2K' },

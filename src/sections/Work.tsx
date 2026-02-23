@@ -78,7 +78,7 @@ const projects = [
     name: 'Elow',
     category: 'iOS App • Produktivität',
     description: 'Flow-State Timer für maximale Produktivität. Intelligente Pausen- und Fokus-Zeiten.',
-    image: '/apps/Elow_homescreen.png',
+    image: '/apps/elow_homescreen.png',
     icon: '/apps/Elow Logo.png',
     color: '#3b82f6',
     stats: { rating: '4.8', downloads: '800' },
