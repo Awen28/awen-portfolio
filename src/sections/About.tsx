@@ -1,14 +1,14 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Code2, Users, Award, Clock, Palette, Globe, ArrowRight } from 'lucide-react';
+import { Code2, Users, Award, Clock, MapPin, Sparkles, ArrowRight } from 'lucide-react';
 
 const stats = [
-  { icon: Code2, value: '15', suffix: '+', label: 'Apps Shipped', color: '#B29F86' },
-  { icon: Globe, value: '30', suffix: '+', label: 'Websites Built', color: '#E9CFB9' },
-  { icon: Users, value: '50', suffix: '+', label: 'Happy Clients', color: '#525048' },
-  { icon: Palette, value: '40', suffix: '+', label: 'Brand Identities', color: '#B29F86' },
-  { icon: Award, value: '4', suffix: '', label: 'Years Experience', color: '#E9CFB9' },
+  { icon: Code2, value: '10', suffix: '+', label: 'Apps Created', color: '#B29F86' },
+  { icon: Award, value: '10', suffix: '+', label: 'Years Experience', color: '#E9CFB9' },
+  { icon: Sparkles, value: 'AI', suffix: '', label: 'Powered Solutions', color: '#B29F86' },
   { icon: Clock, value: '100', suffix: '%', label: 'In-House Team', color: '#525048' },
+  { icon: MapPin, value: 'Tirol', suffix: '', label: 'Austria Based', color: '#E9CFB9' },
+  { icon: Users, value: 'Dedicated', suffix: '', label: 'Client Focus', color: '#B29F86' },
 ];
 
 const values = [
