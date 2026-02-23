@@ -1,149 +1,167 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { ArrowUp, Heart } from 'lucide-react';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-50px' });
+
+  const handleNavClick = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
-  const currentYear = new Date().getFullYear();
-
-  const footerLinks = [
-    {
-      title: 'Navigation',
-      links: [
-        { label: 'Home', href: '#hero' },
-        { label: 'Apps', href: '#apps' },
-        { label: 'About', href: '#about' },
-        { label: 'Contact', href: '#contact' },
-      ]
-    },
-    {
-      title: 'Apps',
-      links: [
-        { label: 'NumiStellar', href: 'https://www.awen28.com/awenya' },
-        { label: 'Awenya', href: 'https://www.awen28.com/awenya' },
-        { label: 'VisAI', href: 'https://www.awen28.com/visai' },
-        { label: 'SureMate', href: 'https://www.awen28.com/suremate-pro' },
-      ]
-    },
-    {
-      title: 'Legal',
-      links: [
-        { label: 'Impressum', href: '/impressum' },
-        { label: 'Datenschutz', href: '/datenschutz' },
-        { label: 'Cookie Policy', href: '/cookie-policy' },
-      ]
-    },
-    {
-      title: 'Connect',
-      links: [
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/thomas-mayrl-719267bb' },
-        { label: 'E-Mail', href: 'mailto:info@awen28.com' },
-      ]
-    }
+  const navLinks = [
+    { label: 'Home', href: '#hero' },
+    { label: 'Services', href: '#services' },
+    { label: 'Work', href: '#work' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' },
   ];
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
   return (
-    <footer className="relative py-20 px-4 sm:px-6 lg:px-8 border-t border-border/30">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background to-transparent pointer-events-none" />
+    <footer
+      ref={sectionRef}
+      className="relative pt-24 pb-8 px-8 overflow-hidden"
+      style={{ background: '#E8E5E0' }}
+    >
+      {/* Large Background Text */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 1 }}
+        className="absolute top-0 left-0 right-0 text-center pointer-events-none select-none"
+      >
+        <span
+          className="font-serif text-[18vw] leading-none block"
+          style={{
+            color: 'transparent',
+            WebkitTextStroke: '1px rgba(82, 80, 72, 0.06)',
+          }}
+        >
+          AWEN28
+        </span>
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
-          {/* Brand column */}
+      <div className="max-w-7xl mx-auto relative">
+        {/* Top Section */}
+        <div className="grid lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand */}
           <div className="lg:col-span-2">
-            <motion.a
-              href="#hero"
-              onClick={(e) => handleLinkClick(e, '#hero')}
-              className="inline-block text-3xl font-light tracking-[0.3em] text-primary mb-6"
+            <motion.a 
+              href="#hero" 
+              onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
+              className="inline-block mb-6"
               whileHover={{ scale: 1.05 }}
             >
-              AWEN28
+              <span 
+                className="font-serif text-4xl tracking-tight"
+                style={{ color: '#525048' }}
+              >
+                AWEN<span style={{ color: '#B29F86' }}>28</span>
+              </span>
             </motion.a>
-            <p className="text-muted-foreground leading-relaxed max-w-sm mb-6">
-              Independent developer creating innovative experiences 
-              that inspire, empower, and transform everyday life.
+            <p 
+              className="text-lg max-w-md mb-6"
+              style={{ color: 'rgba(82, 80, 72, 0.6)' }}
+            >
+              Crafting exceptional digital experiences. From award-winning iOS apps to 
+              conversion-focused websites and compelling brand identities.
             </p>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-500 fill-red-500" />
-              <span>and lots of coffee</span>
-            </div>
+            <motion.a
+              href="mailto:info@awen28.com"
+              className="inline-flex items-center gap-2 text-lg transition-colors"
+              style={{ color: '#B29F86' }}
+              whileHover={{ x: 5 }}
+            >
+              info@awen28.com
+              <ArrowUpRight className="w-5 h-5" />
+            </motion.a>
           </div>
 
-          {/* Link columns */}
-          {footerLinks.map((column, index) => (
-            <div key={index}>
-              <h4 className="text-sm font-medium text-foreground uppercase tracking-wider mb-4">
-                {column.title}
-              </h4>
-              <ul className="space-y-3">
-                {column.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    {link.href.startsWith('/') ? (
-                      <Link
-                        to={link.href}
-                        className="text-muted-foreground hover:text-primary transition-colors line-animate"
-                      >
-                        {link.label}
-                      </Link>
-                    ) : (
-                      <a
-                        href={link.href}
-                        onClick={(e) => handleLinkClick(e, link.href)}
-                        className="text-muted-foreground hover:text-primary transition-colors line-animate"
-                        target={link.href.startsWith('http') ? '_blank' : undefined}
-                        rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      >
-                        {link.label}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Navigation */}
+          <div>
+            <h4 
+              className="text-sm tracking-widest uppercase mb-6"
+              style={{ color: 'rgba(82, 80, 72, 0.4)' }}
+            >
+              Navigation
+            </h4>
+            <nav className="space-y-3">
+              {navLinks.map((link) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                  className="block text-lg"
+                  style={{ color: 'rgba(82, 80, 72, 0.7)' }}
+                  whileHover={{ x: 5, color: '#525048' }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </nav>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 
+              className="text-sm tracking-widest uppercase mb-6"
+              style={{ color: 'rgba(82, 80, 72, 0.4)' }}
+            >
+              Services
+            </h4>
+            <nav className="space-y-3">
+              {['iOS Development', 'Web Design', 'Brand Identity', 'AI Integration', 'Backend'].map((service) => (
+                <motion.a
+                  key={service}
+                  href="#services"
+                  onClick={(e) => { e.preventDefault(); handleNavClick('#services'); }}
+                  className="block text-lg"
+                  style={{ color: 'rgba(82, 80, 72, 0.7)' }}
+                  whileHover={{ x: 5, color: '#525048' }}
+                >
+                  {service}
+                </motion.a>
+              ))}
+            </nav>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-border/30 gap-4">
-          <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} AWEN28. All rights reserved.
-          </p>
+        {/* Divider */}
+        <div 
+          className="h-px mb-8"
+          style={{ background: 'rgba(82, 80, 72, 0.1)' }}
+        />
 
-          {/* Back to top button */}
-          <motion.button
-            onClick={scrollToTop}
-            className="group flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.95 }}
+        {/* Bottom Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p 
+            className="text-sm"
+            style={{ color: 'rgba(82, 80, 72, 0.4)' }}
           >
-            <span>Back to top</span>
-            <motion.div
-              className="w-8 h-8 rounded-full border border-border/50 flex items-center justify-center group-hover:border-primary/50 transition-colors"
-              whileHover={{ scale: 1.1 }}
+            © {new Date().getFullYear()} AWEN28. All rights reserved.
+          </p>
+          <div className="flex gap-8">
+            <a
+              href="#"
+              className="text-sm transition-colors hover:text-[#525048]"
+              style={{ color: 'rgba(82, 80, 72, 0.4)' }}
             >
-              <ArrowUp className="w-4 h-4" />
-            </motion.div>
-          </motion.button>
+              Privacy Policy
+            </a>
+            <a
+              href="#"
+              className="text-sm transition-colors hover:text-[#525048]"
+              style={{ color: 'rgba(82, 80, 72, 0.4)' }}
+            >
+              Terms of Service
+            </a>
+          </div>
         </div>
       </div>
-
-      {/* Decorative elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
     </footer>
   );
 };

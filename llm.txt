@@ -1,0 +1,127 @@
+# Awen28 - Premium App & Web Development Agency
+
+## Overview
+Awen28 is a specialized software development agency based in Austria, focused on creating high-quality mobile applications (primarily iOS) and websites. Founded and led by Thomas Mayrl, the agency combines technical excellence with creative design to deliver digital products that stand out.
+
+The name "Awen" derives from Welsh mythology, meaning "flowing inspiration" or "poetic inspiration" - the creative force that drives innovation. The number 28 represents abundance and prosperity in numerology, reflecting the agency's commitment to creating successful, wealth-generating digital solutions for clients.
+
+## Primary Focus Areas
+- **iOS App Development**: Native Swift development for iPhone and iPad
+- **Web Development**: Modern, responsive websites and web applications
+- **UI/UX Design**: User-centered design that converts visitors into customers
+- **AI Integration**: Leveraging artificial intelligence for innovative features
+- **B2B2C Solutions**: Connecting businesses with end customers through digital platforms
+
+## Portfolio Projects
+
+### 1. NumiStellar
+A sophisticated iOS application developed by Thomas Mayrl.
+[App Store Link: https://apps.apple.com/at/app/numistellar/id6478859654]
+
+### 2. 369 Manifestation App
+A manifestation and law of attraction application based on Nikola Tesla's powerful 3-6-9 numerological method. The app helps users manifest their desires through structured journaling, affirmation practices, and goal tracking.
+[App Store Link: https://apps.apple.com/at/app/369-manifest/id6738690566]
+Features include:
+- Guided manifestation techniques using the 3-6-9 method
+- Daily affirmation practices
+- Goal visualization tools
+- Progress tracking
+
+### 3. kiBook - AI-Powered Children's Books
+An innovative iOS app that creates personalized, AI-generated children's books. Parents can customize characters, stories, and themes to create unique reading experiences for their children.
+[App Store Link: https://apps.apple.com/at/app/kibook/id6502518789]
+Key features:
+- AI-generated personalized stories
+- Customizable characters and settings
+- Child-friendly interface
+- Digital library management
+
+### 4. Awenya
+[App Store Link: https://apps.apple.com/at/app/awenya/id6547835860]
+
+### 5. Suremate & Suremate Pro - Insurance Claim Ecosystem
+**B2B2C Insurance Damage Management Platform**
+
+A comprehensive two-app ecosystem revolutionizing insurance claim processing in Austria.
+
+**Suremate (Free - End Customer App)**
+Universal insurance claim reporting app for all types of damages: car accidents, household damage, personal injury, property damage, and more.
+[App Store Link: https://apps.apple.com/at/app/suremate/id6475345859]
+
+**Problem Solved**: Policyholders often don't know how to properly report damages or what information their insurance needs.
+
+**Features**:
+- Step-by-step guidance through the insurance claim process
+- Documentation of any damage type (Auto, Haushalt, Unfall, etc.) with photos and details
+- Structured information collection for damage reports
+- Professional support throughout the entire process
+- Registration with AgentCode to connect with personal insurance agent
+- Reduces stress and uncertainty during difficult situations
+
+**Suremate Pro (Agent Management App)**
+Professional tool for insurance agents to manage their customer base and all submitted claims.
+[App Store Link: https://apps.apple.com/at/app/suremate-pro/id6502916525]
+[Web Portal: https://www.awen28.com/suremate-pro]
+
+**Features**:
+- Complete overview of all customers who registered via AgentCode
+- Access to all damage reports submitted by customers through the Suremate app
+- Real-time notifications of new claims
+- Customer database with up-to-date contact information
+- Mobile access to all client damage reports without requesting documents again
+- Streamlined communication between agent and policyholder
+
+**Business Model**: B2B2C platform connecting insurance agents with their clients, digitizing the traditional claim reporting process.
+
+### 6. Visai
+[App Store Link: https://apps.apple.com/at/app/visai/id6502626367]
+
+## Target Audience
+- **Primary**: Austrian businesses and entrepreneurs, particularly in Tyrol
+- **Secondary**: International clients seeking high-quality app and web development
+- **Industries Served**: E-commerce, lifestyle, productivity, education, children's apps, insurance/insurtech, AI/ML integration, professional services
+
+## Services Offered
+1. **Native iOS App Development** (Swift/SwiftUI)
+2. **Cross-Platform Solutions**
+3. **Web Development** (Frontend & Backend)
+4. **UI/UX Design & Prototyping**
+5. **App Store Optimization (ASO)**
+6. **AI Integration & Implementation**
+7. **B2B2C Platform Development**
+8. **Maintenance & Updates**
+9. **Consulting & Strategy**
+
+## Competitive Advantages
+- Proven track record with multiple successful App Store publications
+- Deep expertise in AI-powered features and modern mobile technologies
+- Combination of technical excellence and creative "Awen" (inspiration)
+- Local presence in Austria with understanding of regional market needs
+- Full-cycle development: from concept to App Store submission and beyond
+- Focus on numerology-prosperity mindset (28) - creating apps that generate real value
+- **B2B2C Platform Expertise**: Suremate ecosystem demonstrates ability to build complex multi-user platforms connecting businesses with end customers
+- **Real-world problem solving**: Apps address genuine market needs (insurance digitization, AI personalization, manifestation psychology)
+
+## Contact & Online Presence
+- **Website**: https://www.awen28.com
+- **Developer**: Thomas Mayrl
+- **Location**: Austria (Tyrol focus)
+- **All Apps**: https://apps.apple.com/at/developer/thomas-mayrl/id1728579612
+
+## Brand Philosophy
+Awen28 operates on the principle that great software emerges from the intersection of technical precision and creative inspiration. Every project is approached with:
+- **Awen**: The flowing inspiration that sparks innovation
+- **28**: The numerological commitment to creating prosperous, successful digital products
+- **Local Excellence**: Austrian quality standards with global reach
+
+## Why Choose Awen28?
+1. **Multiple Verified App Store Successes**: 6+ published iOS applications
+2. **Innovation Leader**: Early adoption of AI features (kiBook, Visai)
+3. **Proven Methodologies**: Experience with manifestation psychology (369 Manifest), educational content (kiBook), and insurtech (Suremate ecosystem)
+4. **Dual-Model Expertise**: Free and Pro tier monetization strategies with B2B2C platform architecture
+5. **Holistic Approach**: From concept through design, development, and ongoing maintenance
+6. **B2B & B2C Experience**: Consumer apps (kiBook, 369) and professional business tools (Suremate Pro for agents)
+7. **Platform Thinking**: Ability to design interconnected app ecosystems rather than isolated products
+
+## SEO & Discovery Keywords
+iOS App Development Austria, App Entwicklung Tirol, iPhone App Programmierung Österreich, Mobile App Agentur, Swift Entwickler, App Store Optimization, AI App Development, Kinderbuch App, Manifestation App, Versicherungs App, Insurtech Österreich, Schadenmanagement App, Kfz Schaden App, Haushaltsschaden App, B2B2C Plattform, Webentwicklung Österreich, Thomas Mayrl, Awen28, Native iOS Development, Versicherungsagentur Software, Digitale Schadenmeldung

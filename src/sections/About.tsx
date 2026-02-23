@@ -1,211 +1,221 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Code, Lightbulb, Rocket, Heart, Zap, Globe } from 'lucide-react';
+import { Code2, Users, Award, Clock, Palette, Globe, ArrowRight } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const skills = [
-  { name: 'iOS Development', level: 95 },
-  { name: 'Backend Development', level: 90 },
-  { name: 'AI Integration & Workflows', level: 88 },
-  { name: 'Homepage & Web Development', level: 85 },
-  { name: 'UI/UX Design', level: 80 },
-{ name: 'Shop integration', level: 75 }
+const stats = [
+  { icon: Code2, value: '15', suffix: '+', label: 'Apps Shipped', color: '#B29F86' },
+  { icon: Globe, value: '30', suffix: '+', label: 'Websites Built', color: '#E9CFB9' },
+  { icon: Users, value: '50', suffix: '+', label: 'Happy Clients', color: '#525048' },
+  { icon: Palette, value: '40', suffix: '+', label: 'Brand Identities', color: '#B29F86' },
+  { icon: Award, value: '4', suffix: '', label: 'Years Experience', color: '#E9CFB9' },
+  { icon: Clock, value: '100', suffix: '%', label: 'In-House Team', color: '#525048' },
 ];
 
 const values = [
   {
-    icon: Lightbulb,
+    title: 'Craftsmanship',
+    description: 'We treat every project as a work of art. No shortcuts, no templates—just meticulously crafted digital experiences.',
+  },
+  {
+    title: 'Partnership',
+    description: 'You are not just a client. We embed ourselves in your vision, working alongside you from concept to launch.',
+  },
+  {
     title: 'Innovation',
-    description: 'Pushing boundaries with cutting-edge technology and creative solutions.'
+    description: 'We stay ahead of the curve so you do not have to. Cutting-edge technology meets timeless design.',
   },
-  {
-    icon: Heart,
-    title: 'User-Centric',
-    description: 'Every app is crafted with the user experience as the top priority.'
-  },
-  {
-    icon: Rocket,
-    title: 'Performance',
-    description: 'Lightning-fast, smooth, and optimized for all devices.'
-  },
-  {
-    icon: Code,
-    title: 'Clean Code',
-    description: 'Maintainable, scalable, and well-architected codebases.'
-  },
-  {
-    icon: Zap,
-    title: 'Rapid Iteration',
-    description: 'Quick prototyping and continuous improvement based on feedback.'
-  },
-  {
-    icon: Globe,
-    title: 'Global Reach',
-    description: 'Apps designed for international audiences with localization in mind.'
-  }
 ];
 
 const About = () => {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Skill bars animation
-      gsap.fromTo('.skill-bar',
-        { width: 0 },
-        {
-          width: (_, el) => el.dataset.level + '%',
-          duration: 1.5,
-          stagger: 0.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.skills-container',
-            start: 'top 80%',
-          }
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="about" 
-      className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      id="about"
+      className="relative py-32 px-8"
+      style={{ background: '#FAF9F7' }}
     >
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-30">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[150px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <span className="text-primary text-sm tracking-[0.3em] uppercase mb-4 block">
-            About Me
-          </span>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-foreground mb-6">
-            The <span className="gradient-text">Developer</span>
-          </h2>
-          <div className="h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent max-w-md mx-auto" />
-        </motion.div>
-
-        {/* Main content grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left column - Bio */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="prose prose-invert max-w-none">
-              <p className="text-xl text-foreground leading-relaxed mb-6">
-                Hi, I&apos;m the creator behind <span className="text-primary font-medium">AWEN28</span>. 
-                I&apos;m an independent developer passionate about building digital experiences 
-                that make a real difference in people&apos;s lives.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                With 10+ years of experience in development, I&apos;ve had the privilege 
-                of creating apps and websites across various domains—from wellness and spirituality to 
-                productivity and lifestyle. Each project is a labor of love, combining 
-                technical excellence with thoughtful design.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-8">
-                My philosophy is simple: great apps and websites should feel intuitive, look beautiful, 
-                and solve real problems. I believe in the power of technology to enhance 
-                human experiences, not complicate them.
-              </p>
+      <div className="max-w-7xl mx-auto">
+        {/* Main Content */}
+        <div className="grid lg:grid-cols-2 gap-24 mb-32">
+          {/* Left: Text */}
+          <div>
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="font-serif italic text-sm tracking-[0.3em] block mb-6"
+              style={{ color: '#B29F86' }}
+            >
+              About Us
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-serif text-5xl md:text-6xl leading-tight mb-8"
+              style={{ color: '#525048' }}
+            >
+              Not just developers.
+              <br />
+              <span 
+                className="italic"
+                style={{ color: '#B29F86' }}
+              >
+                Digital craftsmen.
+              </span>
+            </motion.h2>
+            <div className="space-y-6">
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-xl leading-relaxed"
+                style={{ color: 'rgba(82, 80, 72, 0.8)' }}
+              >
+                AWEN28 is a full-service digital studio based in Tirol, Austria. We specialize in 
+                creating exceptional digital products—from award-winning iOS apps to conversion-focused 
+                websites and comprehensive brand identities.
+              </motion.p>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-lg leading-relaxed"
+                style={{ color: 'rgba(82, 80, 72, 0.6)' }}
+              >
+                Our team combines technical excellence with artistic sensibility. We do not just write code; 
+                we architect experiences. Every pixel, every line of code, every interaction is considered.
+              </motion.p>
             </div>
+          </div>
 
-            {/* Skills */}
-            <div className="skills-container">
-              <h3 className="text-lg font-medium text-foreground mb-6 flex items-center gap-2">
-                <Code className="w-5 h-5 text-primary" />
-                Technical Skills
-              </h3>
-              <div className="space-y-4">
-                {skills.map((skill, index) => (
-                  <div key={index} className="group">
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                        {skill.name}
-                      </span>
-                      <span className="text-sm text-primary">{skill.level}%</span>
-                    </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <div 
-                        className="skill-bar h-full bg-gradient-to-r from-primary to-primary/60 rounded-full"
-                        data-level={skill.level}
-                      />
-                    </div>
+          {/* Right: Values */}
+          <div className="space-y-6">
+            {values.map((value, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + idx * 0.1 }}
+                whileHover={{ 
+                  scale: 1.02, 
+                  y: -5,
+                  transition: { duration: 0.3 }
+                }}
+                className="p-8 rounded-3xl cursor-default"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 249, 247, 0.6) 100%)',
+                  border: '1px solid rgba(82, 80, 72, 0.08)',
+                  boxShadow: '0 20px 40px rgba(82, 80, 72, 0.05)',
+                }}
+              >
+                <div className="flex items-start gap-6">
+                  <span 
+                    className="text-5xl font-serif"
+                    style={{ color: 'rgba(178, 159, 134, 0.3)' }}
+                  >
+                    0{idx + 1}
+                  </span>
+                  <div>
+                    <h3 
+                      className="font-serif text-2xl mb-3"
+                      style={{ color: '#525048' }}
+                    >
+                      {value.title}
+                    </h3>
+                    <p 
+                      className="leading-relaxed"
+                      style={{ color: 'rgba(82, 80, 72, 0.6)' }}
+                    >
+                      {value.description}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right column - Values */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-          >
-            {values.map((value, index) => {
-              const Icon = value.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  className="group p-6 rounded-2xl bg-secondary/30 border border-border/50 hover:border-primary/30 transition-all duration-300 hover:bg-secondary/50"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h4 className="text-lg font-medium text-foreground mb-2">
-                    {value.title}
-                  </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {value.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* Quote */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+        {/* Stats */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-20 text-center"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="py-16 rounded-3xl"
+          style={{
+            background: 'linear-gradient(135deg, rgba(233, 207, 185, 0.15) 0%, rgba(178, 159, 134, 0.1) 100%)',
+            border: '1px solid rgba(82, 80, 72, 0.06)',
+          }}
         >
-          <blockquote className="relative">
-            <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-8xl text-primary/20 font-serif">
-              &ldquo;
-            </span>
-            <p className="text-2xl md:text-3xl font-light text-foreground italic max-w-3xl mx-auto relative z-10">
-              Technology is best when it brings people together and 
-              <span className="text-primary"> empowers them</span> to live better lives.
-            </p>
-            <footer className="mt-6 text-muted-foreground">
-              — My development philosophy
-            </footer>
-          </blockquote>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            {stats.map((stat, idx) => (
+              <motion.div 
+                key={idx} 
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
+                whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+              >
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${stat.color}25 0%, ${stat.color}10 100%)`,
+                    border: `1px solid ${stat.color}35`,
+                  }}
+                >
+                  <stat.icon className="w-5 h-5" style={{ color: stat.color }} />
+                </div>
+                <div 
+                  className="font-serif text-4xl mb-1"
+                  style={{ color: '#525048' }}
+                >
+                  {stat.value}{stat.suffix}
+                </div>
+                <div 
+                  className="text-xs tracking-widest uppercase"
+                  style={{ color: 'rgba(82, 80, 72, 0.5)' }}
+                >
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-center mt-24"
+        >
+          <p 
+            className="text-xl mb-8"
+            style={{ color: 'rgba(82, 80, 72, 0.6)' }}
+          >
+            Ready to build something extraordinary?
+          </p>
+          <motion.a 
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm tracking-wider uppercase"
+            style={{
+              background: '#525048',
+              color: '#FAF9F7',
+            }}
+            whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(82, 80, 72, 0.2)' }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Start Your Project
+            <ArrowRight className="w-4 h-4" />
+          </motion.a>
         </motion.div>
       </div>
     </section>

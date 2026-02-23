@@ -1,99 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- Homepage -->
+  
+  <!-- Home Page -->
   <url>
-    <loc>https://awen28.com/</loc>
-    <lastmod>2026-02-02</lastmod>
+    <loc>https://www.awen28.com/</loc>
+    <lastmod>2025-02-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.awen28.com/og-image.jpg</image:loc>
+      <image:title>AWEN28 - Premium Digital Studio Tirol</image:title>
+    </image:image>
   </url>
 
-  <!-- Legal Pages -->
+  <!-- 369 Manifestation App -->
   <url>
-    <loc>https://awen28.com/impressum</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://www.awen28.com/369</loc>
+    <lastmod>2025-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.awen28.com/apps/369_Homescreen.png</image:loc>
+      <image:title>369 Manifestation App - AI Vision Board</image:title>
+    </image:image>
   </url>
 
+  <!-- NumiStellar -->
   <url>
-    <loc>https://awen28.com/datenschutz</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://www.awen28.com/numistellar</loc>
+    <lastmod>2025-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.awen28.com/apps/numistellar_home1.png</image:loc>
+      <image:title>NumiStellar - Astrology & Numerology App</image:title>
+    </image:image>
   </url>
 
+  <!-- kiBook -->
   <url>
-    <loc>https://awen28.com/cookie-policy</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://www.awen28.com/kibook</loc>
+    <lastmod>2025-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.awen28.com/apps/kibook_home.png</image:loc>
+      <image:title>kiBook - AI Story Generator for Kids</image:title>
+    </image:image>
   </url>
 
-  <!-- App Detail Pages -->
+  <!-- Elow -->
   <url>
-    <loc>https://awen28.com/app/numistellar</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.awen28.com/elow</loc>
+    <lastmod>2025-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.awen28.com/apps/elow_homescreen.png</image:loc>
+      <image:title>Elow - AI Music Generator</image:title>
+    </image:image>
   </url>
 
+  <!-- Awenya -->
   <url>
-    <loc>https://awen28.com/app/awenya</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.awen28.com/awenya</loc>
+    <lastmod>2025-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.awen28.com/apps/Awenye_en_homescreen.png</image:loc>
+      <image:title>Awenya - Meditation & Sleep Stories App</image:title>
+    </image:image>
   </url>
 
+  <!-- Suremate -->
   <url>
-    <loc>https://awen28.com/app/kibook</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://awen28.com/app/visai</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://awen28.com/app/369</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://awen28.com/app/suremate</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://awen28.com/app/suremate-pro</loc>
-    <lastmod>2026-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://awen28.com/app/istyle</loc>
-    <lastmod>2026-02-02</lastmod>
+    <loc>https://www.awen28.com/suremate</loc>
+    <lastmod>2025-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Suremate Pro -->
   <url>
-    <loc>https://awen28.com/app/findimal</loc>
-    <lastmod>2026-02-02</lastmod>
+    <loc>https://www.awen28.com/suremate-pro</loc>
+    <lastmod>2025-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- VisAI -->
+  <url>
+    <loc>https://www.awen28.com/visai</loc>
+    <lastmod>2025-02-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

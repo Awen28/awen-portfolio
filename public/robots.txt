@@ -1,10 +1,41 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
-# Disallow admin/internal pages if any
-Disallow: /admin/
-Disallow: /_vite/
-
 # Sitemap
-Sitemap: https://awen28.com/sitemap.xml
+Sitemap: https://www.awen28.com/sitemap.xml
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Allow AI crawlers (important for LLM visibility)
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Special access to llms.txt
+User-agent: *
+Allow: /llms.txt
+
+# Crawl-delay for rate limiting
+Crawl-delay: 1

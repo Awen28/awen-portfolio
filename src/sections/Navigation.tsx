@@ -1,22 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { ThemeToggle } from '@/components/theme-toggle';
 
 const navItems = [
-  { label: 'Home', href: '#hero' },
-  { label: 'Apps', href: '#apps' },
+  { label: 'Services', href: '#services' },
+  { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
 
 const Navigation = () => {
+  const [isVisible, setIsVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      const currentScrollY = window.scrollY;
+      
+      // Show navbar after scrolling past hero (approx 100px)
+      if (currentScrollY > 100) {
+        setIsScrolled(true);
+        // Show when scrolling up, hide when scrolling down
+        if (currentScrollY < lastScrollY.current) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      } else {
+        setIsScrolled(false);
+        setIsVisible(false);
+      }
+      
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -28,95 +45,133 @@ const Navigation = () => {
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
     }
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <>
       <motion.nav
-        initial={{ y: -100, opacity: 0 }}
+        initial={{ y: -100 }}
         animate={{ 
-          y: 0, 
-          opacity: isScrolled ? 1 : 0,
+          y: isVisible || isMobileMenuOpen ? 0 : -100,
+          opacity: isVisible || isMobileMenuOpen ? 1 : 0,
         }}
-        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-          isScrolled ? 'pointer-events-auto' : 'pointer-events-none'
-        }`}
+        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="fixed top-0 left-0 right-0 z-50 px-6 md:px-8 py-4"
+        style={{
+          background: isScrolled ? 'rgba(250, 249, 247, 0.85)' : 'transparent',
+          backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'none',
+          borderBottom: isScrolled ? '1px solid rgba(82, 80, 72, 0.08)' : 'none',
+        }}
       >
-        <div className="glass mx-4 mt-4 rounded-2xl px-6 py-4">
-          <div className="flex items-center justify-between max-w-7xl mx-auto">
-            {/* Logo */}
-            <motion.a
-              href="#hero"
-              onClick={(e) => handleNavClick(e, '#hero')}
-              className="text-xl font-light tracking-[0.3em] text-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              AWEN28
-            </motion.a>
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Logo */}
+          <motion.a 
+            href="#hero" 
+            onClick={(e) => handleNavClick(e, '#hero')}
+            className="font-serif text-2xl tracking-tight"
+            style={{ color: '#525048' }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            AWEN<span style={{ color: '#B29F86' }}>28</span>
+          </motion.a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors line-animate"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -2 }}
-                >
-                  {item.label}
-                </motion.a>
-              ))}
-              <ThemeToggle />
-            </div>
-
-            {/* Mobile Menu Button & Theme Toggle */}
-            <div className="md:hidden flex items-center gap-4">
-              <ThemeToggle />
-              <motion.button
-                className="p-2 text-primary"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                whileTap={{ scale: 0.9 }}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-10">
+            {navItems.map((item, idx) => (
+              <motion.a
+                key={item.label}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-sm tracking-widest uppercase relative group"
+                style={{ color: 'rgba(82, 80, 72, 0.6)' }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ color: '#525048' }}
               >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </motion.button>
-            </div>
+                {item.label}
+                <span 
+                  className="absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300"
+                  style={{ background: '#B29F86' }}
+                />
+              </motion.a>
+            ))}
+            
+            {/* CTA Button */}
+            <motion.a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="px-5 py-2.5 rounded-full text-xs tracking-wider uppercase transition-all duration-300"
+              style={{
+                background: 'rgba(82, 80, 72, 0.9)',
+                color: '#FAF9F7',
+              }}
+              whileHover={{ scale: 1.05, background: '#525048' }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Start Project
+            </motion.a>
           </div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="md:hidden p-2 rounded-full transition-colors"
+            style={{ 
+              color: '#525048',
+              background: 'rgba(82, 80, 72, 0.05)',
+            }}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </motion.button>
         </div>
       </motion.nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-30 bg-background/95 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 z-40 md:hidden"
+            style={{ background: '#FAF9F7' }}
           >
-            <div className="flex flex-col items-center justify-center h-full gap-8">
-              {navItems.map((item, index) => (
+            <div className="flex flex-col items-center justify-center h-full gap-6">
+              {navItems.map((item, idx) => (
                 <motion.a
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-3xl font-light text-foreground hover:text-primary transition-colors"
+                  className="font-serif text-4xl"
+                  style={{ color: '#525048' }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: idx * 0.1 }}
                 >
                   {item.label}
                 </motion.a>
               ))}
+              <motion.a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, '#contact')}
+                className="mt-8 px-8 py-4 rounded-full text-sm tracking-wider uppercase"
+                style={{
+                  background: '#525048',
+                  color: '#FAF9F7',
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                Start Your Project
+              </motion.a>
             </div>
           </motion.div>
         )}
