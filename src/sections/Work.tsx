@@ -62,17 +62,7 @@ const projects = [
     stats: { rating: '4.7', downloads: '1.2K' },
     tags: ['Fintech', 'OCR', 'iOS'],
   },
-  {
-    id: 'isyd',
-    name: 'I Style You Daily',
-    category: 'iOS App • Fashion Tech',
-    description: 'KI-Stylist für deinen Kleiderschrank. Tägliche Outfit-Empfehlungen basierend auf Wetter und Stil.',
-    image: '/apps/isyd_Homescreen.png',
-    icon: '/apps/ISYDLOGO.png',
-    color: '#f59e0b',
-    stats: { rating: '4.5', downloads: '1.1K' },
-    tags: ['Vision API', 'Weather API', 'iOS'],
-  },
+
   {
     id: 'elow',
     name: 'Elow',

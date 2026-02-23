@@ -91,7 +91,7 @@ const Awenya = () => {
     'Awenya',
     'Awenya ist dein persönliches Heiligtum für Achtsamkeit. AI-geführte Meditationen, Sleep Stories und Solfeggio Frequenzen für besseren Schlaf.',
     'https://www.awen28.com/apps/Awenye_en_homescreen.png',
-    'https://apps.apple.com/at/app/awenya/id6736651631',
+    'https://apps.apple.com/at/app/awenya/id6747996354',
     'HealthApplication',
     '4.8',
     '800'
@@ -232,7 +232,7 @@ const Awenya = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <a
-                href="https://apps.apple.com/at/app/awenya/id6736651631"
+                href="https://apps.apple.com/at/app/awenya/id6747996354"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group px-6 py-3 rounded-full flex items-center gap-2 text-sm font-medium transition-all hover:scale-105"
@@ -508,7 +508,7 @@ const Awenya = () => {
               guided meditation, and restorative sleep.
             </p>
             <a
-              href="https://apps.apple.com/at/app/awenya/id6736651631"
+              href="https://apps.apple.com/at/app/awenya/id6747996354"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all hover:scale-105"

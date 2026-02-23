@@ -183,7 +183,7 @@ const NumiStellar = () => {
     'NumiStellar',
     'NumiStellar vereint Astrologie, Numerologie und kosmische Energie. Echtzeit Planetenpositionen, Schumann Resonanz, Astrocartographie und AI Energy Chat.',
     'https://www.awen28.com/apps/numistellar_home1.png',
-    'https://apps.apple.com/at/app/numistellar/id6736651629',
+    'https://apps.apple.com/at/app/numistellar/id6745343823',
     'LifestyleApplication',
     '4.9',
     '1000'
@@ -384,7 +384,7 @@ const NumiStellar = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <motion.a
-                href="https://apps.apple.com/at/app/numistellar/id6736651629"
+                href="https://apps.apple.com/at/app/numistellar/id6745343823"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group px-6 py-3 rounded-full flex items-center gap-2 text-sm font-medium transition-all"
@@ -705,7 +705,7 @@ const NumiStellar = () => {
               Your stars are waiting to guide you.
             </p>
             <motion.a
-              href="https://apps.apple.com/at/app/numistellar/id6736651629"
+              href="https://apps.apple.com/at/app/numistellar/id6745343823"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium relative z-10"

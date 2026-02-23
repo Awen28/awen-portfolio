@@ -161,7 +161,7 @@ const VisAI = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <a
-                href="https://apps.apple.com/at/app/visai/id6736651656"
+                href="https://apps.apple.com/at/app/visai/id6744864095"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group px-6 py-3 rounded-full flex items-center gap-2 text-sm font-medium transition-all hover:scale-105"
@@ -446,7 +446,7 @@ const VisAI = () => {
               Your future starts with a vision.
             </p>
             <a
-              href="https://apps.apple.com/at/app/visai/id6736651656"
+              href="https://apps.apple.com/at/app/visai/id6744864095"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all hover:scale-105"

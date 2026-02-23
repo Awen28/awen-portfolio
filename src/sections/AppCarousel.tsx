@@ -56,16 +56,7 @@ const apps = [
     color: '#6366f1',
     stats: { rating: '4.7', downloads: '1.2K' },
   },
-  {
-    id: 'isyd',
-    name: 'I Style You',
-    category: 'Fashion Tech',
-    description: 'KI-Stylist für deinen Kleiderschrank. Outfit-Empfehlungen per KI.',
-    image: '/apps/isyd_Homescreen.png',
-    icon: '/apps/ISYDLOGO.png',
-    color: '#f59e0b',
-    stats: { rating: '4.5', downloads: '1.1K' },
-  },
+
   {
     id: 'elow',
     name: 'Elow',

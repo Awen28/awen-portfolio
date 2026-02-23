@@ -206,7 +206,7 @@ const ThreeSixNine = () => {
     '369 Manifestation App',
     'Die 369 Manifestation App kombiniert die 369 Methode mit AI Vision Boards, Meditationen und Solfeggio Frequenzen für effektives Manifestieren.',
     'https://www.awen28.com/apps/369_Homescreen.png',
-    'https://apps.apple.com/at/app/369-manifestation-app/id6736651628',
+    'https://apps.apple.com/at/app/369-manifestation-meditation/id1663677921',
     'HealthApplication',
     '4.8',
     '500'
@@ -412,7 +412,7 @@ const ThreeSixNine = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <motion.a
-                href="https://apps.apple.com/at/app/369-manifestation-app/id6736651628"
+                href="https://apps.apple.com/at/app/369-manifestation-meditation/id1663677921"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group px-6 py-3 rounded-full flex items-center gap-2 text-sm font-medium transition-all"
@@ -774,7 +774,7 @@ const ThreeSixNine = () => {
               Your desired reality is just 21 days away.
             </p>
             <motion.a
-              href="https://apps.apple.com/at/app/369-manifestation-app/id6736651628"
+              href="https://apps.apple.com/at/app/369-manifestation-meditation/id1663677921"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium relative z-10"

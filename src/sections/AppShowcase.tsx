@@ -89,16 +89,6 @@ const projects = [
     year: '2025',
     tags: ['Image AI', 'Vision'],
   },
-  {
-    id: 'isyd',
-    name: 'ISYD',
-    category: 'iOS App',
-    description: 'Your intelligent wardrobe. AI-powered outfit recommendations.',
-    image: '/apps/isyd_Homescreen.png',
-    color: '#B29F86',
-    year: '2023',
-    tags: ['Vision API', 'Weather'],
-  },
 ];
 
 const AppShowcase = () => {

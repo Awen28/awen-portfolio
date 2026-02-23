@@ -60,15 +60,6 @@ const apps = [
     color: '#6366f1',
     stats: { rating: '4.6', downloads: '3.8K' },
   },
-  {
-    id: 'isyd',
-    name: 'I Style You Daily',
-    description: 'Your intelligent wardrobe. AI-powered outfit recommendations based on your style, weather, and calendar. Dress smarter, not harder.',
-    image: '/apps/isyd_Homescreen.png',
-    icon: '/apps/ISYDLOGO.png',
-    color: '#f59e0b',
-    stats: { rating: '4.7', downloads: '6.1K' },
-  },
 ];
 
 const AppArc = () => {

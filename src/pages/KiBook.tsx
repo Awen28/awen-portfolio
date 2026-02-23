@@ -116,7 +116,7 @@ const KiBook = () => {
     'kiBook',
     'kiBook verwandelt Ideen in wunderschön illustrierte Geschichten. AI Story Generator für Kinder mit verschiedenen Kunststilen und PDF Export.',
     'https://www.awen28.com/apps/kibook_home.png',
-    'https://apps.apple.com/at/app/kibook/id6736651630',
+    'https://apps.apple.com/at/app/kibook-dein-abenteuer/id6744836466',
     'EducationApplication',
     '4.9',
     '2000'
@@ -320,7 +320,7 @@ const KiBook = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <a
-                href="https://apps.apple.com/at/app/kibook/id6736651630"
+                href="https://apps.apple.com/at/app/kibook-dein-abenteuer/id6744836466"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group px-8 py-4 rounded-full flex items-center gap-3 text-base font-medium transition-all hover:scale-105"
@@ -878,7 +878,7 @@ const KiBook = () => {
               Perfect for kids, parents, and anyone who loves storytelling!
             </p>
             <motion.a
-              href="https://apps.apple.com/at/app/kibook/id6736651630"
+              href="https://apps.apple.com/at/app/kibook-dein-abenteuer/id6744836466"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-10 py-5 rounded-full text-base font-medium transition-all hover:scale-105"

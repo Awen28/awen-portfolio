@@ -161,7 +161,7 @@ const SurematePro = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <a
-                href="https://apps.apple.com/at/app/suremate-pro/id6736651642"
+                href="https://apps.apple.com/at/app/suremate-pro/id6502916525"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group px-6 py-3 rounded-full flex items-center gap-2 text-sm font-medium transition-all hover:scale-105"
@@ -457,7 +457,7 @@ const SurematePro = () => {
                 Register as Agent
               </Link>
               <a
-                href="https://apps.apple.com/at/app/suremate-pro/id6736651642"
+                href="https://apps.apple.com/at/app/suremate-pro/id6502916525"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all hover:scale-105"

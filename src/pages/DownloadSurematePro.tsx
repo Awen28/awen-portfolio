@@ -109,7 +109,7 @@ const DownloadSurematePro = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             >
               <motion.a
-                href="https://apps.apple.com/at/app/suremate-pro/idXXXXXXXXX"
+                href="https://apps.apple.com/at/app/suremate-pro/id6502916525"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
