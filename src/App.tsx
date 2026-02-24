@@ -24,6 +24,7 @@ import Datenschutz from './pages/Datenschutz';
 import PrivacyApps from './pages/PrivacyApps';
 import Cookies from './pages/Cookies';
 import Navigation from './sections/Navigation';
+import CookieConsent from './components/CookieConsent';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -110,6 +111,7 @@ function App() {
           <Route path="/privacy-apps" element={<PrivacyApps />} />
           <Route path="/cookies" element={<Cookies />} />
         </Routes>
+        <CookieConsent />
       </div>
     </HelmetProvider>
   );
