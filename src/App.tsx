@@ -19,6 +19,10 @@ import DownloadSurematePro from './pages/DownloadSurematePro';
 import AgentPortal from './pages/AgentPortal';
 import Callback from './pages/Callback';
 import NotFound from './pages/NotFound';
+import Impressum from './pages/Impressum';
+import Datenschutz from './pages/Datenschutz';
+import PrivacyApps from './pages/PrivacyApps';
+import Cookies from './pages/Cookies';
 import Navigation from './sections/Navigation';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -101,6 +105,10 @@ function App() {
           <Route path="/agentportal" element={<AgentPortal />} />
           <Route path="/callback" element={<Callback />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/privacy-apps" element={<PrivacyApps />} />
+          <Route path="/cookies" element={<Cookies />} />
         </Routes>
       </div>
     </HelmetProvider>

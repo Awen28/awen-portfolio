@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -144,21 +145,31 @@ const Footer = () => {
           >
             © {new Date().getFullYear()} AWEN28. All rights reserved.
           </p>
-          <div className="flex gap-8">
-            <a
-              href="#"
-              className="text-sm transition-colors hover:text-[#525048]"
-              style={{ color: 'rgba(82, 80, 72, 0.4)' }}
+          {/* Legal Links - Small and unobtrusive */}
+          <div className="flex items-center gap-4 text-[10px] tracking-wide">
+            <Link
+              to="/impressum"
+              className="transition-colors hover:text-[#525048]"
+              style={{ color: 'rgba(82, 80, 72, 0.35)' }}
             >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-sm transition-colors hover:text-[#525048]"
-              style={{ color: 'rgba(82, 80, 72, 0.4)' }}
+              Impressum
+            </Link>
+            <span style={{ color: 'rgba(82, 80, 72, 0.2)' }}>|</span>
+            <Link
+              to="/datenschutz"
+              className="transition-colors hover:text-[#525048]"
+              style={{ color: 'rgba(82, 80, 72, 0.35)' }}
             >
-              Terms of Service
-            </a>
+              Datenschutz
+            </Link>
+            <span style={{ color: 'rgba(82, 80, 72, 0.2)' }}>|</span>
+            <Link
+              to="/cookies"
+              className="transition-colors hover:text-[#525048]"
+              style={{ color: 'rgba(82, 80, 72, 0.35)' }}
+            >
+              Cookies
+            </Link>
           </div>
         </div>
       </div>
