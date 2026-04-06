@@ -84,7 +84,7 @@ const projects = [
     name: 'PrayPro',
     category: 'iOS App',
     description: 'Your daily prayer companion with Bible verses and beautiful sacred art.',
-    image: '/apps/praypro_1.png',
+    image: '/apps/pray_home.png',
     color: '#E9CFB9',
     year: '2025',
     tags: ['Faith', 'Spirituality'],

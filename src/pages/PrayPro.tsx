@@ -33,12 +33,12 @@ const features = [
 ];
 
 const screenshots = [
-  { src: '/apps/praypro_1.png', alt: 'Angelic scene' },
-  { src: '/apps/praypro_2.png', alt: 'Jesus the shepherd' },
-  { src: '/apps/praypro_3.png', alt: 'Heavenly clouds' },
-  { src: '/apps/praypro_4.png', alt: 'Divine light' },
-  { src: '/apps/praypro_5.png', alt: 'Sacred space' },
-  { src: '/apps/praypro_6.png', alt: 'Prayer time' },
+  { src: '/apps/pray_home.png', alt: 'Home Screen' },
+  { src: '/apps/pray_dailyverse.png', alt: 'Daily Bible Verse' },
+  { src: '/apps/pray_collection.png', alt: 'Prayer Collection' },
+  { src: '/apps/pray_detailview.png', alt: 'Prayer Detail View' },
+  { src: '/apps/pray_create_prayer.png', alt: 'Create Prayer' },
+  { src: '/apps/pray_createverse_image.png', alt: 'Create Verse with Image' },
 ];
 
 const PrayPro = () => {
