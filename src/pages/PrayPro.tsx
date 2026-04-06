@@ -42,41 +42,41 @@ const FloatingCross = ({ delay }: { delay: number }) => (
   <motion.div
     initial={{ opacity: 0, y: 100 }}
     animate={{ 
-      opacity: [0, 0.6, 0],
-      y: [-20, -100],
-      x: [0, Math.random() * 40 - 20],
+      opacity: [0, 1, 0],
+      y: [0, -150],
+      x: [0, Math.random() * 60 - 30],
     }}
     transition={{ 
-      duration: 8,
+      duration: 6,
       delay,
       repeat: Infinity,
       ease: "easeOut"
     }}
-    className="absolute pointer-events-none"
-    style={{ left: `${Math.random() * 100}%`, top: '80%' }}
+    className="absolute pointer-events-none z-10"
+    style={{ left: `${10 + Math.random() * 80}%`, top: '70%' }}
   >
-    <Cross className="w-4 h-4" style={{ color: '#B29F86', opacity: 0.3 }} />
+    <Cross className="w-6 h-6" style={{ color: '#B29F86', opacity: 0.6 }} />
   </motion.div>
 );
 
 const FloatingBird = ({ delay }: { delay: number }) => (
   <motion.div
-    initial={{ opacity: 0, x: -50 }}
+    initial={{ opacity: 0, x: -100 }}
     animate={{ 
-      opacity: [0, 0.5, 0],
-      x: [0, 200],
-      y: [0, Math.random() * 30 - 15],
+      opacity: [0, 0.8, 0],
+      x: [-100, 400],
+      y: [0, Math.random() * 50 - 25],
     }}
     transition={{ 
-      duration: 12,
+      duration: 10,
       delay,
       repeat: Infinity,
       ease: "linear"
     }}
-    className="absolute pointer-events-none"
-    style={{ left: '10%', top: `${20 + Math.random() * 60}%` }}
+    className="absolute pointer-events-none z-10"
+    style={{ left: '0%', top: `${15 + Math.random() * 50}%` }}
   >
-    <Bird className="w-6 h-6" style={{ color: '#E9CFB9', opacity: 0.25 }} />
+    <Bird className="w-8 h-8" style={{ color: '#E9CFB9', opacity: 0.5 }} />
   </motion.div>
 );
 
@@ -85,23 +85,24 @@ const LightRay = ({ angle, delay }: { angle: number; delay: number }) => (
   <motion.div
     initial={{ opacity: 0, scaleY: 0 }}
     animate={{ 
-      opacity: [0, 0.15, 0],
-      scaleY: [0, 1, 0.8],
+      opacity: [0, 0.4, 0],
+      scaleY: [0, 1, 0.9],
     }}
     transition={{ 
-      duration: 4,
+      duration: 3,
       delay,
       repeat: Infinity,
       ease: "easeInOut"
     }}
-    className="absolute top-0 pointer-events-none origin-top"
+    className="absolute top-0 pointer-events-none origin-top z-0"
     style={{ 
       left: '50%',
-      width: '2px',
-      height: '60vh',
-      background: 'linear-gradient(to bottom, #E9CFB9, transparent)',
+      width: '3px',
+      height: '50vh',
+      background: 'linear-gradient(to bottom, rgba(233, 207, 185, 0.8), transparent)',
       transform: `rotate(${angle}deg)`,
       transformOrigin: 'top center',
+      filter: 'blur(1px)',
     }}
   />
 );
@@ -193,13 +194,13 @@ const PrayPro = () => {
         </div>
 
         {/* Floating crosses Easter Egg */}
-        {[...Array(5)].map((_, i) => (
-          <FloatingCross key={i} delay={i * 2} />
+        {[...Array(8)].map((_, i) => (
+          <FloatingCross key={i} delay={i * 1.5} />
         ))}
 
         {/* Floating birds Easter Egg */}
-        {[...Array(3)].map((_, i) => (
-          <FloatingBird key={i} delay={i * 4} />
+        {[...Array(5)].map((_, i) => (
+          <FloatingBird key={i} delay={i * 3} />
         ))}
 
         <div className="max-w-7xl mx-auto relative">
@@ -304,7 +305,7 @@ const PrayPro = () => {
                     filter: 'blur(30px)',
                   }}
                 />
-                <div className="relative rounded-[40px] overflow-hidden" style={{ aspectRatio: '9/19.5', maxWidth: '320px' }}>
+                <div className="relative rounded-[40px] overflow-hidden" style={{ aspectRatio: '9/19.5', maxWidth: '280px' }}>
                   <img 
                     src="/apps/pray_home.png" 
                     alt="PrayPro Home Screen"
@@ -339,64 +340,41 @@ const PrayPro = () => {
             </motion.h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                className="relative p-8 rounded-[30px] group cursor-pointer"
+                whileHover={{ y: -5, transition: { duration: 0.3 } }}
+                className="p-8 rounded-3xl group cursor-pointer"
                 style={{
-                  background: '#FAF9F7',
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  border: '1px solid rgba(82, 80, 72, 0.06)',
+                  boxShadow: `
+                    0 30px 60px rgba(82, 80, 72, 0.06),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.8)
+                  `,
                 }}
               >
-                {/* Claymorphism shadow layers */}
-                <div 
-                  className="absolute inset-0 rounded-[30px] -z-10 transition-all duration-300 group-hover:scale-[1.02]"
-                  style={{
-                    background: 'linear-gradient(145deg, #ffffff, #e6e4df)',
-                    boxShadow: '20px 20px 60px #d1cfcb, -20px -20px 60px #ffffff',
+                <motion.div 
+                  whileHover={{ rotate: 10 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"
+                  style={{ 
+                    background: 'linear-gradient(135deg, #E9CFB9, #B29F86)',
+                    boxShadow: '0 8px 20px rgba(178, 159, 134, 0.25)',
                   }}
-                />
-                <div 
-                  className="absolute inset-0 rounded-[30px] -z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(233, 207, 185, 0.3), rgba(178, 159, 134, 0.2))',
-                    filter: 'blur(20px)',
-                    transform: 'translateY(10px) scale(0.95)',
-                  }}
-                />
-
-                {/* Inner highlight */}
-                <div 
-                  className="absolute inset-0 rounded-[30px] opacity-50"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, transparent 50%, rgba(178, 159, 134, 0.1) 100%)',
-                  }}
-                />
-
-                {/* Content */}
-                <div className="relative z-10">
-                  <motion.div 
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
-                    style={{ 
-                      background: 'linear-gradient(135deg, #E9CFB9, #B29F86)',
-                      boxShadow: '0 10px 30px rgba(178, 159, 134, 0.3)',
-                    }}
-                  >
-                    <feature.icon className="w-7 h-7 text-white" />
-                  </motion.div>
-                  <h3 className="font-serif text-xl mb-3" style={{ color: '#525048' }}>
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(82, 80, 72, 0.6)' }}>
-                    {feature.description}
-                  </p>
-                </div>
+                >
+                  <feature.icon className="w-6 h-6 text-white" />
+                </motion.div>
+                <h3 className="font-serif text-xl mb-3" style={{ color: '#525048' }}>
+                  {feature.title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(82, 80, 72, 0.6)' }}>
+                  {feature.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -408,34 +386,36 @@ const PrayPro = () => {
         {/* Background glow Easter Egg */}
         <motion.div
           animate={{ 
-            opacity: [0.3, 0.6, 0.3],
-            scale: [1, 1.1, 1],
+            opacity: [0.5, 0.8, 0.5],
+            scale: [1, 1.2, 1],
           }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none z-0"
           style={{
-            background: 'radial-gradient(circle, rgba(233, 207, 185, 0.4) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(233, 207, 185, 0.6) 0%, transparent 60%)',
           }}
         />
 
         {/* Floating particles */}
-        {[...Array(6)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             animate={{ 
-              y: [0, -20, 0],
-              opacity: [0, 0.4, 0],
+              y: [0, -30, 0],
+              opacity: [0.2, 0.8, 0.2],
+              scale: [1, 1.5, 1],
             }}
             transition={{ 
-              duration: 3 + i * 0.5,
-              delay: i * 0.3,
+              duration: 2 + i * 0.3,
+              delay: i * 0.2,
               repeat: Infinity,
             }}
-            className="absolute w-2 h-2 rounded-full pointer-events-none"
+            className="absolute w-3 h-3 rounded-full pointer-events-none z-10"
             style={{ 
               background: '#B29F86',
-              left: `${15 + i * 15}%`,
-              top: `${20 + (i % 3) * 25}%`,
+              left: `${10 + i * 12}%`,
+              top: `${15 + (i % 4) * 20}%`,
+              boxShadow: '0 0 10px rgba(178, 159, 134, 0.5)',
             }}
           />
         ))}
@@ -462,14 +442,14 @@ const PrayPro = () => {
             </motion.h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
             {[
-              { src: '/apps/pray_home.png', alt: 'Home Screen' },
-              { src: '/apps/pray_dailyverse.png', alt: 'Daily Bible Verse' },
-              { src: '/apps/pray_collection.png', alt: 'Prayer Collection' },
-              { src: '/apps/pray_detailview.png', alt: 'Prayer Detail View' },
-              { src: '/apps/pray_create_prayer.png', alt: 'Create Prayer' },
-              { src: '/apps/pray_createverse_image.png', alt: 'Create Verse with Image' },
+              { src: '/apps/pray_home.png', alt: 'Home' },
+              { src: '/apps/pray_dailyverse.png', alt: 'Verse' },
+              { src: '/apps/pray_collection.png', alt: 'Collection' },
+              { src: '/apps/pray_detailview.png', alt: 'Detail' },
+              { src: '/apps/pray_create_prayer.png', alt: 'Create' },
+              { src: '/apps/pray_createverse_image.png', alt: 'Verse+' },
             ].map((screenshot, idx) => (
               <motion.div
                 key={idx}
@@ -477,34 +457,27 @@ const PrayPro = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                className="relative rounded-[30px] overflow-hidden group"
+                whileHover={{ y: -5, transition: { duration: 0.3 } }}
+                className="relative rounded-2xl overflow-hidden group"
                 style={{ 
-                  aspectRatio: '9/19.5',
-                  boxShadow: '0 20px 40px rgba(82, 80, 72, 0.1)',
+                  aspectRatio: '9/16',
+                  maxHeight: '280px',
+                  boxShadow: `
+                    0 20px 40px rgba(82, 80, 72, 0.08),
+                    0 4px 8px rgba(82, 80, 72, 0.04)
+                  `,
+                  border: '1px solid rgba(82, 80, 72, 0.06)',
                 }}
               >
-                {/* Claymorphism frame */}
-                <div 
-                  className="absolute inset-0 rounded-[30px] -z-10"
-                  style={{
-                    background: 'linear-gradient(145deg, #ffffff, #e6e4df)',
-                    boxShadow: '15px 15px 40px #d1cfcb, -15px -15px 40px #ffffff',
-                  }}
-                />
                 <img 
                   src={screenshot.src} 
                   alt={screenshot.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {/* Hover overlay */}
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6"
-                >
-                  <span className="text-white font-medium">{screenshot.alt}</span>
-                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                  <span className="text-white text-xs font-medium">{screenshot.alt}</span>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -516,11 +489,11 @@ const PrayPro = () => {
         <div className="max-w-4xl mx-auto text-center relative">
           {/* Church silhouette Easter Egg */}
           <motion.div
-            animate={{ opacity: [0.1, 0.2, 0.1] }}
-            transition={{ duration: 5, repeat: Infinity }}
-            className="absolute -bottom-20 left-1/2 -translate-x-1/2 pointer-events-none"
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="absolute -bottom-10 left-1/2 -translate-x-1/2 pointer-events-none z-0"
           >
-            <Church className="w-32 h-32" style={{ color: '#B29F86', opacity: 0.15 }} />
+            <Church className="w-40 h-40" style={{ color: '#B29F86', opacity: 0.3 }} />
           </motion.div>
 
           <motion.div
