@@ -75,6 +75,17 @@ const projects = [
     tags: ['Timer', 'Focus', 'iOS'],
   },
   {
+    id: 'praypro',
+    name: 'PrayPro',
+    category: 'iOS App • Spiritualität',
+    description: 'Daily prayer companion with Bible verses, personal prayers, and beautiful sacred art.',
+    image: '/apps/praypro_1.png',
+    icon: '/apps/praypro_logo.png',
+    color: '#B29F86',
+    stats: { rating: '5.0', downloads: 'New' },
+    tags: ['Prayer', 'Faith', 'iOS'],
+  },
+  {
     id: 'suremate-pro',
     name: 'SureMate Pro',
     category: 'iOS App • B2B',

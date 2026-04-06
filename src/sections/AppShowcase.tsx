@@ -80,6 +80,17 @@ const projects = [
     tags: ['AI Voice', 'OpenAI'],
   },
   {
+    id: 'praypro',
+    name: 'PrayPro',
+    category: 'iOS App',
+    description: 'Your daily prayer companion with Bible verses and beautiful sacred art.',
+    image: '/apps/praypro_1.png',
+    color: '#E9CFB9',
+    year: '2025',
+    tags: ['Faith', 'Spirituality'],
+    link: 'https://www.awen28.com/praypro',
+  },
+  {
     id: 'visai',
     name: 'VisAI',
     category: 'iOS App',

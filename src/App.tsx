@@ -12,6 +12,7 @@ import NumiStellar from './pages/NumiStellar';
 import KiBook from './pages/KiBook';
 import Elow from './pages/Elow';
 import Awenya from './pages/Awenya';
+import PrayPro from './pages/PrayPro';
 import AgentRegister from './pages/AgentRegister';
 import CreateAgent from './pages/CreateAgent';
 import ForgotCode from './pages/ForgotCode';
@@ -99,6 +100,7 @@ function App() {
           <Route path="/kibook" element={<KiBook />} />
           <Route path="/elow" element={<Elow />} />
           <Route path="/awenya" element={<Awenya />} />
+          <Route path="/praypro" element={<PrayPro />} />
           <Route path="/agentregister" element={<AgentRegister />} />
           <Route path="/createAgent" element={<CreateAgent />} />
           <Route path="/forgotcode" element={<ForgotCode />} />
