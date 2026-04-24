@@ -75,6 +75,17 @@ const projects = [
     tags: ['Prayer', 'Faith', 'iOS'],
   },
   {
+    id: 'orbit',
+    name: 'Orbit',
+    category: 'iOS Game • Arcade',
+    description: 'Epic space journey. Navigate through cosmic environments, dodge asteroids, collect power-ups.',
+    image: '/apps/orbit_gameplay1.png',
+    icon: '/apps/orbit_gameplay1.png',
+    color: '#1a1a2e',
+    stats: { rating: '5.0', downloads: 'New' },
+    tags: ['Game', 'Space', 'iOS'],
+  },
+  {
     id: 'kibook',
     name: 'kiBook',
     category: 'iOS App • KI & Bildung',

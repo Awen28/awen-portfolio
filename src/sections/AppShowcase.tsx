@@ -44,9 +44,20 @@ const projects = [
     description: 'Your daily prayer companion with Bible verses and beautiful sacred art.',
     image: '/apps/pray_home.png',
     color: '#E9CFB9',
-    year: '2025',
+    year: '2026',
     tags: ['Faith', 'Spirituality'],
     link: 'https://www.awen28.com/praypro',
+  },
+  {
+    id: 'orbit',
+    name: 'Orbit',
+    category: 'iOS Game',
+    description: 'Epic space journey. Dodge asteroids, collect power-ups in this addictive arcade game.',
+    image: '/apps/orbit_gameplay1.png',
+    color: '#1a1a2e',
+    year: '2026',
+    tags: ['Game', 'Space', 'Arcade'],
+    link: 'https://www.awen28.com/orbit',
   },
   {
     id: 'kibook',
@@ -502,6 +513,16 @@ const AppShowcase = () => {
                       style={{ background: '#525048', color: '#FAF9F7' }}
                     >
                       View App
+                      <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  ) : project.id === 'orbit' ? (
+                    <Link
+                      to="/orbit"
+                      onClick={(e) => e.stopPropagation()}
+                      className="group px-4 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm tracking-wider transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer"
+                      style={{ background: '#525048', color: '#FAF9F7' }}
+                    >
+                      Play Game
                       <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   ) : project.link ? (

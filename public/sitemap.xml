@@ -101,4 +101,28 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- PrayPro -->
+  <url>
+    <loc>https://www.awen28.com/praypro</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.awen28.com/apps/pray_home.png</image:loc>
+      <image:title>PrayPro - Daily Prayer Companion</image:title>
+    </image:image>
+  </url>
+
+  <!-- Orbit -->
+  <url>
+    <loc>https://www.awen28.com/orbit</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.awen28.com/apps/orbit_gameplay1.png</image:loc>
+      <image:title>Orbit - Space Adventure Game</image:title>
+    </image:image>
+  </url>
+
 </urlset>
