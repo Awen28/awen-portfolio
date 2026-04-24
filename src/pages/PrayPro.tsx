@@ -254,7 +254,7 @@ const PrayPro = () => {
                 className="flex flex-wrap gap-4"
               >
                 <a
-                  href="https://apps.apple.com/at/app/praypro/idXXXXXXXXX"
+                  href="https://apps.apple.com/us/app/praypro/id6761731709"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all hover:scale-105"
                   style={{ background: '#525048', color: '#FAF9F7' }}
                 >
@@ -544,7 +544,7 @@ const PrayPro = () => {
                 Start your daily prayer practice today. Find peace, guidance, and inspiration with PrayPro.
               </p>
               <motion.a
-                href="https://apps.apple.com/at/app/praypro/idXXXXXXXXX"
+                href="https://apps.apple.com/us/app/praypro/id6761731709"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all"

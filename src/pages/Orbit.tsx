@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { ArrowLeft, Rocket, Star, Zap, Target, Globe, ChevronRight, Download, Sparkles, Circle } from 'lucide-react';
+import { ArrowLeft, Rocket, Star, Zap, Target, ChevronRight, Download, Sparkles, Circle, Trophy, Infinity as InfinityIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 
@@ -21,12 +21,12 @@ const features = [
     description: 'Collect shields, speed boosts, and special abilities to survive longer.',
   },
   {
-    icon: Star,
+    icon: Trophy,
     title: 'High Scores',
     description: 'Compete with friends and climb the global leaderboard.',
   },
   {
-    icon: Globe,
+    icon: InfinityIcon,
     title: 'Infinite Levels',
     description: 'Procedurally generated levels. Every run is a new adventure.',
   },
@@ -45,9 +45,9 @@ const FloatingStar = ({ delay, size = 'small' }: { delay: number; size?: 'small'
       initial={{ opacity: 0, y: 50 }}
       animate={{ 
         opacity: [0, 1, 0],
-        y: [0, -100],
-        x: [0, Math.random() * 40 - 20],
-        scale: [0.5, 1, 0.5],
+        y: [0, -150],
+        x: [0, Math.random() * 60 - 30],
+        scale: [0.5, 1.2, 0.5],
       }}
       transition={{ 
         duration: 4 + Math.random() * 2,
@@ -55,31 +55,39 @@ const FloatingStar = ({ delay, size = 'small' }: { delay: number; size?: 'small'
         repeat: Infinity,
         ease: "easeOut"
       }}
-      className="absolute pointer-events-none z-10"
-      style={{ left: `${Math.random() * 100}%`, top: '80%' }}
+      className="absolute pointer-events-none z-20"
+      style={{ left: `${Math.random() * 100}%`, top: '90%' }}
     >
       <Star className={sizeClass} style={{ color: '#B29F86', fill: '#B29F86' }} />
     </motion.div>
   );
 };
 
-const OrbitingPlanet = ({ size, color, duration, delay }: { size: number; color: string; duration: number; delay: number }) => (
+const OrbitingPlanet = ({ size, color, duration, orbitRadius, offset = 0 }: { size: number; color: string; duration: number; orbitRadius: number; offset?: number }) => (
   <motion.div
-    animate={{ rotate: 360 }}
-    transition={{ duration, repeat: Infinity, ease: "linear", delay }}
-    className="absolute pointer-events-none"
+    initial={{ rotate: offset }}
+    animate={{ rotate: offset + 360 }}
+    transition={{ duration, repeat: Infinity, ease: "linear" }}
+    className="absolute pointer-events-none z-10"
     style={{ 
-      left: `${10 + Math.random() * 80}%`, 
-      top: `${10 + Math.random() * 80}%`,
+      left: `calc(50% + ${Math.cos(offset * Math.PI / 180) * orbitRadius}px)`, 
+      top: `calc(50% + ${Math.sin(offset * Math.PI / 180) * orbitRadius}px)`,
     }}
   >
-    <div 
+    <motion.div 
+      animate={{ 
+        boxShadow: [
+          `0 0 ${size/2}px ${color}`,
+          `0 0 ${size}px ${color}`,
+          `0 0 ${size/2}px ${color}`,
+        ]
+      }}
+      transition={{ duration: 2, repeat: Infinity }}
       className="rounded-full"
       style={{ 
         width: size, 
         height: size, 
         background: color,
-        boxShadow: `0 0 ${size}px ${color}`,
       }}
     />
   </motion.div>
@@ -87,22 +95,52 @@ const OrbitingPlanet = ({ size, color, duration, delay }: { size: number; color:
 
 const ShootingStar = ({ delay }: { delay: number }) => (
   <motion.div
-    initial={{ opacity: 0, x: -100, y: 0 }}
+    initial={{ opacity: 0, x: 0, y: 0 }}
     animate={{ 
       opacity: [0, 1, 0],
-      x: [-100, 300],
-      y: [0, 150],
+      x: [0, 400],
+      y: [0, 200],
     }}
     transition={{ 
-      duration: 2,
+      duration: 1.5,
       delay,
       repeat: Infinity,
-      repeatDelay: 5,
+      repeatDelay: 6,
+    }}
+    className="absolute pointer-events-none z-20"
+    style={{ left: `${10 + (delay * 10) % 70}%`, top: '10%' }}
+  >
+    <div className="w-32 h-0.5 bg-gradient-to-r from-transparent via-white to-transparent opacity-80" />
+  </motion.div>
+);
+
+const Asteroid = ({ delay, size }: { delay: number; size: number }) => (
+  <motion.div
+    initial={{ opacity: 0, x: -100, y: -50, rotate: 0 }}
+    animate={{ 
+      opacity: [0, 0.6, 0],
+      x: [-100, 500],
+      y: [-50, 300],
+      rotate: 360,
+    }}
+    transition={{ 
+      duration: 8,
+      delay,
+      repeat: Infinity,
+      ease: "linear",
     }}
     className="absolute pointer-events-none z-10"
     style={{ left: '10%', top: '20%' }}
   >
-    <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-white to-transparent opacity-60" />
+    <div 
+      className="rounded-full"
+      style={{ 
+        width: size, 
+        height: size, 
+        background: 'radial-gradient(circle at 30% 30%, #4a4a5a, #2a2a3a)',
+        boxShadow: 'inset -2px -2px 6px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.1)',
+      }}
+    />
   </motion.div>
 );
 
@@ -138,7 +176,7 @@ const Orbit = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: '#FAF9F7' }}>
+    <div className="min-h-screen" style={{ background: '#0a0a12' }}>
       <SEO 
         title="Orbit | Space Adventure Game"
         description="Orbit - An epic space journey. Navigate through stunning cosmic environments, dodge asteroids, and collect power-ups. The ultimate mobile space game."
@@ -148,57 +186,62 @@ const Orbit = () => {
       />
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 py-6 px-6 md:px-8 backdrop-blur-md" style={{ background: 'rgba(250, 249, 247, 0.9)' }}>
+      <header className="fixed top-0 left-0 right-0 z-50 py-6 px-6 md:px-8" style={{ background: 'rgba(10, 10, 18, 0.8)', backdropFilter: 'blur(20px)' }}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link to="/" onClick={handleBackClick} className="flex items-center gap-2 text-sm" style={{ color: 'rgba(82, 80, 72, 0.6)' }}>
+          <Link to="/" onClick={handleBackClick} className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Back to AWEN28
           </Link>
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #1a1a2e, #16213e)' }}>
-              <Circle className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #B29F86, #E9CFB9)' }}>
+              <Circle className="w-6 h-6 text-white" />
             </div>
-            <span className="font-serif text-xl" style={{ color: '#525048' }}>Orbit</span>
+            <span className="font-serif text-2xl text-white">Orbit</span>
           </div>
         </div>
       </header>
 
-      {/* Hero with Easter Eggs */}
+      {/* Hero */}
       <motion.section 
         ref={heroRef}
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="relative pt-32 pb-20 px-6 md:px-8 overflow-hidden min-h-screen flex items-center"
       >
-        {/* Background gradient */}
+        {/* Deep space background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f1e 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at bottom, #1a1a2e 0%, #0a0a12 50%, #050508 100%)' }} />
+          
+          {/* Nebula effects */}
           <motion.div
-            animate={{ opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full"
-            style={{ background: 'radial-gradient(circle, rgba(178, 159, 134, 0.3) 0%, transparent 70%)' }}
+            animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full"
+            style={{ background: 'radial-gradient(circle, rgba(178, 159, 134, 0.15) 0%, transparent 60%)' }}
           />
           <motion.div
-            animate={{ opacity: [0.2, 0.5, 0.2] }}
-            transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-            className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full"
-            style={{ background: 'radial-gradient(circle, rgba(233, 207, 185, 0.2) 0%, transparent 70%)' }}
+            animate={{ opacity: [0.15, 0.3, 0.15], scale: [1, 1.3, 1] }}
+            transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+            className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full"
+            style={{ background: 'radial-gradient(circle, rgba(233, 207, 185, 0.1) 0%, transparent 60%)' }}
           />
         </div>
 
-        {/* Easter Eggs - Stars */}
-        {[...Array(15)].map((_, i) => (
-          <FloatingStar key={i} delay={i * 0.3} size={i % 3 === 0 ? 'large' : i % 2 === 0 ? 'medium' : 'small'} />
+        {/* Easter Eggs */}
+        {[...Array(20)].map((_, i) => (
+          <FloatingStar key={i} delay={i * 0.2} size={i % 4 === 0 ? 'large' : i % 2 === 0 ? 'medium' : 'small'} />
         ))}
-
-        {/* Easter Eggs - Planets */}
-        <OrbitingPlanet size={60} color="rgba(178, 159, 134, 0.3)" duration={20} delay={0} />
-        <OrbitingPlanet size={40} color="rgba(233, 207, 185, 0.2)" duration={30} delay={5} />
-        <OrbitingPlanet size={80} color="rgba(82, 80, 72, 0.15)" duration={25} delay={10} />
-
-        {/* Easter Eggs - Shooting Stars */}
+        
+        <OrbitingPlanet size={80} color="rgba(178, 159, 134, 0.2)" duration={30} orbitRadius={300} offset={0} />
+        <OrbitingPlanet size={50} color="rgba(233, 207, 185, 0.15)" duration={25} orbitRadius={200} offset={120} />
+        <OrbitingPlanet size={30} color="rgba(82, 80, 72, 0.2)" duration={20} orbitRadius={400} offset={240} />
+        
         <ShootingStar delay={0} />
-        <ShootingStar delay={7} />
+        <ShootingStar delay={4} />
+        <ShootingStar delay={8} />
+
+        {[...Array(3)].map((_, i) => (
+          <Asteroid key={i} delay={i * 3} size={20 + i * 15} />
+        ))}
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -249,9 +292,9 @@ const Orbit = () => {
                 className="flex flex-wrap gap-4"
               >
                 <a
-                  href="https://apps.apple.com/at/app/orbit/idXXXXXXXXX"
+                  href="https://apps.apple.com/us/app/orbit-the-game/id6763136527"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all hover:scale-105"
-                  style={{ background: '#B29F86', color: 'white' }}
+                  style={{ background: 'linear-gradient(135deg, #B29F86, #E9CFB9)', color: '#0a0a12' }}
                 >
                   <Download className="w-5 h-5" />
                   Download on App Store
@@ -259,7 +302,7 @@ const Orbit = () => {
                 <Link
                   to="/#work"
                   onClick={handleBackClick}
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all hover:scale-105 border border-white/20 text-white"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all hover:scale-105 border border-white/20 text-white hover:bg-white/5"
                 >
                   View More Apps
                   <ChevronRight className="w-4 h-4" />
@@ -267,7 +310,7 @@ const Orbit = () => {
               </motion.div>
             </motion.div>
 
-            {/* Phone Mockup with parallax */}
+            {/* Phone Mockup */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -278,18 +321,26 @@ const Orbit = () => {
                 transition: 'transform 0.3s ease-out',
               }}
             >
+              {/* Claymorphism container */}
               <motion.div
                 animate={{ 
                   boxShadow: [
-                    '0 0 60px rgba(178, 159, 134, 0.3)',
-                    '0 0 80px rgba(178, 159, 134, 0.5)',
-                    '0 0 60px rgba(178, 159, 134, 0.3)',
+                    '0 0 80px rgba(178, 159, 134, 0.3), inset 0 0 60px rgba(255,255,255,0.05)',
+                    '0 0 100px rgba(178, 159, 134, 0.5), inset 0 0 80px rgba(255,255,255,0.1)',
+                    '0 0 80px rgba(178, 159, 134, 0.3), inset 0 0 60px rgba(255,255,255,0.05)',
                   ]
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="relative p-4 rounded-[50px]"
-                style={{ background: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)' }}
+                className="relative p-6 rounded-[50px]"
+                style={{ 
+                  background: 'linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                }}
               >
+                {/* Inner glow ring */}
+                <div className="absolute -inset-2 rounded-[54px] -z-10" style={{ background: 'linear-gradient(135deg, rgba(178, 159, 134, 0.3), transparent 50%, rgba(233, 207, 185, 0.2))' }} />
+                
                 <div className="relative rounded-[40px] overflow-hidden" style={{ aspectRatio: '9/19.5', maxWidth: '280px' }}>
                   <img 
                     src="/apps/orbit_gameplay1.png" 
@@ -304,9 +355,12 @@ const Orbit = () => {
       </motion.section>
 
       {/* Features */}
-      <section ref={sectionRef} className="py-20 px-6 md:px-8" style={{ background: '#E8E5E0' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+      <section ref={sectionRef} className="py-24 px-6 md:px-8 relative" style={{ background: '#0a0a12' }}>
+        {/* Background gradient */}
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center top, rgba(26, 26, 46, 0.5) 0%, transparent 50%)' }} />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20">
             <motion.span
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
@@ -318,71 +372,88 @@ const Orbit = () => {
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              className="font-serif text-4xl md:text-5xl"
-              style={{ color: '#525048' }}
+              className="font-serif text-4xl md:text-5xl text-white"
             >
               Explore the Cosmos
             </motion.h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -5, transition: { duration: 0.3 } }}
-                className="p-8 rounded-3xl group cursor-pointer"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  border: '1px solid rgba(82, 80, 72, 0.06)',
-                  boxShadow: '0 30px 60px rgba(82, 80, 72, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
-                }}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                className="relative group"
               >
-                <motion.div 
-                  whileHover={{ rotate: 10 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"
-                  style={{ 
-                    background: 'linear-gradient(135deg, #1a1a2e, #16213e)',
-                    boxShadow: '0 8px 20px rgba(26, 26, 46, 0.25)',
+                {/* Claymorphism card */}
+                <div 
+                  className="relative p-8 rounded-3xl h-full"
+                  style={{
+                    background: 'linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255,255,255,0.08)',
                   }}
                 >
-                  <feature.icon className="w-6 h-6 text-white" />
-                </motion.div>
-                <h3 className="font-serif text-xl mb-3" style={{ color: '#525048' }}>
-                  {feature.title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'rgba(82, 80, 72, 0.6)' }}>
-                  {feature.description}
-                </p>
+                  {/* Outer glow on hover */}
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    className="absolute -inset-1 rounded-3xl -z-10 transition-opacity duration-300"
+                    style={{ background: 'linear-gradient(135deg, rgba(178, 159, 134, 0.3), transparent 60%)' }}
+                  />
+                  
+                  {/* Inner highlight */}
+                  <div 
+                    className="absolute inset-0 rounded-3xl opacity-50"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%)',
+                    }}
+                  />
+
+                  <motion.div 
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 relative z-10"
+                    style={{ 
+                      background: 'linear-gradient(135deg, rgba(178, 159, 134, 0.3), rgba(233, 207, 185, 0.2))',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      boxShadow: '0 10px 40px rgba(178, 159, 134, 0.2)',
+                    }}
+                  >
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </motion.div>
+                  <h3 className="font-serif text-xl mb-3 text-white relative z-10">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-white/50 relative z-10">
+                    {feature.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Gallery with Easter Eggs */}
-      <section className="relative py-20 px-6 md:px-8 overflow-hidden">
-        <motion.div
-          animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
-          transition={{ duration: 6, repeat: Infinity }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none z-0"
-          style={{ background: 'radial-gradient(circle, rgba(178, 159, 134, 0.4) 0%, transparent 60%)' }}
-        />
-
-        {[...Array(8)].map((_, i) => (
+      {/* Gallery */}
+      <section className="relative py-24 px-6 md:px-8 overflow-hidden" style={{ background: '#0a0a12' }}>
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, rgba(26, 26, 46, 0.3) 0%, transparent 60%)' }} />
+        
+        {/* Floating stars background */}
+        {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
-            animate={{ y: [0, -30, 0], opacity: [0.2, 0.8, 0.2], scale: [1, 1.5, 1] }}
-            transition={{ duration: 2 + i * 0.3, delay: i * 0.2, repeat: Infinity }}
-            className="absolute w-3 h-3 rounded-full pointer-events-none z-10"
+            animate={{ y: [0, -20, 0], opacity: [0.3, 0.8, 0.3] }}
+            transition={{ duration: 3 + i * 0.2, delay: i * 0.1, repeat: Infinity }}
+            className="absolute w-2 h-2 rounded-full pointer-events-none"
             style={{ 
               background: '#B29F86',
-              left: `${10 + i * 12}%`,
-              top: `${15 + (i % 4) * 20}%`,
-              boxShadow: '0 0 10px rgba(178, 159, 134, 0.5)',
+              left: `${5 + i * 10}%`,
+              top: `${10 + (i % 5) * 15}%`,
+              boxShadow: '0 0 10px rgba(178, 159, 134, 0.8)',
             }}
           />
         ))}
@@ -392,12 +463,12 @@ const Orbit = () => {
             <motion.span className="font-serif italic text-sm tracking-[0.3em] block mb-4" style={{ color: '#B29F86' }}>
               Gameplay
             </motion.span>
-            <motion.h2 className="font-serif text-4xl md:text-5xl" style={{ color: '#525048' }}>
+            <motion.h2 className="font-serif text-4xl md:text-5xl text-white">
               Action-Packed Adventure
             </motion.h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               { src: '/apps/orbit_gameplay1.png', alt: 'Epic Space Journey' },
               { src: '/apps/orbit_gameplay2.png', alt: 'Dodge Asteroids' },
@@ -409,22 +480,38 @@ const Orbit = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -5, transition: { duration: 0.3 } }}
-                className="relative rounded-2xl overflow-hidden group"
-                style={{ 
-                  aspectRatio: '9/16',
-                  maxHeight: '400px',
-                  boxShadow: '0 20px 40px rgba(82, 80, 72, 0.08), 0 4px 8px rgba(82, 80, 72, 0.04)',
-                  border: '1px solid rgba(82, 80, 72, 0.06)',
-                }}
+                whileHover={{ y: -15, transition: { duration: 0.3 } }}
+                className="relative group"
               >
-                <img 
-                  src={screenshot.src} 
-                  alt={screenshot.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span className="text-white text-sm font-medium">{screenshot.alt}</span>
+                {/* Claymorphism frame */}
+                <div 
+                  className="relative p-4 rounded-3xl"
+                  style={{
+                    background: 'linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02))',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    boxShadow: '0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(178, 159, 134, 0.1)',
+                  }}
+                >
+                  {/* Glow effect */}
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    className="absolute -inset-2 rounded-3xl -z-10 transition-opacity duration-300"
+                    style={{ background: 'linear-gradient(135deg, rgba(178, 159, 134, 0.4), transparent 50%)' }}
+                  />
+                  
+                  <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '9/16' }}>
+                    <img 
+                      src={screenshot.src} 
+                      alt={screenshot.alt}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                      <span className="text-white font-medium text-lg">{screenshot.alt}</span>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -433,19 +520,30 @@ const Orbit = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 md:px-8" style={{ background: '#E8E5E0' }}>
-        <div className="max-w-4xl mx-auto text-center relative">
+      <section className="py-24 px-6 md:px-8 relative" style={{ background: '#0a0a12' }}>
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, rgba(178, 159, 134, 0.1) 0%, transparent 60%)' }} />
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="relative p-12 md:p-16 rounded-[40px] overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f1e 100%)' }}
+            style={{
+              background: 'linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02))',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255,255,255,0.1)',
+            }}
           >
-            <div className="absolute inset-0 opacity-50" style={{ background: 'radial-gradient(ellipse at top, rgba(178, 159, 134, 0.3), transparent 50%)' }} />
-            
+            {/* Animated border */}
             <motion.div
-              animate={{ boxShadow: ['inset 0 0 30px rgba(178, 159, 134, 0.1)', 'inset 0 0 60px rgba(178, 159, 134, 0.2)', 'inset 0 0 30px rgba(178, 159, 134, 0.1)'] }}
+              animate={{ 
+                boxShadow: [
+                  'inset 0 0 40px rgba(178, 159, 134, 0.1)',
+                  'inset 0 0 80px rgba(178, 159, 134, 0.2)',
+                  'inset 0 0 40px rgba(178, 159, 134, 0.1)',
+                ]
+              }}
               transition={{ duration: 4, repeat: Infinity }}
               className="absolute inset-0 rounded-[40px]"
             />
@@ -454,24 +552,27 @@ const Orbit = () => {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #B29F86, #E9CFB9)' }}
+                className="w-20 h-20 mx-auto mb-8 rounded-full flex items-center justify-center"
+                style={{ 
+                  background: 'linear-gradient(135deg, #B29F86, #E9CFB9)',
+                  boxShadow: '0 0 60px rgba(178, 159, 134, 0.5)',
+                }}
               >
-                <Rocket className="w-8 h-8 text-white" />
+                <Rocket className="w-10 h-10 text-white" />
               </motion.div>
               <h2 className="font-serif text-4xl md:text-5xl text-white mb-6">
                 Start Your Journey
               </h2>
-              <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto">
+              <p className="text-lg text-white/60 mb-10 max-w-xl mx-auto">
                 Download Orbit now and begin your epic space adventure. 
                 How long can you survive?
               </p>
               <motion.a
-                href="https://apps.apple.com/at/app/orbit/idXXXXXXXXX"
+                href="https://apps.apple.com/us/app/orbit-the-game/id6763136527"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium transition-all"
-                style={{ background: 'white', color: '#1a1a2e' }}
+                className="inline-flex items-center gap-2 px-10 py-5 rounded-full text-sm font-medium transition-all"
+                style={{ background: 'linear-gradient(135deg, #B29F86, #E9CFB9)', color: '#0a0a12' }}
               >
                 <Download className="w-5 h-5" />
                 Get Orbit
@@ -482,18 +583,18 @@ const Orbit = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 md:px-8" style={{ background: '#E8E5E0' }}>
+      <footer className="py-12 px-6 md:px-8" style={{ background: '#050508', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #1a1a2e, #16213e)' }}>
-              <Circle className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #B29F86, #E9CFB9)' }}>
+              <Circle className="w-6 h-6 text-white" />
             </div>
-            <span className="font-serif text-xl" style={{ color: '#525048' }}>Orbit</span>
+            <span className="font-serif text-2xl text-white">Orbit</span>
           </div>
-          <p className="text-sm" style={{ color: 'rgba(82, 80, 72, 0.5)' }}>
+          <p className="text-sm text-white/40">
             © 2026 Orbit. A product by AWEN28.
           </p>
-          <Link to="/" onClick={handleBackClick} className="flex items-center gap-2 text-sm" style={{ color: '#2a2a2a' }}>
+          <Link to="/" onClick={handleBackClick} className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
             Visit AWEN28
             <ChevronRight className="w-4 h-4" />
           </Link>
