@@ -199,7 +199,7 @@ const Elow = () => {
               <stop offset="100%" stopColor="#E9CFB9" />
             </linearGradient>
             <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#EC4899" />
+              <stop offset="0%" stopColor="#E9CFB9" />
               <stop offset="100%" stopColor="#B29F86" />
             </linearGradient>
           </defs>
