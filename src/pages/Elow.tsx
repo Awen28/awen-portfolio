@@ -7,18 +7,33 @@ import { SEO, generateAppStructuredData } from '../components/SEO';
 const features = [
   {
     icon: Zap,
-    title: 'AI Sound Generation',
-    description: 'Transform your emotions into original soundscapes. Describe the vibe you want, and Elow composes unique music just for you.',
+    title: 'AI Song Creation',
+    description: 'Create original songs with AI. Choose from normal creation, mood-based generation, or genre mashup modes.',
+  },
+  {
+    icon: Headphones,
+    title: 'Mood-Based Songs',
+    description: 'Songs created based on your current mood and life situation. Your personal companion for challenging or wonderful phases.',
   },
   {
     icon: Layers,
-    title: 'Infinite Variations',
-    description: 'Never hear the same track twice. Our AI creates endless variations based on your mood, style preferences, and energy level.',
+    title: 'Genre Mashup',
+    description: 'Combine different genres to create unique soundscapes. Mix ambient with electronic, lo-fi with cinematic, and more.',
   },
   {
     icon: Volume2,
     title: 'Your Personal Soundtrack',
     description: 'Whether you need focus music, workout beats, or chill vibes - Elow generates the perfect soundtrack for every moment.',
+  },
+  {
+    icon: Radio,
+    title: 'Smart Library',
+    description: 'Organize your AI-generated songs in playlists. Access your personal soundtrack collection anytime, anywhere.',
+  },
+  {
+    icon: Mic2,
+    title: 'Multiple Languages',
+    description: 'Create songs in different languages. Elow supports various languages to match your preferences and mood.',
   },
 ];
 
@@ -34,14 +49,13 @@ const genres = [
 // All screenshots with exact filenames
 const screenshots = [
   { src: '/apps/elow_homescreen.png', alt: 'Home' },
+  { src: '/apps/elow_create.PNG', alt: 'Create Modes' },
+  { src: '/apps/elow_moodSong.PNG', alt: 'Mood Songs' },
   { src: '/apps/elow_genre.PNG', alt: 'Genre Selection' },
   { src: '/apps/elow_occasion.PNG', alt: 'Occasion' },
   { src: '/apps/elow_details.PNG', alt: 'Song Details' },
   { src: '/apps/elow_player.PNG', alt: 'Music Player' },
   { src: '/apps/elow_library.PNG', alt: 'Library' },
-  { src: '/apps/elow_playlists.PNG', alt: 'Playlists' },
-  { src: '/apps/elow_songLanguage.PNG', alt: 'Language' },
-  { src: '/apps/elow_Share.PNG', alt: 'Share' },
 ];
 
 // Audio visualizer bars animation

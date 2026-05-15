@@ -343,8 +343,8 @@ const Orbit = () => {
                 
                 <div className="relative rounded-[40px] overflow-hidden" style={{ aspectRatio: '9/19.5', maxWidth: '280px' }}>
                   <img 
-                    src="/apps/orbit_gameplay1.png" 
-                    alt="Orbit Gameplay"
+                    src="/apps/orbit_home.png" 
+                    alt="Orbit Home Screen"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -468,8 +468,9 @@ const Orbit = () => {
             </motion.h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {[
+              { src: '/apps/orbit_home.png', alt: 'Home Screen' },
               { src: '/apps/orbit_gameplay1.png', alt: 'Epic Space Journey' },
               { src: '/apps/orbit_gameplay2.png', alt: 'Dodge Asteroids' },
               { src: '/apps/orbit_gameplay3.png', alt: 'Collect Power-ups' },
