@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowLeft, Sparkles, MapPin, Brain, ChevronRight, Download, Star, Sun, Orbit } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { SEO, generateAppStructuredData } from '../components/SEO';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
 const features = [
   {
@@ -149,6 +149,34 @@ const OrbitRing = ({ size, duration, delay }: { size: number; duration: number; 
   </motion.div>
 );
 
+const appStructuredData = generateAppStructuredData(
+  "NumiStellar",
+  "Best astrology and numerology app in Austria. Real-time planet positions, Schumann resonance monitoring, personalized daily insights, life path calculations, birth chart analysis, and astrocartography maps. Discover your cosmic energy with AI-powered spiritual guidance.",
+  "https://www.awen28.com/apps/numistellar_home1.png",
+  "https://apps.apple.com/at/app/numistellar/id6478859654",
+  "LifestyleApplication",
+  "4.9",
+  "5200",
+  ["Real-time Planet Positions", "Schumann Resonance", "Life Path Calculator", "Birth Chart Analysis", "Daily Cosmic Insights", "Astrocartography", "Numerology Calculator", "Zodiac Compatibility"],
+  ["/apps/numistellar_home1.png", "/apps/numistellar_home2.png", "/apps/numistellar_chart.png"],
+  "2025-01-15",
+  "65MB",
+  "4+"
+);
+
+const breadcrumbData = generateBreadcrumbData([
+  { name: "Home", url: "https://www.awen28.com/" },
+  { name: "NumiStellar", url: "https://www.awen28.com/numistellar" }
+]);
+
+const faqData = generateFAQData([
+  { question: "Was ist die beste Astrologie App in Österreich?", answer: "NumiStellar von AWEN28 ist die beste Astrologie und Numerologie App in Österreich mit Echtzeit Planetenpositionen, Schumann Resonanz und personalisierten täglichen Einblicken." },
+  { question: "Was ist Numerologie und wie funktioniert sie?", answer: "Numerologie ist die Lehre von der Bedeutung von Zahlen in deinem Leben. NumiStellar berechnet deine Lebenszahl, Schicksalszahl und Tageszahl für persönliche Einblicke." },
+  { question: "Was ist Schumann Resonanz?", answer: "Die Schumann Resonanz ist die natürliche Frequenz der Erde (7.83 Hz). NumiStellar zeigt aktuelle Resonanzwerte und deren Einfluss auf dein Wohlbefinden." },
+  { question: "Ist NumiStellar kostenlos?", answer: "NumiStellar ist kostenlos im App Store erhältlich mit optionalen Premium-Funktionen für erweiterte Astrologie und Numerologie-Analysen." },
+  { question: "Wie erstelle ich ein Geburtshoroskop mit NumiStellar?", answer: "Gib einfach dein Geburtsdatum, die Uhrzeit und den Ort ein. NumiStellar erstellt automatisch dein detailliertes Geburtshoroskop mit Planetenpositionen und Aspekten." },
+]);
+
 const NumiStellar = () => {
   const location = useLocation();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -178,29 +206,21 @@ const NumiStellar = () => {
     setMousePos({ x, y });
   };
 
-  // SEO Structured Data
-  const structuredData = generateAppStructuredData(
-    'NumiStellar',
-    'NumiStellar vereint Astrologie, Numerologie und kosmische Energie. Echtzeit Planetenpositionen, Schumann Resonanz, Astrocartographie und AI Energy Chat.',
-    'https://www.awen28.com/apps/numistellar_home1.png',
-    'https://apps.apple.com/at/app/numistellar/id6745343823',
-    'LifestyleApplication',
-    '4.9',
-    '1000'
-  );
-
   return (
     <>
-      <SEO
-        title="NumiStellar 2024 - Astrologie, Numerologie & Kosmische Energie | AWEN28"
-        description="NumiStellar: Die beste Astrologie App mit Echtzeit Planetenpositionen, Schumann Resonanz, Astrocartographie und AI Energy Chat. Dein persönlicher kosmischer Guide."
-        keywords="Astrologie App, Numerologie App, Horoskop App, Schumann Resonanz, Astrocartographie, Geburtshoroskop, Planetenpositionen, kosmische Energie, Spirituelle App, Tierkreiszeichen App, Engelzahlen"
-        canonical="https://www.awen28.com/numistellar"
+      <SEO 
+        title="NumiStellar | Beste Astrologie & Numerologie App Österreich 2026"
+        description="NumiStellar - Die beste Astrologie und Numerologie App in Österreich. Echtzeit Planetenpositionen, Schumann Resonanz, Geburtshoroskop, Lebensweg-Analyse und astrocartography. Kostenlos im App Store!"
+        keywords="beste Astrologie App Österreich, Numerologie App, Geburtshoroskop iOS, Schumann Resonanz App, Planetenpositionen Echtzeit, Zodiac Kompatibilität, Lebenszahl berechnen, Astrologie Deutschland, Horoskop App Österreich, Numerologie Rechner, Sternzeichen App, Astrocartography, kosmische Energie, tägliches Horoskop, Spiritualität App, best astrology app Austria, birth chart app, life path calculator"
         ogImage="https://www.awen28.com/apps/numistellar_home1.png"
         ogType="product"
+        canonical="https://www.awen28.com/numistellar"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
         appName="NumiStellar"
-        appCategory="Lifestyle"
-        structuredData={structuredData}
+        appCategory="LifestyleApplication"
+        rating="4.9"
+        reviewCount="5200"
+        language="de-AT"
       />
     <div ref={containerRef} className="relative min-h-screen" style={{ background: '#0f0f1a' }}>
       {/* Cosmic Background Effects */}

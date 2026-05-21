@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowLeft, Smartphone, Gamepad2, Music, Trophy, ChevronRight, Download, Star, Keyboard } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { SEO } from '../components/SEO';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
 const features = [
   {
@@ -132,14 +132,49 @@ const SMS2004 = () => {
     sessionStorage.setItem('sms2004ScrollPosition', window.scrollY.toString());
   };
 
+  const appStructuredData = generateAppStructuredData(
+    "SMS 2004",
+    "Nostalgic phone simulator with T9 typing, 6 authentic 2004 skins, classic Snake game, ringtone composer with WAV export, 75 levels across 4 game modes, and daily challenges. Best retro iOS game 2026.",
+    "https://www.awen28.com/apps/sms_home.png",
+    "https://apps.apple.com/us/app/sms-2004/id6770360397",
+    "GameApplication",
+    "5.0",
+    "50",
+    ["T9 Multi-Tap Typing", "6 Authentic Phone Skins", "Classic Snake Game", "Ringtone Composer", "75 Levels", "4 Game Modes", "Game Center Leaderboard", "Daily Challenges"],
+    ["/apps/sms_home.png", "/apps/sms_gameplay.png", "/apps/sms_snake.png", "/apps/sms_composer.png", "/apps/sms_levels.png"],
+    "2026-04-01",
+    "45MB",
+    "4+"
+  );
+
+  const breadcrumbData = generateBreadcrumbData([
+    { name: "Home", url: "https://www.awen28.com/" },
+    { name: "SMS 2004", url: "https://www.awen28.com/sms2004" }
+  ]);
+
+  const faqData = generateFAQData([
+    { question: "What is SMS 2004?", answer: "SMS 2004 is a nostalgic phone simulator game for iOS that recreates the authentic 2004 mobile phone experience with T9 typing, Snake, ringtone composer, and 75 levels." },
+    { question: "How does T9 typing work in SMS 2004?", answer: "T9 multi-tap typing works just like on classic 2004 phones - press number keys multiple times to cycle through letters. The game challenges you to type phrases as fast as possible." },
+    { question: "Is SMS 2004 free?", answer: "Yes, SMS 2004 is free to download on the App Store with optional in-app purchases for additional phone skins." },
+    { question: "What game modes does SMS 2004 have?", answer: "SMS 2004 features 4 game modes: Normal, Reverse (typing backwards), Blind (no display), and Practice mode for beginners." },
+    { question: "Can I compose ringtones in SMS 2004?", answer: "Yes! SMS 2004 includes a ringtone composer where you can create custom ringtones using the keypad and export them as WAV files." },
+  ]);
+
   return (
     <div className="min-h-screen" style={{ background: '#1a1a1a' }}>
       <SEO 
-        title="SMS 2004 | Nostalgic Phone Simulator Game"
-        description="SMS 2004 - The nostalgic phone simulator for iOS. T9 typing, 4 game modes, 75 levels, Snake, ringtone composer, and retro phone skins."
-        keywords="SMS 2004, nostalgic phone game, T9 typing, retro phone simulator, Snake game, Nokia game, iOS game, pixel game"
-        ogImage="/apps/sms_home.png"
+        title="SMS 2004 | Best Retro iOS Game 2026 - Nostalgic Phone Simulator"
+        description="SMS 2004 - The ultimate nostalgic phone simulator game for iOS. T9 typing, classic Snake, ringtone composer, 75 levels, 4 game modes, and 6 authentic 2004 phone skins. Free on App Store!"
+        keywords="SMS 2004, best retro iOS game 2026, nostalgic phone game, T9 typing simulator, Snake game iPhone, 2004 phone simulator, Nokia game replica, pixel art mobile game, vintage mobile game, retro arcade game, best iPhone game 2026, phone simulator app, T9 text game, classic phone game"
+        ogImage="https://www.awen28.com/apps/sms_home.png"
+        ogType="product"
+        canonical="https://www.awen28.com/sms2004"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
         appName="SMS 2004"
+        appCategory="GameApplication"
+        rating="5.0"
+        reviewCount="50"
+        language="en-US"
       />
 
       {/* Header */}

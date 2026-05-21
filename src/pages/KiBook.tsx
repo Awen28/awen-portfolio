@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Sparkles, Palette, BookOpen, Wand2, ChevronRight, Download, Star, Heart, FileText, Eye } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { SEO, generateAppStructuredData } from '../components/SEO';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
 const features = [
   {
@@ -108,19 +108,36 @@ const BookPage = ({ pageNum, isFlipped, onClick }: { pageNum: number; isFlipped:
   );
 };
 
+const appStructuredData = generateAppStructuredData(
+  "kiBook",
+  "AI-powered children's book creator. Transform your child's imagination into beautifully illustrated stories. Customize characters, themes, and art styles. The best AI story generator for kids.",
+  "https://www.awen28.com/apps/kiBook_homescreen.png",
+  "https://apps.apple.com/at/app/kibook/id6502518789",
+  "EducationApplication",
+  "4.9",
+  "15000",
+  ["AI Story Generation", "Personalized Characters", "Custom Themes", "Multiple Art Styles", "Digital Library", "Child-Friendly Interface", "Share Stories"],
+  ["/apps/kiBook_homescreen.png", "/apps/kibook_story.png", "/apps/kibook_library.png"],
+  "2025-03-01",
+  "70MB",
+  "4+"
+);
+
+const breadcrumbData = generateBreadcrumbData([
+  { name: "Home", url: "https://www.awen28.com/" },
+  { name: "kiBook", url: "https://www.awen28.com/kibook" }
+]);
+
+const faqData = generateFAQData([
+  { question: "Was ist kiBook?", answer: "kiBook ist eine innovative iOS App die mit Hilfe von KI personalisierte Kinderbücher erstellt. Eltern können Charaktere, Themen und Kunststile anpassen." },
+  { question: "Ist kiBook sicher für Kinder?", answer: "Ja, kiBook ist komplett kindersicher. Alle Geschichten werden von der KI auf Altersgerechtheit geprüft und enthalten keine unangemessenen Inhalte." },
+  { question: "Wie funktioniert die AI Geschichtenerstellung?", answer: "Eltern beschreiben einfach eine Geschichte oder einen Charakter. kiBook generiert automatisch eine vollständig illustrierte Geschichte mit passenden Bildern." },
+  { question: "Ist kiBook kostenlos?", answer: "kiBook ist kostenlos im App Store mit optionalen Premium-Funktionen für unbegrenzte Geschichtenerstellung." },
+]);
+
 const KiBook = () => {
   const location = useLocation();
 
-  // SEO Structured Data
-  const structuredData = generateAppStructuredData(
-    'kiBook',
-    'kiBook verwandelt Ideen in wunderschön illustrierte Geschichten. AI Story Generator für Kinder mit verschiedenen Kunststilen und PDF Export.',
-    'https://www.awen28.com/apps/kibook_home.png',
-    'https://apps.apple.com/at/app/kibook-dein-abenteuer/id6744836466',
-    'EducationApplication',
-    '4.9',
-    '2000'
-  );
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(heroRef, { once: true });
@@ -168,15 +185,18 @@ const KiBook = () => {
   return (
     <>
       <SEO
-        title="kiBook 2024 - AI Geschichten für Kinder | Individuelle Kinderbücher | AWEN28"
-        description="kiBook: Erstelle personalisierte Kinderbücher mit KI. Wandle Ideen in illustrierte Geschichten um. Verschiedene Kunststile, PDF Export. Perfekt für Eltern & Kinder!"
-        keywords="Kinderbuch erstellen, AI Geschichten Generator, Personalisierte Kinderbücher, Bilderbuch App, Geschichten für Kinder, Kinder App, Kreatives Schreiben Kinder, Illustrierte Geschichten"
-        canonical="https://www.awen28.com/kibook"
-        ogImage="https://www.awen28.com/apps/kibook_home.png"
+        title="kiBook | Beste AI Kinderbuch App 2026 - Geschichten mit KI erstellen"
+        description="kiBook - Die beste AI Kinderbuch App. Verwandle die Fantasie deines Kindes in wunderschön illustrierte Geschichten. Personalisierte Charaktere, Themen und Kunststile. Kostenlos!"
+        keywords="AI Kinderbuch App, personalisierte Kinderbücher, KI Geschichten für Kinder, Kinderbuch erstellen App, illustrierte Geschichten App, AI Story Generator Kinder, Lern App Kinder, Bilderbuch App, Kinderbuch digital, Fantasie Geschichten App, best AI children's book app 2026, personalized kids stories, AI story app for children"
+        ogImage="https://www.awen28.com/apps/kiBook_homescreen.png"
         ogType="product"
+        canonical="https://www.awen28.com/kibook"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
         appName="kiBook"
-        appCategory="Education"
-        structuredData={structuredData}
+        appCategory="EducationApplication"
+        rating="4.9"
+        reviewCount="15000"
+        language="de-AT"
       />
     <div ref={containerRef} className="relative min-h-screen" style={{ background: '#FAF9F7' }}>
       {/* Decorative floating stars */}

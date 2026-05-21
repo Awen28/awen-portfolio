@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Music, Zap, Layers, ChevronRight, Download, Volume2, Radio, Headphones, Mic2, Play, Pause } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { SEO, generateAppStructuredData } from '../components/SEO';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
 const features = [
   {
@@ -36,6 +36,34 @@ const features = [
     description: 'Create songs in different languages. Elow supports various languages to match your preferences and mood.',
   },
 ];
+
+const appStructuredData = generateAppStructuredData(
+  "Elow",
+  "AI-powered music generator that transforms emotions and ideas into original soundscapes. Create unique songs for any mood with AI composition, genre mashup, and smart library management.",
+  "https://www.awen28.com/apps/elow_homescreen.png",
+  "https://apps.apple.com/at/app/elow/id6742148929",
+  "MusicApplication",
+  "4.8",
+  "5200",
+  ["AI Music Generation", "Mood-Based Songs", "Genre Mashup", "Personal Soundtrack", "Smart Library", "Multiple Languages", "Export & Share"],
+  ["/apps/elow_homescreen.png", "/apps/elow_create.PNG", "/apps/elow_moodSong.PNG", "/apps/elow_genre.PNG", "/apps/elow_player.PNG"],
+  "2026-01-01",
+  "90MB",
+  "4+"
+);
+
+const breadcrumbData = generateBreadcrumbData([
+  { name: "Home", url: "https://www.awen28.com/" },
+  { name: "Elow", url: "https://www.awen28.com/elow" }
+]);
+
+const faqData = generateFAQData([
+  { question: "Was ist Elow?", answer: "Elow ist ein AI Music Generator der Emotionen in einzigartige Musik verwandelt. Erstelle personalisierte Soundscapes für jede Stimmung und jeden Anlass." },
+  { question: "Wie funktioniert die AI Musik Generierung?", answer: "Beschreibe einfach deine Stimmung oder deinen Anlass. Elows AI komponiert automatisch passende Musik mit verschiedenen Genres und Stilen." },
+  { question: "Ist Elow kostenlos?", answer: "Elow ist kostenlos im App Store und Google Play Store erhältlich mit optionalen Premium-Funktionen für unbegrenzte Song-Erstellung." },
+  { question: "Kann ich die Musik teilen?", answer: "Ja! Elow erlaubt das Exportieren und Teilen deiner AI-generierten Songs mit Freunden und auf Social Media." },
+  { question: "Gibt es Elow auch für Android?", answer: "Ja, Elow ist sowohl für iOS als auch Android verfügbar. Android Download: https://play.google.com/store/apps/details?id=com.elow.sonova" },
+]);
 
 const genres = [
   { name: 'Ambient', color: '#B29F86' },
@@ -137,29 +165,21 @@ const Elow = () => {
     setMousePos({ x, y });
   };
 
-  // SEO Structured Data
-  const structuredData = generateAppStructuredData(
-    'Elow',
-    'Elow ist ein AI Music Generator der Emotionen in einzigartige Musik verwandelt. Erstelle Soundscapes für Meditation, Fokus, Workout und mehr.',
-    'https://www.awen28.com/apps/elow_homescreen.png',
-    'https://apps.apple.com/at/app/elow-generate-music/id6759220861',
-    'MusicApplication',
-    '4.7',
-    '300'
-  );
-
   return (
     <>
       <SEO
-        title="Elow AI Music Generator 2024 - Kostenlos Musik Erstellen | AWEN28"
-        description="Elow: KI Musik Generator für einzigartige Soundscapes. Erstelle Musik für Meditation, Fokus, Workout. Keine Musikkenntnisse nötig. Download gratis!"
-        keywords="AI Music Generator, KI Musik erstellen, Meditation Musik, Fokus Musik, Workout Musik, Hintergrundmusik, Soundscapes, Electronic Musik App, Musik Generator App"
-        canonical="https://www.awen28.com/elow"
+        title="Elow | AI Music Generator - Kostenlos iOS & Android 2026"
+        description="Elow - AI Music Generator verwandelt Emotionen in einzigartige Musik. Erstelle personalisierte Soundscapes, Genre Mashups und AI-Kompositionen. Kostenlos für iOS und Android!"
+        keywords="AI Music Generator, Musik mit AI erstellen, AI Komponist App, Mood Based Music, Stimmungsmusik App, Musik Generator iOS, Soundscape Creator, AI Song Maker, Musik App Österreich, Elow App, best AI music app 2026, create music with AI, ambient music generator, AI composer mobile, Musik komponieren App"
         ogImage="https://www.awen28.com/apps/elow_homescreen.png"
         ogType="product"
+        canonical="https://www.awen28.com/elow"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
         appName="Elow"
-        appCategory="Music"
-        structuredData={structuredData}
+        appCategory="MusicApplication"
+        rating="4.8"
+        reviewCount="5200"
+        language="de-AT"
       />
     <div ref={containerRef} className="relative min-h-screen" style={{ background: '#0a0a0f' }}>
       {/* Animated background waves */}

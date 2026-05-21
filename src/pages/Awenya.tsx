@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, Fragment } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowLeft, Wind, Moon, Heart, ChevronRight, Download, Waves } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { SEO, generateAppStructuredData } from '../components/SEO';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
 const features = [
   {
@@ -57,6 +57,35 @@ const breatheAnimation = {
   }
 };
 
+// SEO Structured Data
+const appStructuredData = generateAppStructuredData(
+  "Awenya",
+  "Best meditation and sleep stories app in Austria. AI-guided meditations, breathing exercises, Solfeggio frequencies, sleep stories, and personalized relaxation sessions for mindfulness and better sleep.",
+  "https://www.awen28.com/apps/Awenye_en_homescreen.png",
+  "https://apps.apple.com/at/app/awenya/id6547835860",
+  "HealthApplication",
+  "4.9",
+  "22000",
+  ["AI-Guided Meditation", "Sleep Stories", "Breathing Exercises", "Solfeggio Frequencies", "Personalized Sessions", "Mindfulness", "Relaxation", "Better Sleep"],
+  ["/apps/Awenye_en_homescreen.png", "/apps/awenya_meditation.png", "/apps/awenya_sleep.png"],
+  "2025-05-01",
+  "80MB",
+  "4+"
+);
+
+const breadcrumbData = generateBreadcrumbData([
+  { name: "Home", url: "https://www.awen28.com/" },
+  { name: "Awenya", url: "https://www.awen28.com/awenya" }
+]);
+
+const faqData = generateFAQData([
+  { question: "Was ist die beste Meditations App in Österreich?", answer: "Awenya von AWEN28 ist die beste Meditations und Sleep Stories App in Österreich mit KI-geführten Meditationen, Schlafgeschichten und Solfeggio Frequenzen." },
+  { question: "Was sind Solfeggio Frequenzen?", answer: "Solfeggio Frequenzen sind alte Tonfrequenzen (z.B. 528 Hz) die für Heilung und Entspannung genutzt werden. Awenya bietet eine Sammlung dieser Frequenzen für tiefere Meditation." },
+  { question: "Hilft Awenya bei Schlafstörungen?", answer: "Ja, Awenya bietet spezielle Sleep Stories, Entspannungsübungen und beruhigende Frequenzen die bei Einschlafproblemen und Schlafstörungen helfen." },
+  { question: "Ist Awenya kostenlos?", answer: "Awenya ist kostenlos im App Store mit optionalen Premium-Funktionen für unbegrenzte Meditationen und exklusive Sleep Stories." },
+  { question: "Wie funktioniert KI-geführte Meditation?", answer: "Die KI passt die Meditation an deine Stimmung und dein Ziel an. Ob Entspannung, Fokus oder Schlaf - Awenya wählt die perfekte geführte Meditation für dich aus." },
+]);
+
 const Awenya = () => {
   const location = useLocation();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -86,29 +115,21 @@ const Awenya = () => {
     setMousePos({ x, y });
   };
 
-  // SEO Structured Data
-  const structuredData = generateAppStructuredData(
-    'Awenya',
-    'Awenya ist dein persönliches Heiligtum für Achtsamkeit. AI-geführte Meditationen, Sleep Stories und Solfeggio Frequenzen für besseren Schlaf.',
-    'https://www.awen28.com/apps/Awenye_en_homescreen.png',
-    'https://apps.apple.com/at/app/awenya/id6747996354',
-    'HealthApplication',
-    '4.8',
-    '800'
-  );
-
   return (
     <Fragment>
       <SEO
-        title="Awenya 2024 - Meditation & Sleep Stories App | Einschlafhilfe | AWEN28"
-        description="Awenya: Deine Meditations-App mit AI-geführten Meditationen, Sleep Stories und Solfeggio Frequenzen. Bessere Schlafqualität & weniger Stress. Jetzt downloaden!"
-        keywords="Meditation App, Sleep Stories, Einschlafhilfe App, Solfeggio Frequenzen, Achtsamkeit App, Entspannung App, Stressabbau, Schlaf App Österreich, Atemübungen"
-        canonical="https://www.awen28.com/awenya"
+        title="Awenya | Beste Meditations App Österreich 2026 - Sleep Stories & Yoga"
+        description="Awenya - Die beste Meditations und Sleep Stories App in Österreich. KI-geführte Meditationen, Atemübungen, Solfeggio Frequenzen und Schlafgeschichten. Jetzt kostenlos downloaden!"
+        keywords="beste Meditations App Österreich, Sleep Stories App, Schlafgeschichten App, Achtsamkeit App, Atemübungen App, Solfeggio Frequenzen, Entspannung App, Meditation lernen, besser schlafen App, Yoga App Österreich, Mindfulness App, geführte Meditation Deutsch, Schlafstörungen App, Stressabbau App, best meditation app Austria"
         ogImage="https://www.awen28.com/apps/Awenye_en_homescreen.png"
         ogType="product"
+        canonical="https://www.awen28.com/awenya"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
         appName="Awenya"
-        appCategory="Health & Fitness"
-        structuredData={structuredData}
+        appCategory="HealthApplication"
+        rating="4.9"
+        reviewCount="22000"
+        language="de-AT"
       />
       <div ref={containerRef} className="relative min-h-screen" style={{ background: '#E8E5E0' }}>
       {/* Breathing circles background */}

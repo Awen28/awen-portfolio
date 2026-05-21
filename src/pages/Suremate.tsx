@@ -2,6 +2,35 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowLeft, Check, Shield, FileText, Clock, ChevronRight, Download } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
+
+const appStructuredData = generateAppStructuredData(
+  "Suremate",
+  "Smart insurance claim management app for Austria. Report car accidents, household damage, personal injury digitally. Step-by-step damage documentation with photos, structured reporting, and direct agent connection. Best InsurTech app Austria.",
+  "https://www.awen28.com/apps/Suremate_home.png",
+  "https://apps.apple.com/at/app/suremate/id6475345859",
+  "FinanceApplication",
+  "4.7",
+  "1200",
+  ["Digital Damage Report", "Car Accident Documentation", "Household Damage", "Personal Injury Report", "Photo Upload", "Agent Connection", "Insurance Claim Tracking", "Step-by-Step Guidance"],
+  ["/apps/Suremate_home.png", "/apps/suremate_claim.png", "/apps/suremate_report.png"],
+  "2024-03-01",
+  "50MB",
+  "4+"
+);
+
+const breadcrumbData = generateBreadcrumbData([
+  { name: "Home", url: "https://www.awen28.com/" },
+  { name: "Suremate", url: "https://www.awen28.com/suremate" }
+]);
+
+const faqData = generateFAQData([
+  { question: "Was ist Suremate?", answer: "Suremate ist eine smarte Versicherungs-App für Schadensmeldungen in Österreich. Autounfälle, Haushaltsschäden und Personenschäden digital dokumentieren." },
+  { question: "Wie melde ich einen Autounfall mit Suremate?", answer: "Öffne Suremate, wähle 'Autounfall', folge der Schritt-für-Schritt Anleitung, mache Fotos vom Schaden und sende den Bericht direkt an deine Versicherung oder deinen Agenten." },
+  { question: "Ist Suremate für alle Versicherungen?", answer: "Ja, Suremate funktioniert universell für alle Versicherungen in Österreich. Unabhängig von deiner Versicherung kannst du Schäden dokumentieren und melden." },
+  { question: "Ist Suremate kostenlos?", answer: "Ja, Suremate ist komplett kostenlos für Versicherungsnehmer in Österreich." },
+  { question: "Was ist ein AgentCode?", answer: "Der AgentCode verbindet dich mit deinem persönlichen Versicherungsagenten in Suremate. So kann dein Agent deine Schadensmeldung direkt einsehen und bearbeiten." },
+]);
 
 const features = [
   {
@@ -61,6 +90,20 @@ const Suremate = () => {
 
   return (
     <div ref={containerRef} className="relative min-h-screen" style={{ background: '#FAF9F7' }}>
+      <SEO 
+        title="Suremate | Beste Schadensmeldung App Österreich 2026 - Kfz & Haushalt"
+        description="Suremate - Die beste digitale Schadensmeldung App für Österreich. Autounfälle, Haushaltsschäden und Personenschäden einfach dokumentieren und melden. Kostenlos im App Store!"
+        keywords="Schadensmeldung App, Kfz Unfall App Österreich, Haushaltsschaden melden, Versicherungs App, digitale Schadensmeldung, Autounfall dokumentieren, Versicherung Schaden App, Schadenmanagement Österreich, Kfz Schaden App, Personenschaden melden, InsurTech Austria, best insurance app Austria, Schadensregulierung digital, Versicherungsagentur App"
+        ogImage="https://www.awen28.com/apps/Suremate_home.png"
+        ogType="product"
+        canonical="https://www.awen28.com/suremate"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
+        appName="Suremate"
+        appCategory="FinanceApplication"
+        rating="4.7"
+        reviewCount="1200"
+        language="de-AT"
+      />
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-8 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">

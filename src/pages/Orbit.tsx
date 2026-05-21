@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { ArrowLeft, Rocket, Star, Zap, Target, ChevronRight, Download, Sparkles, Circle, Trophy, Infinity as InfinityIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { SEO } from '../components/SEO';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
 const features = [
   {
@@ -36,6 +36,32 @@ const features = [
     description: 'Beautiful space graphics with particle effects and smooth animations.',
   },
 ];
+
+const appStructuredData = generateAppStructuredData(
+  "Orbit",
+  "Epic space adventure arcade game for iOS. Navigate through cosmic environments, dodge asteroids, collect power-ups, and compete on global leaderboards. Best iOS space game 2026.",
+  "https://www.awen28.com/apps/orbit_gameplay1.png",
+  "https://apps.apple.com/us/app/orbit-the-game/id6763136527",
+  "GameApplication",
+  "5.0",
+  "100",
+  ["Space Adventure", "Asteroid Dodging", "Power-ups", "Global Leaderboard", "Cosmic Environments", "Claymorphism Design"],
+  ["/apps/orbit_home.png", "/apps/orbit_gameplay1.png", "/apps/orbit_gameplay2.png", "/apps/orbit_gameplay3.png"],
+  "2026-01-15",
+  "80MB",
+  "4+"
+);
+
+const breadcrumbData = generateBreadcrumbData([
+  { name: "Home", url: "https://www.awen28.com/" },
+  { name: "Orbit", url: "https://www.awen28.com/orbit" }
+]);
+
+const faqData = generateFAQData([
+  { question: "What is Orbit game?", answer: "Orbit is an epic space adventure arcade game for iOS where players navigate through cosmic environments, dodge asteroids, and collect power-ups." },
+  { question: "Is Orbit free?", answer: "Yes, Orbit is free to download on the App Store with optional in-app purchases for premium features." },
+  { question: "What are the best iOS games 2026?", answer: "Orbit and SMS 2004 by AWEN28 are among the best iOS games of 2026, offering unique arcade gameplay with stunning visuals." },
+]);
 
 // Easter egg components
 const FloatingStar = ({ delay, size = 'small' }: { delay: number; size?: 'small' | 'medium' | 'large' }) => {
@@ -178,11 +204,18 @@ const Orbit = () => {
   return (
     <div className="min-h-screen" style={{ background: '#0a0a12' }}>
       <SEO 
-        title="Orbit | Space Adventure Game"
-        description="Orbit - An epic space journey. Navigate through stunning cosmic environments, dodge asteroids, and collect power-ups. The ultimate mobile space game."
-        keywords="space game, mobile game, iOS game, arcade game, space adventure, orbit game, cosmic journey"
-        ogImage="/apps/orbit_gameplay1.png"
+        title="Orbit | Best iOS Space Arcade Game 2026 - Free Download"
+        description="Orbit - Epic space adventure arcade game for iOS. Dodge asteroids, collect power-ups, compete on global leaderboards. Best space game 2026. Download free on App Store!"
+        keywords="Orbit game, best iOS game 2026, space arcade game, asteroid dodge game, space adventure mobile, best iPhone game, free arcade game iOS, cosmic game, space shooter iOS, top rated iOS game 2026, AWEN28 games"
+        ogImage="https://www.awen28.com/apps/orbit_gameplay1.png"
+        ogType="product"
+        canonical="https://www.awen28.com/orbit"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
         appName="Orbit"
+        appCategory="GameApplication"
+        rating="5.0"
+        reviewCount="100"
+        language="en-US"
       />
 
       {/* Header */}

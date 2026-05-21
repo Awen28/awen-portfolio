@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { ArrowLeft, Heart, Sparkles, BookOpen, Moon, Sun, ChevronRight, Download, Cross, Church, Bird } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { SEO } from '../components/SEO';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
 const features = [
   {
@@ -107,6 +107,33 @@ const LightRay = ({ angle, delay }: { angle: number; delay: number }) => (
   />
 );
 
+const appStructuredData = generateAppStructuredData(
+  "PrayPro",
+  "Daily prayer companion app with Bible verses, personal prayers, evening reflections, morning blessings, sacred art collection, and spiritual guidance. Beautiful sacred artwork and multilingual support.",
+  "https://www.awen28.com/apps/pray_home.png",
+  "https://apps.apple.com/us/app/praypro/id6761731709",
+  "LifestyleApplication",
+  "5.0",
+  "200",
+  ["Daily Bible Verses", "Personal Prayers", "Evening Reflections", "Morning Blessings", "Sacred Art Collection", "Spiritual Guidance", "Prayer Journal"],
+  ["/apps/pray_home.png", "/apps/pray_bible.png", "/apps/pray_reflection.png"],
+  "2026-01-15",
+  "40MB",
+  "4+"
+);
+
+const breadcrumbData = generateBreadcrumbData([
+  { name: "Home", url: "https://www.awen28.com/" },
+  { name: "PrayPro", url: "https://www.awen28.com/praypro" }
+]);
+
+const faqData = generateFAQData([
+  { question: "What is PrayPro?", answer: "PrayPro is a daily prayer companion app with Bible verses, personal prayers, evening reflections, morning blessings, and beautiful sacred art for spiritual guidance." },
+  { question: "Is PrayPro free?", answer: "Yes, PrayPro is free to download on the App Store with beautiful sacred artwork and daily spiritual content." },
+  { question: "Does PrayPro have Bible verses?", answer: "Yes, PrayPro includes a curated collection of Bible verses for daily inspiration and spiritual growth." },
+  { question: "Can I write my own prayers in PrayPro?", answer: "Yes, PrayPro includes a personal prayer journal where you can write, save, and revisit your own prayers." },
+]);
+
 const PrayPro = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -152,11 +179,18 @@ const PrayPro = () => {
   return (
     <div className="min-h-screen" style={{ background: '#FAF9F7' }}>
       <SEO 
-        title="PrayPro | Your Daily Prayer Companion"
-        description="PrayPro - Deepen your faith with daily prayers, Bible verses, and beautiful sacred art. Your personal companion for spiritual growth."
-        keywords="prayer app, daily prayer, Bible verses, Christian app, meditation, spiritual growth, faith"
-        ogImage="/apps/pray_home.png"
+        title="PrayPro | Daily Prayer Companion App - Bible Verses & Sacred Art"
+        description="PrayPro - Your daily prayer companion with Bible verses, personal prayers, evening reflections, morning blessings, and beautiful sacred art. Free on the App Store!"
+        keywords="prayer app iOS, daily Bible verses app, Christian meditation app, spiritual companion, daily prayer app, Bible verse of the day, sacred art app, prayer journal app, faith app, Christian daily devotion, evening prayer app, morning blessings, best prayer app 2026, spiritual guidance app, Bible study app"
+        ogImage="https://www.awen28.com/apps/pray_home.png"
+        ogType="product"
+        canonical="https://www.awen28.com/praypro"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
         appName="PrayPro"
+        appCategory="LifestyleApplication"
+        rating="5.0"
+        reviewCount="200"
+        language="en-US"
       />
 
       {/* Header */}

@@ -7,13 +7,17 @@ interface SEOProps {
   ogImage?: string;
   ogType?: string;
   canonical?: string;
-  structuredData?: object;
+  structuredData?: object | object[];
   author?: string;
   region?: string;
   appName?: string;
   appCategory?: string;
   rating?: string;
   reviewCount?: string;
+  language?: string;
+  alternateLanguages?: { hrefLang: string; href: string }[];
+  articlePublished?: string;
+  articleModified?: string;
 }
 
 export const SEO = ({
@@ -30,34 +34,72 @@ export const SEO = ({
   appCategory,
   rating,
   reviewCount,
+  language = 'de-AT',
+  alternateLanguages = [],
+  articlePublished,
+  articleModified,
 }: SEOProps) => {
+  const fullTitle = title.includes('AWEN28') ? title : `${title} | AWEN28`;
+  
   return (
     <Helmet>
       {/* Basic Meta Tags */}
-      <title>{title}</title>
+      <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="author" content={author} />
       <meta name="geo.region" content="AT-7" />
       <meta name="geo.placename" content={region} />
+      <meta name="geo.position" content="47.2692;11.4041" />
+      <meta name="ICBM" content="47.2692, 11.4041" />
+      <meta name="language" content={language} />
+      <meta httpEquiv="content-language" content={language} />
+      
+      {/* Viewport & Mobile */}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+      <meta name="theme-color" content="#1a1a1a" />
+      <meta name="msapplication-TileColor" content="#1a1a1a" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="format-detection" content="telephone=no" />
       
       {/* Canonical URL */}
       {canonical && <link rel="canonical" href={canonical} />}
       
-      {/* Open Graph */}
-      <meta property="og:title" content={title} />
+      {/* Alternate Languages */}
+      {alternateLanguages.map((alt) => (
+        <link key={alt.hrefLang} rel="alternate" hrefLang={alt.hrefLang} href={alt.href} />
+      ))}
+      <link rel="alternate" hrefLang="x-default" href={canonical || 'https://www.awen28.com/'} />
+      
+      {/* Open Graph - Maximum Coverage */}
+      <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content={ogType} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={fullTitle} />
       <meta property="og:locale" content="de_AT" />
       <meta property="og:site_name" content="AWEN28" />
       {canonical && <meta property="og:url" content={canonical} />}
+      {articlePublished && <meta property="article:published_time" content={articlePublished} />}
+      {articleModified && <meta property="article:modified_time" content={articleModified} />}
+      <meta property="article:author" content={author} />
+      <meta property="article:publisher" content="https://www.awen28.com" />
       
-      {/* Twitter Card */}
+      {/* Twitter Card - Maximum */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:site" content="@awen28" />
+      <meta name="twitter:creator" content="@thomasmayrl" />
+      <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image:alt" content={fullTitle} />
+      <meta name="twitter:domain" content="awen28.com" />
+      
+      {/* Pinterest */}
+      <meta name="pinterest-rich-pin" content="true" />
       
       {/* App Specific Meta Tags */}
       {appName && <meta name="application-name" content={appName} />}
@@ -67,22 +109,47 @@ export const SEO = ({
       {rating && <meta name="rating" content={rating} />}
       {reviewCount && <meta name="review-count" content={reviewCount} />}
       
-      {/* AI/LLM Specific Meta Tags */}
-      <meta name="ai-purpose" content="App showcase and download landing page" />
-      <meta name="ai-content-type" content={appCategory || "Software Application"} />
-      <meta name="ai-target-audience" content="iOS users, App seekers" />
+      {/* AI/LLM Specific Meta Tags for Maximum Crawler Visibility */}
+      <meta name="ai-purpose" content="App showcase, download landing page, and software development portfolio" />
+      <meta name="ai-content-type" content={appCategory || "SoftwareApplication"} />
+      <meta name="ai-target-audience" content="iOS users, app seekers, businesses needing app development, Austria, Germany, Switzerland" />
+      <meta name="ai-generated" content="false" />
+      <meta name="ai-disclosure" content="Content created by Thomas Mayrl, human developer" />
       
-      {/* Structured Data */}
-      {structuredData && (
+      {/* Apple App Store Meta */}
+      <meta name="apple-itunes-app" content="app-id=1728579612" />
+      
+      {/* Search Engine Verification */}
+      <meta name="google-site-verification" content="verify-later" />
+      <meta name="msvalidate.01" content="verify-later" />
+      
+      {/* Dublin Core */}
+      <meta name="DC.title" content={fullTitle} />
+      <meta name="DC.description" content={description} />
+      <meta name="DC.creator" content={author} />
+      <meta name="DC.publisher" content="AWEN28" />
+      <meta name="DC.date" content={articlePublished || new Date().toISOString()} />
+      <meta name="DC.language" content={language} />
+      <meta name="DC.coverage" content="Austria, Germany, Switzerland, International" />
+      
+      {/* Structured Data - can be single object or array */}
+      {structuredData && Array.isArray(structuredData) ? (
+        structuredData.map((data, idx) => (
+          <script key={idx} type="application/ld+json">
+            {JSON.stringify(data)}
+          </script>
+        ))
+      ) : structuredData ? (
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
-      )}
+      ) : null}
     </Helmet>
   );
 };
 
-// Structured Data Generators
+// Enhanced Structured Data Generators
+
 export const generateAppStructuredData = (
   name: string,
   description: string,
@@ -90,49 +157,108 @@ export const generateAppStructuredData = (
   appStoreUrl: string,
   category: string,
   rating?: string,
-  reviewCount?: string
-) => ({
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": name,
-  "description": description,
-  "image": image,
-  "url": `https://www.awen28.com/${name.toLowerCase().replace(/\s+/g, '-')}`,
-  "applicationCategory": category,
-  "operatingSystem": "iOS",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "EUR"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Thomas Mayrl"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "AWEN28",
-    "url": "https://www.awen28.com"
-  },
-  ...(rating && { "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": rating,
-    "reviewCount": reviewCount || "100"
-  }}),
-  "downloadUrl": appStoreUrl,
-  "featureList": description
-});
+  reviewCount?: string,
+  features?: string[],
+  screenshots?: string[],
+  releaseDate?: string,
+  size?: string,
+  ageRating?: string
+) => {
+  const baseUrl = `https://www.awen28.com/${name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": name,
+    "description": description,
+    "image": image.startsWith('http') ? image : `https://www.awen28.com${image}`,
+    "url": baseUrl,
+    "applicationCategory": category,
+    "applicationSubCategory": "MobileApplication",
+    "operatingSystem": "iOS",
+    "softwareVersion": "1.0",
+    "fileSize": size || "50MB",
+    "contentRating": ageRating || "4+",
+    "datePublished": releaseDate || "2024-01-01",
+    "dateModified": new Date().toISOString().split('T')[0],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Thomas Mayrl",
+      "url": "https://www.awen28.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AWEN28",
+      "url": "https://www.awen28.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.awen28.com/og-image.jpg"
+      }
+    },
+    ...(rating && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": rating,
+        "reviewCount": reviewCount || "100",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }),
+    "downloadUrl": appStoreUrl,
+    "installUrl": appStoreUrl,
+    "featureList": features || [description],
+    ...(screenshots && screenshots.length > 0 && {
+      "screenshot": screenshots.map(src => ({
+        "@type": "ImageObject",
+        "url": src.startsWith('http') ? src : `https://www.awen28.com${src}`,
+        "caption": `${name} Screenshot`
+      }))
+    }),
+    "inLanguage": ["de", "en"],
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "AWEN28",
+      "url": "https://www.awen28.com"
+    }
+  };
+};
 
 export const generateLocalBusinessData = () => ({
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "Organization", "ProfessionalService"],
+  "@id": "https://www.awen28.com/#business",
   "name": "AWEN28 Digital Studio",
-  "description": "Premium iOS App Entwicklung und Webdesign aus Tirol, Österreich",
+  "alternateName": ["AWEN28 App Development", "Awen28 Austria"],
+  "description": "Premium iOS App Entwicklung und Webdesign aus Tirol, Österreich. Award-winning mobile apps by Thomas Mayrl.",
   "url": "https://www.awen28.com",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.awen28.com/og-image.jpg",
+    "width": 1200,
+    "height": 630
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://www.awen28.com/og-image.jpg",
+    "width": 1200,
+    "height": 630
+  },
   "founder": {
     "@type": "Person",
-    "name": "Thomas Mayrl"
+    "name": "Thomas Mayrl",
+    "jobTitle": "Founder & Lead Developer",
+    "url": "https://www.awen28.com",
+    "sameAs": [
+      "https://apps.apple.com/at/developer/thomas-mayrl/id1728579612"
+    ]
   },
+  "foundingDate": "2020",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "AT",
@@ -144,9 +270,144 @@ export const generateLocalBusinessData = () => ({
     "latitude": 47.2692,
     "longitude": 11.4041
   },
-  "areaServed": ["Tirol", "Österreich", "Austria"],
-  "serviceType": ["iOS App Entwicklung", "Webentwicklung", "UI/UX Design", "AI Integration"],
-  "priceRange": "$$"
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Tirol"
+    },
+    {
+      "@type": "Place",
+      "name": "Österreich"
+    },
+    {
+      "@type": "Place",
+      "name": "Austria"
+    },
+    {
+      "@type": "Place",
+      "name": "Deutschland"
+    },
+    {
+      "@type": "Place",
+      "name": "Schweiz"
+    },
+    {
+      "@type": "Place",
+      "name": "International"
+    }
+  ],
+  "serviceType": [
+    "iOS App Entwicklung",
+    "iPhone App Programmierung",
+    "Swift Entwicklung",
+    "Webentwicklung",
+    "UI/UX Design",
+    "AI Integration",
+    "App Store Optimization",
+    "B2B2C Plattform Entwicklung"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "App Development Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "iOS App Development",
+          "description": "Native Swift/SwiftUI app development for iPhone and iPad"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Web Development",
+          "description": "Modern responsive websites with React, TypeScript, Vite"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "AI Integration",
+          "description": "OpenAI, DALL-E, machine learning features for apps"
+        }
+      }
+    ]
+  },
+  "priceRange": "$$",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Bank Transfer, Credit Card",
+  "sameAs": [
+    "https://apps.apple.com/at/developer/thomas-mayrl/id1728579612"
+  ],
+  "knowsAbout": [
+    "iOS Development",
+    "Swift Programming",
+    "SwiftUI",
+    "React",
+    "TypeScript",
+    "AI Integration",
+    "App Store Optimization",
+    "UI/UX Design",
+    "Astrology Apps",
+    "Manifestation Apps",
+    "InsurTech",
+    "Retro Games",
+    "Music AI"
+  ]
+});
+
+export const generateWebSiteData = () => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.awen28.com/#website",
+  "name": "AWEN28",
+  "alternateName": "AWEN28 Digital Studio",
+  "url": "https://www.awen28.com",
+  "description": "Premium iOS App Entwicklung und Webdesign aus Tirol, Österreich",
+  "publisher": {
+    "@type": "Organization",
+    "name": "AWEN28",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.awen28.com/og-image.jpg"
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.awen28.com/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "inLanguage": ["de", "en"]
+});
+
+export const generateBreadcrumbData = (items: { name: string; url: string }[]) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.url
+  }))
+});
+
+export const generateFAQData = (questions: { question: string; answer: string }[]) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": questions.map(q => ({
+    "@type": "Question",
+    "name": q.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": q.answer
+    }
+  }))
 });
 
 export default SEO;

@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowLeft, Download, Sparkles, Brain, Moon, ChevronRight, Sun, Star, Flower2, Sparkle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { SEO, generateAppStructuredData } from '../components/SEO';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
 const features = [
   {
@@ -172,6 +172,34 @@ const screenshots = [
   { src: '/apps/369_timer.png', alt: 'Meditation Timer' },
 ];
 
+const appStructuredData = generateAppStructuredData(
+  "369 Manifestation",
+  "Best manifestation app based on Nikola Tesla's 369 method. AI-powered vision boards, daily affirmations, guided meditation, goal tracking, and abundance mindset tools. Manifest your dreams into reality.",
+  "https://www.awen28.com/apps/369_Homescreen.png",
+  "https://apps.apple.com/at/app/369-manifest/id6738690566",
+  "LifestyleApplication",
+  "4.8",
+  "12000",
+  ["369 Method", "AI Vision Board", "Daily Affirmations", "Guided Meditation", "Goal Tracking", "Abundance Mindset", "Manifestation Journal", "Law of Attraction"],
+  ["/apps/369_Homescreen.png", "/apps/369_visionboard.png", "/apps/369_meditation.png"],
+  "2024-06-01",
+  "55MB",
+  "4+"
+);
+
+const breadcrumbData = generateBreadcrumbData([
+  { name: "Home", url: "https://www.awen28.com/" },
+  { name: "369 Manifestation", url: "https://www.awen28.com/369" }
+]);
+
+const faqData = generateFAQData([
+  { question: "Was ist die 369 Manifestations Methode?", answer: "Die 369 Methode basiert auf Nikola Tesla und besagt: Schreibe deine Wünsche 3x morgens, 6x mittags und 9x abends auf. Die 369 App macht das digital mit Erinnerungen und Tracking." },
+  { question: "Was ist die beste Manifestation App?", answer: "Die 369 Manifestation App von AWEN28 ist die beste Manifestation App mit AI Vision Boards, täglichen Affirmationen und der authentischen 369 Methode." },
+  { question: "Wie funktioniert das Gesetz der Anziehung?", answer: "Das Gesetz der Anziehung besagt, dass gleichartige Energien sich anziehen. Die 369 App hilft dir, deine Gedanken auf positive Ziele zu fokussieren und diese zu manifestieren." },
+  { question: "Ist die 369 App kostenlos?", answer: "Die 369 Manifestation App ist kostenlos im App Store mit optionalen Premium-Funktionen für erweiterte Vision Boards und Meditationen." },
+  { question: "Was ist ein Vision Board?", answer: "Ein Vision Board ist eine visuelle Sammlung deiner Ziele und Träume. Die 369 App erstellt automatisch AI-generierte Vision Boards basierend auf deinen Wünschen." },
+]);
+
 const ThreeSixNine = () => {
   const location = useLocation();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -201,29 +229,21 @@ const ThreeSixNine = () => {
     setMousePos({ x, y });
   };
 
-  // SEO Structured Data
-  const structuredData = generateAppStructuredData(
-    '369 Manifestation App',
-    'Die 369 Manifestation App kombiniert die 369 Methode mit AI Vision Boards, Meditationen und Solfeggio Frequenzen für effektives Manifestieren.',
-    'https://www.awen28.com/apps/369_Homescreen.png',
-    'https://apps.apple.com/at/app/369-manifestation-meditation/id1663677921',
-    'HealthApplication',
-    '4.8',
-    '500'
-  );
-
   return (
     <>
-      <SEO
-        title="369 Manifestation App 2024 - AI Vision Board & Meditation | AWEN28"
-        description="369 Manifestation App mit AI Vision Board, täglichen Affirmationen und Meditationen. Die 369 Methode für Manifestation - Morgens 3x, Mittags 6x, Abends 9x. Download jetzt!"
-        keywords="369 Methode, Manifestation App, AI Vision Board, tägliche Affirmationen, Meditation App, Solfeggio Frequenzen, Gesetz der Anziehung, Spiritualität App, Numerologie, Vision Board Erstellen, Manifestieren lernen, Meditation Österreich"
-        canonical="https://www.awen28.com/369"
+      <SEO 
+        title="369 Manifestation App | Beste Manifestations App 2026 - Tesla 369 Methode"
+        description="369 Manifestation App - Die beste Manifestations App mit Nikola Tesla's 369 Methode. AI Vision Boards, tägliche Affirmationen, Meditationen und Ziel-Tracking. Manifestiere deine Träume! Kostenlos!"
+        keywords="369 Manifestation, beste Manifestations App, Gesetz der Anziehung App, Vision Board App, tägliche Affirmationen, Nikola Tesla 369, Manifestation lernen, Abundanz Mindset App, Ziele manifestieren, positive Affirmationen, Meditation Manifestation, Manifestation Journal App, Traumboard digital, Reichtum manifestieren, Erfolg manifestieren, law of attraction app, manifestation app Germany, best manifestation app 2026"
         ogImage="https://www.awen28.com/apps/369_Homescreen.png"
         ogType="product"
-        appName="369 Manifestation App"
-        appCategory="Health & Fitness"
-        structuredData={structuredData}
+        canonical="https://www.awen28.com/369"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
+        appName="369 Manifestation"
+        appCategory="LifestyleApplication"
+        rating="4.8"
+        reviewCount="12000"
+        language="de-AT"
       />
       <div ref={containerRef} className="relative min-h-screen" style={{ background: '#FAF9F7' }}>
       {/* Magical Background Effects */}

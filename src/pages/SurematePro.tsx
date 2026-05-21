@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowLeft, Check, Users, FileText, BarChart3, ChevronRight, Download, UserPlus } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
 const features = [
   {
@@ -29,6 +30,33 @@ const screenshots = [
   { src: '/apps/surematepro_pdf.png', alt: 'PDF Report Dark' },
   { src: '/apps/surematepro_share.png', alt: 'Share Options' },
 ];
+
+const appStructuredData = generateAppStructuredData(
+  "Suremate Pro",
+  "Professional B2B insurance CRM for agents in Austria. Complete customer overview, real-time claim notifications, damage report access, customer database, and mobile CRM functionality. Best insurance agent software Austria.",
+  "https://www.awen28.com/apps/Suremate_pro_home.png",
+  "https://apps.apple.com/at/app/suremate-pro/id6502916525",
+  "BusinessApplication",
+  "4.9",
+  "200",
+  ["Customer CRM", "Real-time Notifications", "Damage Report Access", "Customer Database", "Mobile CRM", "Claim Management", "Agent Dashboard", "B2B Insurance Tools"],
+  ["/apps/Suremate_pro_home.png", "/apps/surematepro_dashboard.png", "/apps/surematepro_customers.png"],
+  "2024-06-01",
+  "55MB",
+  "4+"
+);
+
+const breadcrumbData = generateBreadcrumbData([
+  { name: "Home", url: "https://www.awen28.com/" },
+  { name: "Suremate Pro", url: "https://www.awen28.com/suremate-pro" }
+]);
+
+const faqData = generateFAQData([
+  { question: "Was ist Suremate Pro?", answer: "Suremate Pro ist die professionelle B2B Versicherungs-Software für Agenten in Österreich. Kundenverwaltung, Schadensübersicht und mobiles CRM in einer App." },
+  { question: "Für wen ist Suremate Pro gedacht?", answer: "Suremate Pro ist für Versicherungsagenten, Makler und Versicherungsvertreter in Österreich die ihre Kunden und Schadensfälle digital verwalten möchten." },
+  { question: "Wie erhalte ich Kundenschadensmeldungen?", answer: "Wenn Kunden sich in der Suremate App mit deinem AgentCode registrieren, siehst du alle ihre Schadensmeldungen in Echtzeit in Suremate Pro." },
+  { question: "Ist Suremate Pro kostenlos?", answer: "Suremate Pro ist für registrierte Versicherungsagenten verfügbar. Kontaktiere uns für Preise und Lizenzierung." },
+]);
 
 const SurematePro = () => {
   const location = useLocation();
@@ -62,6 +90,20 @@ const SurematePro = () => {
 
   return (
     <div ref={containerRef} className="relative min-h-screen" style={{ background: '#FAF9F7' }}>
+      <SEO 
+        title="Suremate Pro | Versicherungsvertreter Software Österreich 2026 - CRM"
+        description="Suremate Pro - Die professionelle Versicherungsvertreter Software für Österreich. Kundenmanagement, Schadensübersicht, mobiles CRM und Echtzeit-Benachrichtigungen. Jetzt registrieren!"
+        keywords="Versicherungsvertreter Software, Versicherungsagentur CRM, Schadenmanagement Software, Versicherungsmakler App, Kundenverwaltung Versicherung, mobile CRM Versicherung, B2B Versicherung Software, Schadensfall Management, Versicherungs Software Österreich, Agenten Tools, InsurTech B2B, Versicherungsvertreter Digitalisierung, best insurance CRM Austria"
+        ogImage="https://www.awen28.com/apps/Suremate_pro_home.png"
+        ogType="product"
+        canonical="https://www.awen28.com/suremate-pro"
+        structuredData={[appStructuredData, breadcrumbData, faqData]}
+        appName="Suremate Pro"
+        appCategory="BusinessApplication"
+        rating="4.9"
+        reviewCount="200"
+        language="de-AT"
+      />
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-8 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
