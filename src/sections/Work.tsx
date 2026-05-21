@@ -86,6 +86,17 @@ const projects = [
     tags: ['Game', 'Space', 'iOS'],
   },
   {
+    id: 'sms2004',
+    name: 'SMS 2004',
+    category: 'iOS Game • Retro',
+    description: 'Nostalgic phone simulator with T9 typing, 6 authentic skins, Snake, ringtone composer, and 75 levels.',
+    image: '/apps/sms_home.png',
+    icon: '/apps/sms_home.png',
+    color: '#4ade80',
+    stats: { rating: 'New', downloads: 'New' },
+    tags: ['Retro', 'Game', 'T9', 'iOS'],
+  },
+  {
     id: 'kibook',
     name: 'kiBook',
     category: 'iOS App • KI & Bildung',

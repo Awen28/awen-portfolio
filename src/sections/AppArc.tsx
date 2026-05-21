@@ -60,6 +60,15 @@ const apps = [
     color: '#6366f1',
     stats: { rating: '4.6', downloads: '3.8K' },
   },
+  {
+    id: 'sms2004',
+    name: 'SMS 2004',
+    description: 'Nostalgic phone simulator with T9 typing, Snake, ringtone composer, and authentic 2004 phone skins.',
+    image: '/apps/sms_home.png',
+    icon: '/apps/sms_home.png',
+    color: '#4ade80',
+    stats: { rating: 'New', downloads: 'New' },
+  },
 ];
 
 const AppArc = () => {

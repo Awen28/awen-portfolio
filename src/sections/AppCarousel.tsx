@@ -77,6 +77,16 @@ const apps = [
     color: '#10b981',
     stats: { rating: '4.9', downloads: '200' },
   },
+  {
+    id: 'sms2004',
+    name: 'SMS 2004',
+    category: 'Retro Game',
+    description: 'Nostalgischer Handysimulator mit T9-Tippen, Snake und authentischen 2004er Handy-Skins.',
+    image: '/apps/sms_home.png',
+    icon: '/apps/sms_home.png',
+    color: '#4ade80',
+    stats: { rating: 'New', downloads: 'New' },
+  },
 ];
 
 const AppCarousel = () => {

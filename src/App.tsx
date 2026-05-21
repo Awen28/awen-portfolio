@@ -14,6 +14,7 @@ import Elow from './pages/Elow';
 import Awenya from './pages/Awenya';
 import PrayPro from './pages/PrayPro';
 import Orbit from './pages/Orbit';
+import SMS2004 from './pages/SMS2004';
 import AgentRegister from './pages/AgentRegister';
 import CreateAgent from './pages/CreateAgent';
 import ForgotCode from './pages/ForgotCode';
@@ -32,7 +33,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const location = useLocation();
-  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/awenya', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback'].includes(location.pathname);
+  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/awenya', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback', '/sms2004'].includes(location.pathname);
 
   useEffect(() => {
     // Faster refresh for better performance
@@ -59,6 +60,7 @@ function App() {
       '/forgotcode': 'Suremate Pro - Forgot Agent Code | AWEN28',
       '/download-suremate-pro': 'Download Suremate Pro | iOS App',
       '/visai': 'VisAI - AI Vision Board App | AWEN28',
+      '/sms2004': 'SMS 2004 - Nostalgic Phone Simulator Game | AWEN28',
     };
     
     const defaultTitle = 'AWEN28 | Premium iOS Apps & Web Development Tirol';
@@ -79,6 +81,7 @@ function App() {
       '/forgotcode': 'Finde deinen Suremate Pro Agent-Code per E-Mail. Einfach E-Mail eingeben und Code anzeigen lassen.',
       '/download-suremate-pro': 'Lade Suremate Pro für iOS herunter. Die professionelle Versicherungs-App für Agenten.',
       '/visai': 'VisAI - Erstelle Vision Boards mit KI-Unterstützung. Visualisiere deine Ziele und Träume.',
+      '/sms2004': 'SMS 2004 - Nostalgischer Handysimulator mit T9-Tippen, Snake, Klingelton-Komponist und authentischen 2004er Handy-Skins.',
     };
     
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -103,6 +106,7 @@ function App() {
           <Route path="/awenya" element={<Awenya />} />
           <Route path="/praypro" element={<PrayPro />} />
           <Route path="/orbit" element={<Orbit />} />
+          <Route path="/sms2004" element={<SMS2004 />} />
           <Route path="/agentregister" element={<AgentRegister />} />
           <Route path="/createAgent" element={<CreateAgent />} />
           <Route path="/forgotcode" element={<ForgotCode />} />

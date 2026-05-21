@@ -60,6 +60,17 @@ const projects = [
     link: 'https://www.awen28.com/orbit',
   },
   {
+    id: 'sms2004',
+    name: 'SMS 2004',
+    category: 'iOS Game',
+    description: 'Nostalgic phone simulator with T9 typing, Snake, ringtone composer, and authentic 2004 skins.',
+    image: '/apps/sms_home.png',
+    color: '#4ade80',
+    year: '2026',
+    tags: ['Retro', 'Game', 'T9'],
+    link: 'https://www.awen28.com/sms2004',
+  },
+  {
     id: 'kibook',
     name: 'kiBook',
     category: 'iOS App',
@@ -518,6 +529,16 @@ const AppShowcase = () => {
                   ) : project.id === 'orbit' ? (
                     <Link
                       to="/orbit"
+                      onClick={(e) => e.stopPropagation()}
+                      className="group px-4 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm tracking-wider transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer"
+                      style={{ background: '#525048', color: '#FAF9F7' }}
+                    >
+                      Play Game
+                      <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  ) : project.id === 'sms2004' ? (
+                    <Link
+                      to="/sms2004"
                       onClick={(e) => e.stopPropagation()}
                       className="group px-4 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm tracking-wider transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer"
                       style={{ background: '#525048', color: '#FAF9F7' }}
