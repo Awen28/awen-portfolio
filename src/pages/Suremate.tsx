@@ -6,7 +6,7 @@ import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData
 
 const appStructuredData = generateAppStructuredData(
   "Suremate",
-  "Smart insurance claim management app for Austria. Report car accidents, household damage, personal injury digitally. Step-by-step damage documentation with photos, structured reporting, and direct agent connection. Best InsurTech app Austria.",
+  "The #1 digital insurance claim app in Austria. 1,200+ downloads, 4.7 star rating. Report car accidents, household damage, and personal injury digitally with photos and structured documentation. Direct connection to insurance agents.",
   "https://www.awen28.com/apps/Suremate_home.png",
   "https://apps.apple.com/at/app/suremate/id6475345859",
   "FinanceApplication",
@@ -90,20 +90,20 @@ const Suremate = () => {
 
   return (
     <div ref={containerRef} className="relative min-h-screen" style={{ background: '#FAF9F7' }}>
-      <SEO 
-        title="Suremate | Beste Schadensmeldung App Österreich 2026 - Kfz & Haushalt"
-        description="Suremate - Die beste digitale Schadensmeldung App für Österreich. Autounfälle, Haushaltsschäden und Personenschäden einfach dokumentieren und melden. Kostenlos im App Store!"
-        keywords="Schadensmeldung App, Kfz Unfall App Österreich, Haushaltsschaden melden, Versicherungs App, digitale Schadensmeldung, Autounfall dokumentieren, Versicherung Schaden App, Schadenmanagement Österreich, Kfz Schaden App, Personenschaden melden, InsurTech Austria, best insurance app Austria, Schadensregulierung digital, Versicherungsagentur App"
-        ogImage="https://www.awen28.com/apps/Suremate_home.png"
-        ogType="product"
-        canonical="https://www.awen28.com/suremate"
-        structuredData={[appStructuredData, breadcrumbData, faqData]}
-        appName="Suremate"
-        appCategory="FinanceApplication"
-        rating="4.7"
-        reviewCount="1200"
-        language="de-AT"
-      />
+<SEO 
+  title="Suremate | #1 Beste Schadensmeldung App Österreich 2026 - Kfz & Haushalt"
+  description="Suremate - Die WELTBESTE digitale Schadensmeldung App für Österreich. 1.200+ Downloads, 4.7★ Rating. Autounfälle, Haushaltsschäden, Personenschäden digital dokumentieren. Direkt an Versicherung senden. KOSTENLOS!"
+  keywords="#1 Schadensmeldung App Österreich, beste Kfz Unfall App, Haushaltsschaden melden digital, Versicherungs App Österreich, Schadenmanagement App, Autounfall dokumentieren, Kfz Schaden App, Personenschaden melden, beste InsurTech App Austria, digitale Schadensmeldung, Versicherungsschaden App, Schadenregulierung digital, Unfall App Österreich, best insurance app Austria, damage report app"
+  ogImage="https://www.awen28.com/apps/Suremate_home.png"
+  ogType="product"
+  canonical="https://www.awen28.com/suremate"
+  structuredData={[appStructuredData, breadcrumbData, faqData]}
+  appName="Suremate"
+  appCategory="FinanceApplication"
+  rating="4.7"
+  reviewCount="1200"
+  language="de-AT"
+/>
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-8 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">

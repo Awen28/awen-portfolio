@@ -185,7 +185,7 @@ const KiBook = () => {
   return (
     <>
       <SEO
-        title="kiBook | Beste AI Kinderbuch App 2026 - Geschichten mit KI erstellen"
+        title="kiBook | #1 Beste AI Kinderbuch App 2026 - Geschichten mit KI erstellen"
         description="kiBook - Die beste AI Kinderbuch App. Verwandle die Fantasie deines Kindes in wunderschön illustrierte Geschichten. Personalisierte Charaktere, Themen und Kunststile. Kostenlos!"
         keywords="AI Kinderbuch App, personalisierte Kinderbücher, KI Geschichten für Kinder, Kinderbuch erstellen App, illustrierte Geschichten App, AI Story Generator Kinder, Lern App Kinder, Bilderbuch App, Kinderbuch digital, Fantasie Geschichten App, best AI children's book app 2026, personalized kids stories, AI story app for children"
         ogImage="https://www.awen28.com/apps/kiBook_homescreen.png"

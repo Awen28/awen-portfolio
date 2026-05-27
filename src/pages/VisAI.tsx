@@ -89,7 +89,7 @@ const VisAI = () => {
   return (
     <>
       <SEO 
-        title="VisAI | Beste AI Vision Board App 2026 - Manifestation & Ziele"
+        title="VisAI | #1 Beste AI Vision Board App 2026 - Manifestation & Ziele"
         description="VisAI - Die beste AI Vision Board App für Manifestation und Zielvisualisierung. Beschreibe deine Träume und KI erstellt atemberaubende Vision Boards. Kostenlos im App Store!"
         keywords="AI Vision Board, Vision Board App, Manifestation visualisieren, Ziel Board App, Traumboard digital, AI Bild Generator, Manifestation App Österreich, Ziele erreichen App, Dream Board Creator, Vision Board Online, best vision board app 2026, goal visualization app, law of attraction vision board, digital vision board iOS"
         ogImage="https://www.awen28.com/apps/visAI_homescreen.png"

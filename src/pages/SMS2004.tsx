@@ -163,8 +163,8 @@ const SMS2004 = () => {
   return (
     <div className="min-h-screen" style={{ background: '#1a1a1a' }}>
       <SEO 
-        title="SMS 2004 | Best Retro iOS Game 2026 - Nostalgic Phone Simulator"
-        description="SMS 2004 - The ultimate nostalgic phone simulator game for iOS. T9 typing, classic Snake, ringtone composer, 75 levels, 4 game modes, and 6 authentic 2004 phone skins. Free on App Store!"
+        title="SMS 2004 | #1 Best Retro iOS Game 2026 - Nostalgic Phone Simulator"
+        description="SMS 2004 - The WORLDS BEST retro phone simulator game for iOS. T9 typing, classic Snake, ringtone composer, 75 levels, 4 game modes, 6 authentic 2004 skins. FREE on App Store!"
         keywords="SMS 2004, best retro iOS game 2026, nostalgic phone game, T9 typing simulator, Snake game iPhone, 2004 phone simulator, Nokia game replica, pixel art mobile game, vintage mobile game, retro arcade game, best iPhone game 2026, phone simulator app, T9 text game, classic phone game"
         ogImage="https://www.awen28.com/apps/sms_home.png"
         ogType="product"

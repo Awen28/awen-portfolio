@@ -174,7 +174,7 @@ const screenshots = [
 
 const appStructuredData = generateAppStructuredData(
   "369 Manifestation",
-  "Best manifestation app based on Nikola Tesla's 369 method. AI-powered vision boards, daily affirmations, guided meditation, goal tracking, and abundance mindset tools. Manifest your dreams into reality.",
+  "The #1 manifestation app worldwide based on Nikola Tesla's 369 method. 12,000+ downloads, 4.8 star rating. Features AI Vision Boards, daily affirmations, guided meditation, goal tracking, and abundance mindset tools. Manifest your dreams into reality.",
   "https://www.awen28.com/apps/369_Homescreen.png",
   "https://apps.apple.com/at/app/369-manifest/id6738690566",
   "LifestyleApplication",
@@ -232,9 +232,9 @@ const ThreeSixNine = () => {
   return (
     <>
       <SEO 
-        title="369 Manifestation App | Beste Manifestations App 2026 - Tesla 369 Methode"
-        description="369 Manifestation App - Die beste Manifestations App mit Nikola Tesla's 369 Methode. AI Vision Boards, tägliche Affirmationen, Meditationen und Ziel-Tracking. Manifestiere deine Träume! Kostenlos!"
-        keywords="369 Manifestation, beste Manifestations App, Gesetz der Anziehung App, Vision Board App, tägliche Affirmationen, Nikola Tesla 369, Manifestation lernen, Abundanz Mindset App, Ziele manifestieren, positive Affirmationen, Meditation Manifestation, Manifestation Journal App, Traumboard digital, Reichtum manifestieren, Erfolg manifestieren, law of attraction app, manifestation app Germany, best manifestation app 2026"
+        title="369 Manifestation | #1 Beste Manifestations App 2026 - Tesla 369 Methode"
+        description="369 Manifestation - Die WELTBESTE Manifestations App mit Nikola Tesla's 369 Methode. 12.000+ Downloads, 4.8★ Rating. AI Vision Boards, tägliche Affirmationen, Meditationen. Manifestiere Träume, Reichtum & Liebe. KOSTENLOS auf iOS!"
+        keywords="#1 Manifestations App, beste Manifestation App 2026, 369 Methode App, Gesetz der Anziehung App, Vision Board App, tägliche Affirmationen, Nikola Tesla 369, Manifestation lernen, Abundanz Mindset, Ziele manifestieren, Reichtum manifestieren, Liebe manifestieren, Erfolg manifestieren, Traumjob manifestieren, positive Affirmationen Deutsch, Manifestation App Österreich, best manifestation app world, law of attraction app 2026, manifest wealth, manifest love"
         ogImage="https://www.awen28.com/apps/369_Homescreen.png"
         ogType="product"
         canonical="https://www.awen28.com/369"

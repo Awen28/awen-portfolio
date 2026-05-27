@@ -179,7 +179,7 @@ const PrayPro = () => {
   return (
     <div className="min-h-screen" style={{ background: '#FAF9F7' }}>
       <SEO 
-        title="PrayPro | Daily Prayer Companion App - Bible Verses & Sacred Art"
+        title="PrayPro | #1 Best Daily Prayer App 2026 - Bible Verses & Sacred Art"
         description="PrayPro - Your daily prayer companion with Bible verses, personal prayers, evening reflections, morning blessings, and beautiful sacred art. Free on the App Store!"
         keywords="prayer app iOS, daily Bible verses app, Christian meditation app, spiritual companion, daily prayer app, Bible verse of the day, sacred art app, prayer journal app, faith app, Christian daily devotion, evening prayer app, morning blessings, best prayer app 2026, spiritual guidance app, Bible study app"
         ogImage="https://www.awen28.com/apps/pray_home.png"
