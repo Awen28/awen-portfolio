@@ -1,109 +1,115 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { ArrowLeft, Sparkles, MapPin, Brain, ChevronRight, Download, Star, Sun, Orbit } from 'lucide-react';
+import { ArrowLeft, Sparkles, MapPin, MessageCircle, Sun, Star, ChevronRight, Download, Calendar, Eye, Compass } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { SEO, generateAppStructuredData, generateBreadcrumbData, generateFAQData } from '../components/SEO';
 
+// New warm color palette matching the app redesign
+const colors = {
+  bg: '#F5F0E8',
+  bgDark: '#EDE6D8',
+  accent: '#C4785A',
+  accentLight: '#D4917A',
+  accentDark: '#B86B4D',
+  text: '#3D3229',
+  textLight: '#6B5D4F',
+  textMuted: '#9B8E7E',
+  card: '#FFFFFF',
+  cream: '#FAF7F2',
+};
+
 const features = [
   {
-    icon: Brain,
+    icon: MessageCircle,
     title: 'Energy Chat',
-    description: 'Ask your higher self anything. Our AI combines astrology, numerology, and cosmic energy to provide personalized guidance.',
+    description: 'Ask your higher self anything. AI combines astrology, numerology, and cosmic energy for personalized guidance with best-case, worst-case, and DOs/DONTs.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Angel Numbers',
+    description: 'Interpret angel numbers and their spiritual meanings. Discover what the universe is trying to tell you through recurring number patterns.',
+  },
+  {
+    icon: Sun,
+    title: 'Daily Energy',
+    description: 'Personalized daily cosmic insights based on your birth chart. Know how to align yourself today with planetary transits and energy readings.',
+  },
+  {
+    icon: Calendar,
+    title: 'Weekly & Monthly Outlook',
+    description: 'Plan ahead with weekly themes and monthly cosmic forecasts. Understand what to pay attention to in the coming days and weeks.',
+  },
+  {
+    icon: Eye,
+    title: '90 Day Preview',
+    description: 'Look into your cosmic future with a 90-day preview. Discover what awaits you and prepare for upcoming astrological events.',
+  },
+  {
+    icon: Compass,
+    title: 'Daily Transits & Calendar',
+    description: 'All cosmic influences at a glance. Track planetary movements, retrogrades, and important transits with your personal transit calendar.',
+  },
+  {
+    icon: Star,
+    title: 'Birth Chart Analysis',
+    description: 'Complete natal chart with Big Three (Sun, Ascendant, Moon), personal planets, houses, and detailed interpretations of your cosmic blueprint.',
   },
   {
     icon: MapPin,
     title: 'Astrocartography',
-    description: 'Discover where your energies work best on Earth. Find your power spots for love, career, and personal growth.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Real-time Cosmic Data',
-    description: 'Live Schumann resonance readings, solar activity monitoring, and current planetary positions with aspects.',
+    description: 'Discover where your energies work best on Earth. Find your power spots for love, career, and personal growth with interactive world maps.',
   },
 ];
 
-// Zodiac symbols for easter eggs
-const zodiacSymbols = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
-
-
-// Using exact filenames as provided
 const screenshots = [
   { src: '/apps/numistellar_home1.png', alt: 'Home Screen' },
-  { src: '/apps/numistellar_home2.png', alt: 'Home Screen More' },
   { src: '/apps/numistellar_chat.png', alt: 'Energy Chat' },
-  { src: '/apps/numistellar_astrocartography.png', alt: 'Astrocartography' },
-  { src: '/apps/numistellar_schumann.png', alt: 'Daily Energy' },
-  { src: '/apps/numistellar_realtime1.png', alt: 'Stars Real-time' },
-  { src: '/apps/numistellar_realtime2.png', alt: 'Numerology & Retrograde' },
+  { src: '/apps/numistellar_dailyenergy.png', alt: 'Daily Energy' },
   { src: '/apps/numistellar_birthchart1.png', alt: 'Birth Chart' },
-  { src: '/apps/numistellar_birthchart2.png', alt: 'Houses' },
+  { src: '/apps/numistellar_astrocartography.png', alt: 'Astrocartography' },
+  { src: '/apps/numistellar_schumann.png', alt: 'Cosmic Weather' },
+  { src: '/apps/numistellar_birthchart2.png', alt: 'Houses & Aspects' },
+  { src: '/apps/numistellar_currenttransit.png', alt: 'Current Transits' },
+  { src: '/apps/numistellar_chakraanalysis.png', alt: 'Chakra Analysis' },
+  { src: '/apps/numistellar_realtime1.png', alt: 'Real-time Planets' },
+  { src: '/apps/numistellar_realtime2.png', alt: 'Numerology' },
   { src: '/apps/numistellar_widgets.png', alt: 'Home Screen Widgets' },
 ];
 
-// Floating planet component
-const FloatingPlanet = ({ color, size, delay, x, y }: { color: string; size: number; delay: number; x: string; y: string }) => (
+// Warm floating particles (replacing cosmic stars)
+const WarmParticle = ({ delay: _delay }: { delay: number }) => (
   <motion.div
-    className="absolute rounded-full"
+    className="absolute rounded-full pointer-events-none"
     style={{
-      left: x,
-      top: y,
-      width: size,
-      height: size,
-      background: `radial-gradient(circle at 30% 30%, ${color}, ${color}88)`,
-      boxShadow: `0 0 ${size}px ${color}40`,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      width: 2 + Math.random() * 3,
+      height: 2 + Math.random() * 3,
+      background: colors.accent,
     }}
     animate={{
-      y: [-20, 20, -20],
-      x: [-10, 10, -10],
-      scale: [1, 1.1, 1],
+      opacity: [0.1, 0.4, 0.1],
+      scale: [0.8, 1.2, 0.8],
     }}
     transition={{
-      duration: 8 + delay,
+      duration: 3 + Math.random() * 3,
       repeat: Infinity,
-      ease: "easeInOut",
-      delay: delay,
+      delay: Math.random() * 5,
     }}
   />
 );
 
-// Shooting star component
-const ShootingStar = ({ delay }: { delay: number }) => (
-  <motion.div
-    className="absolute w-1 h-1 bg-white rounded-full"
-    style={{
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 50}%`,
-    }}
-    animate={{
-      x: [0, 300],
-      y: [0, 150],
-      opacity: [0, 1, 0],
-      scale: [0, 1.5, 0],
-    }}
-    transition={{
-      duration: 2,
-      repeat: Infinity,
-      repeatDelay: 5 + delay * 2,
-      delay: delay * 3,
-      ease: "easeOut",
-    }}
-  >
-    <motion.div
-      className="absolute inset-0 w-20 h-px bg-gradient-to-r from-white to-transparent"
-      style={{ transform: 'rotate(25deg)', transformOrigin: 'left center' }}
-    />
-  </motion.div>
-);
+// Floating zodiac symbols in warm tones
+const zodiacSymbols = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
 
-// Zodiac floating symbol
 const ZodiacFloat = ({ symbol, delay, x, y }: { symbol: string; delay: number; x: string; y: string }) => (
   <motion.div
-    className="absolute text-2xl opacity-20 select-none pointer-events-none"
-    style={{ left: x, top: y, color: '#8B5CF6' }}
+    className="absolute text-2xl opacity-15 select-none pointer-events-none"
+    style={{ left: x, top: y, color: colors.accent }}
     animate={{
       y: [-15, 15, -15],
       rotate: [0, 10, -10, 0],
-      opacity: [0.1, 0.3, 0.1],
+      opacity: [0.08, 0.2, 0.08],
     }}
     transition={{
       duration: 6 + delay,
@@ -116,49 +122,41 @@ const ZodiacFloat = ({ symbol, delay, x, y }: { symbol: string; delay: number; x
   </motion.div>
 );
 
-// Orbit ring animation
-const OrbitRing = ({ size, duration, delay }: { size: number; duration: number; delay: number }) => (
+// Warm orb decoration
+const WarmOrb = ({ size, delay, x, y }: { size: number; delay: number; x: string; y: string }) => (
   <motion.div
-    className="absolute rounded-full border border-violet-500/10"
+    className="absolute rounded-full pointer-events-none"
     style={{
+      left: x,
+      top: y,
       width: size,
       height: size,
-      left: '50%',
-      top: '50%',
-      marginLeft: -size / 2,
-      marginTop: -size / 2,
+      background: `radial-gradient(circle at 30% 30%, ${colors.accentLight}30, ${colors.accent}15)`,
+      filter: 'blur(40px)',
     }}
-    animate={{ rotate: 360 }}
+    animate={{
+      y: [-20, 20, -20],
+      scale: [1, 1.1, 1],
+    }}
     transition={{
-      duration: duration,
+      duration: 8 + delay,
       repeat: Infinity,
-      ease: "linear",
+      ease: "easeInOut",
       delay: delay,
     }}
-  >
-    <motion.div
-      className="absolute w-3 h-3 rounded-full"
-      style={{
-        background: 'linear-gradient(135deg, #8B5CF6, #06B6D4)',
-        top: -6,
-        left: '50%',
-        marginLeft: -6,
-        boxShadow: '0 0 10px rgba(139, 92, 246, 0.5)',
-      }}
-    />
-  </motion.div>
+  />
 );
 
 const appStructuredData = generateAppStructuredData(
   "NumiStellar",
-  "Best astrology and numerology app in Austria. Real-time planet positions, Schumann resonance monitoring, personalized daily insights, life path calculations, birth chart analysis, and astrocartography maps. Discover your cosmic energy with AI-powered spiritual guidance.",
+  "Best astrology and numerology app in Austria. Energy Chat with AI, Angel Numbers, Daily Energy insights, Birth Chart analysis, Astrocartography maps, Schumann Resonance, and Cosmic Weather. Discover your cosmic energy with personalized spiritual guidance.",
   "https://www.awen28.com/apps/numistellar_home1.png",
   "https://apps.apple.com/at/app/numistellar/id6478859654",
   "LifestyleApplication",
   "4.9",
   "5200",
-  ["Real-time Planet Positions", "Schumann Resonance", "Life Path Calculator", "Birth Chart Analysis", "Daily Cosmic Insights", "Astrocartography", "Numerology Calculator", "Zodiac Compatibility"],
-  ["/apps/numistellar_home1.png", "/apps/numistellar_home2.png", "/apps/numistellar_chart.png"],
+  ["Energy Chat AI", "Angel Numbers", "Daily Energy", "Weekly Outlook", "Monthly Outlook", "90 Day Preview", "Daily Transits", "Transit Calendar", "Birth Chart Analysis", "Astrocartography", "Schumann Resonance", "Cosmic Weather", "Solar Activity", "Home Screen Widgets"],
+  ["/apps/numistellar_home1.png", "/apps/numistellar_chat.png", "/apps/numistellar_dailyenergy.png", "/apps/numistellar_birthchart1.png", "/apps/numistellar_astrocartography.png", "/apps/numistellar_schumann.png"],
   "2025-01-15",
   "65MB",
   "4+"
@@ -170,11 +168,12 @@ const breadcrumbData = generateBreadcrumbData([
 ]);
 
 const faqData = generateFAQData([
-  { question: "Was ist die beste Astrologie App in Österreich?", answer: "NumiStellar von AWEN28 ist die beste Astrologie und Numerologie App in Österreich mit Echtzeit Planetenpositionen, Schumann Resonanz und personalisierten täglichen Einblicken." },
+  { question: "Was ist die beste Astrologie App in Österreich?", answer: "NumiStellar von AWEN28 ist die beste Astrologie und Numerologie App in Österreich mit Energy Chat AI, Angel Numbers, Daily Energy, Birth Charts und Astrocartography." },
+  { question: "Was ist der Energy Chat in NumiStellar?", answer: "Der Energy Chat ist eine AI-gestützte spirituelle Beratung. Du kannst dein höheres Selbst fragen und bekommst personalisierte Antworten mit Best-Case, Worst-Case und DOs/DONTs basierend auf Astrologie und Numerologie." },
   { question: "Was ist Numerologie und wie funktioniert sie?", answer: "Numerologie ist die Lehre von der Bedeutung von Zahlen in deinem Leben. NumiStellar berechnet deine Lebenszahl, Schicksalszahl und Tageszahl für persönliche Einblicke." },
   { question: "Was ist Schumann Resonanz?", answer: "Die Schumann Resonanz ist die natürliche Frequenz der Erde (7.83 Hz). NumiStellar zeigt aktuelle Resonanzwerte und deren Einfluss auf dein Wohlbefinden." },
+  { question: "Was ist Astrocartography?", answer: "Astrocartography zeigt auf einer Weltkarte wo deine Planeten-Energien am stärksten wirken. Finde deine Power-Spots für Liebe, Karriere und persönliches Wachstum." },
   { question: "Ist NumiStellar kostenlos?", answer: "NumiStellar ist kostenlos im App Store erhältlich mit optionalen Premium-Funktionen für erweiterte Astrologie und Numerologie-Analysen." },
-  { question: "Wie erstelle ich ein Geburtshoroskop mit NumiStellar?", answer: "Gib einfach dein Geburtsdatum, die Uhrzeit und den Ort ein. NumiStellar erstellt automatisch dein detailliertes Geburtshoroskop mit Planetenpositionen und Aspekten." },
 ]);
 
 const NumiStellar = () => {
@@ -210,8 +209,8 @@ const NumiStellar = () => {
     <>
       <SEO 
         title="NumiStellar | Beste Astrologie & Numerologie App Österreich 2026"
-        description="NumiStellar - Die beste Astrologie und Numerologie App in Österreich. Echtzeit Planetenpositionen, Schumann Resonanz, Geburtshoroskop, Lebensweg-Analyse und astrocartography. Kostenlos im App Store!"
-        keywords="beste Astrologie App Österreich, Numerologie App, Geburtshoroskop iOS, Schumann Resonanz App, Planetenpositionen Echtzeit, Zodiac Kompatibilität, Lebenszahl berechnen, Astrologie Deutschland, Horoskop App Österreich, Numerologie Rechner, Sternzeichen App, Astrocartography, kosmische Energie, tägliches Horoskop, Spiritualität App, best astrology app Austria, birth chart app, life path calculator"
+        description="NumiStellar - Die beste Astrologie und Numerologie App in Österreich. Energy Chat AI, Angel Numbers, Daily Energy, Geburtshoroskop, Astrocartography und Cosmic Weather. Kostenlos im App Store!"
+        keywords="beste Astrologie App Österreich, Numerologie App, Geburtshoroskop iOS, Schumann Resonanz App, Energy Chat AI, Angel Numbers, Planetenpositionen Echtzeit, Zodiac Kompatibilität, Lebenszahl berechnen, Astrologie Deutschland, Horoskop App Österreich, Numerologie Rechner, Sternzeichen App, Astrocartography, kosmische Energie, tägliches Horoskop, Spiritualität App, best astrology app Austria, birth chart app, life path calculator"
         ogImage="https://www.awen28.com/apps/numistellar_home1.png"
         ogType="product"
         canonical="https://www.awen28.com/numistellar"
@@ -222,38 +221,21 @@ const NumiStellar = () => {
         reviewCount="5200"
         language="de-AT"
       />
-    <div ref={containerRef} className="relative min-h-screen" style={{ background: '#0f0f1a' }}>
-      {/* Cosmic Background Effects */}
+    <div ref={containerRef} className="relative min-h-screen" style={{ background: colors.bg }}>
+      {/* Warm Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {/* Stars field */}
-        {[...Array(50)].map((_, i) => (
-          <motion.div
-            key={`star-${i}`}
-            className="absolute w-1 h-1 bg-white rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              opacity: [0.2, 0.8, 0.2],
-              scale: [0.8, 1.2, 0.8],
-            }}
-            transition={{
-              duration: 2 + Math.random() * 3,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-          />
+        {/* Warm particles */}
+        {[...Array(30)].map((_, i) => (
+          <WarmParticle key={`particle-${i}`} delay={i * 0.2} />
         ))}
 
-        {/* Floating Planets */}
-        <FloatingPlanet color="#8B5CF6" size={60} delay={0} x="10%" y="20%" />
-        <FloatingPlanet color="#06B6D4" size={40} delay={2} x="85%" y="15%" />
-        <FloatingPlanet color="#EC4899" size={30} delay={1} x="75%" y="70%" />
-        <FloatingPlanet color="#F59E0B" size={50} delay={3} x="5%" y="60%" />
-        <FloatingPlanet color="#10B981" size={25} delay={1.5} x="90%" y="45%" />
+        {/* Warm orbs */}
+        <WarmOrb size={300} delay={0} x="5%" y="10%" />
+        <WarmOrb size={250} delay={2} x="80%" y="20%" />
+        <WarmOrb size={200} delay={1} x="70%" y="70%" />
+        <WarmOrb size={180} delay={3} x="10%" y="60%" />
 
-        {/* Zodiac Symbols */}
+        {/* Zodiac Symbols in warm tones */}
         {zodiacSymbols.slice(0, 8).map((symbol, i) => (
           <ZodiacFloat
             key={`zodiac-${i}`}
@@ -263,40 +245,6 @@ const NumiStellar = () => {
             y={`${15 + (i % 3) * 25}%`}
           />
         ))}
-
-        {/* Shooting Stars */}
-        {[...Array(3)].map((_, i) => (
-          <ShootingStar key={`shooting-${i}`} delay={i} />
-        ))}
-
-        {/* Constellation lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-10">
-          <motion.path
-            d="M100,100 L200,150 L300,100 L400,180"
-            stroke="url(#constellation)"
-            strokeWidth="1"
-            fill="none"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 3, repeat: Infinity }}
-          />
-          <motion.path
-            d="M800,200 L900,250 L1000,220 L1100,280"
-            stroke="url(#constellation)"
-            strokeWidth="1"
-            fill="none"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-          />
-          <defs>
-            <linearGradient id="constellation" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0" />
-              <stop offset="50%" stopColor="#8B5CF6" />
-              <stop offset="100%" stopColor="#06B6D4" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
       </div>
 
       {/* Navigation */}
@@ -304,12 +252,13 @@ const NumiStellar = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link 
             to="/"
-            className="flex items-center gap-2 px-4 py-2 rounded-full text-sm"
+            className="flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all hover:scale-105"
             style={{ 
-              background: 'rgba(255, 255, 255, 0.05)',
+              background: 'rgba(255, 255, 255, 0.8)',
               backdropFilter: 'blur(10px)',
-              color: '#fff',
-              border: '1px solid rgba(139, 92, 246, 0.2)',
+              color: colors.text,
+              border: `1px solid ${colors.accent}30`,
+              boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
             }}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -320,27 +269,22 @@ const NumiStellar = () => {
 
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden">
-        {/* Orbit rings in hero */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30">
-          <OrbitRing size={300} duration={20} delay={0} />
-          <OrbitRing size={400} duration={30} delay={2} />
-          <OrbitRing size={500} duration={40} delay={4} />
-        </div>
-
         <motion.div 
           className="absolute inset-0 pointer-events-none"
           style={{ y: bgY }}
         >
           <div 
-            className="absolute top-[20%] left-[10%] w-[600px] h-[600px] rounded-full opacity-20"
+            className="absolute top-[15%] left-[5%] w-[500px] h-[500px] rounded-full opacity-30"
             style={{
-              background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)',
+              background: `radial-gradient(circle, ${colors.accent}25 0%, transparent 70%)`,
+              filter: 'blur(60px)',
             }}
           />
           <div 
-            className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] rounded-full opacity-15"
+            className="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] rounded-full opacity-20"
             style={{
-              background: 'radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%)',
+              background: `radial-gradient(circle, ${colors.accentLight}20 0%, transparent 70%)`,
+              filter: 'blur(60px)',
             }}
           />
         </motion.div>
@@ -360,41 +304,44 @@ const NumiStellar = () => {
               <motion.div 
                 className="w-16 h-16 rounded-2xl flex items-center justify-center"
                 style={{
-                  background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
-                  boxShadow: '0 8px 32px rgba(147, 112, 219, 0.4)',
+                  background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentDark} 100%)`,
+                  boxShadow: `0 8px 32px ${colors.accent}40`,
                 }}
                 animate={{ rotate: [0, 5, -5, 0] }}
                 transition={{ duration: 6, repeat: Infinity }}
               >
-                <Sparkles className="w-8 h-8" style={{ color: '#9370DB' }} />
+                <Sparkles className="w-8 h-8 text-white" />
               </motion.div>
               <div>
-                <h1 className="font-serif text-3xl text-white">NumiStellar</h1>
-                <p className="text-sm text-white/50">Cosmic Energy Guide</p>
+                <h1 className="font-serif text-3xl" style={{ color: colors.text }}>NumiStellar</h1>
+                <p className="text-sm" style={{ color: colors.textMuted }}>Cosmic Energy Guide</p>
               </div>
             </motion.div>
 
             <motion.h2 
-              className="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 text-white"
+              className="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight mb-6"
+              style={{ color: colors.text }}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               Discover your
               <br />
-              <span className="bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent">
+              <span style={{ color: colors.accent }}>
                 cosmic energy
               </span>
             </motion.h2>
 
             <motion.p 
-              className="text-lg mb-8 max-w-md text-white/60"
+              className="text-lg mb-8 max-w-md"
+              style={{ color: colors.textLight }}
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              NumiStellar unites astrology, numerology, and Schumann resonance data to help you 
-              understand your unique energetic imprint and navigate life with cosmic wisdom.
+              NumiStellar unites astrology, numerology, and cosmic energy data to help you 
+              understand your unique energetic imprint. With AI-powered Energy Chat, Angel Numbers, 
+              and personalized daily insights.
             </motion.p>
 
             <motion.div 
@@ -404,16 +351,16 @@ const NumiStellar = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <motion.a
-                href="https://apps.apple.com/at/app/numistellar/id6745343823"
+                href="https://apps.apple.com/at/app/numistellar/id6478859654"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group px-6 py-3 rounded-full flex items-center gap-2 text-sm font-medium transition-all"
                 style={{
-                  background: '#9370DB',
+                  background: colors.accent,
                   color: 'white',
-                  boxShadow: '0 8px 32px rgba(147, 112, 219, 0.3)',
+                  boxShadow: `0 8px 32px ${colors.accent}40`,
                 }}
-                whileHover={{ scale: 1.05, boxShadow: '0 12px 40px rgba(147, 112, 219, 0.5)' }}
+                whileHover={{ scale: 1.05, boxShadow: `0 12px 40px ${colors.accent}60` }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Download className="w-4 h-4" />
@@ -432,7 +379,7 @@ const NumiStellar = () => {
           >
             {/* Moon decoration */}
             <motion.div
-              className="absolute -top-10 -right-10 text-6xl opacity-30"
+              className="absolute -top-10 -right-10 text-5xl opacity-20"
               animate={{ rotate: [0, 10, -10, 0], y: [-5, 5, -5] }}
               transition={{ duration: 8, repeat: Infinity }}
             >
@@ -441,11 +388,11 @@ const NumiStellar = () => {
             
             {/* Sun decoration */}
             <motion.div
-              className="absolute -bottom-5 -left-5 text-5xl opacity-20"
+              className="absolute -bottom-5 -left-5 opacity-15"
               animate={{ rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             >
-              <Sun className="w-12 h-12 text-yellow-400" />
+              <Sun className="w-10 h-10" style={{ color: colors.accent }} />
             </motion.div>
 
             <motion.div
@@ -453,15 +400,15 @@ const NumiStellar = () => {
               style={{
                 transform: `perspective(1000px) rotateY(${mousePos.x}deg) rotateX(${-mousePos.y}deg)`,
                 transition: 'transform 0.3s ease-out',
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.1)',
-                boxShadow: '0 32px 64px rgba(0,0,0,0.4)',
+                background: colors.card,
+                border: `1px solid ${colors.accent}15`,
+                boxShadow: `0 32px 64px rgba(61, 50, 41, 0.1), 0 0 0 1px ${colors.accent}10`,
               }}
             >
               <div
                 className="p-3 rounded-[28px]"
                 style={{
-                  background: 'rgba(0,0,0,0.2)',
+                  background: colors.cream,
                 }}
               >
                 <img
@@ -476,7 +423,7 @@ const NumiStellar = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 px-6 md:px-8" style={{ background: 'rgba(15,15,26,0.8)' }}>
+      <section className="py-32 px-6 md:px-8" style={{ background: colors.bgDark }}>
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -487,50 +434,50 @@ const NumiStellar = () => {
           >
             <motion.span 
               className="font-serif italic text-sm tracking-[0.3em] block mb-6"
-              style={{ color: '#9370DB' }}
+              style={{ color: colors.accent }}
             >
               ✨ Cosmic Features ✨
             </motion.span>
-            <h2 className="font-serif text-4xl md:text-5xl text-white">
+            <h2 className="font-serif text-4xl md:text-5xl" style={{ color: colors.text }}>
               Your manifestation toolkit
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="p-8 rounded-[32px] relative overflow-hidden"
+                transition={{ duration: 0.6, delay: idx * 0.08 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="p-6 rounded-[24px] relative overflow-hidden"
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  background: colors.card,
+                  border: `1px solid ${colors.accent}10`,
+                  boxShadow: '0 8px 32px rgba(61, 50, 41, 0.06)',
                 }}
               >
-                {/* Background glow */}
                 <motion.div
                   className="absolute inset-0 opacity-0"
                   whileHover={{ opacity: 1 }}
                   style={{
-                    background: `radial-gradient(circle at center, ${idx === 0 ? '#8B5CF620' : idx === 1 ? '#06B6D420' : '#EC489920'}, transparent)`,
+                    background: `radial-gradient(circle at center, ${colors.accent}08, transparent)`,
                   }}
                 />
                 <div 
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 relative z-10"
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 relative z-10"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%)',
+                    background: `${colors.accent}15`,
                   }}
                 >
-                  <feature.icon className="w-7 h-7 text-violet-400" />
+                  <feature.icon className="w-6 h-6" style={{ color: colors.accent }} />
                 </div>
-                <h3 className="font-serif text-2xl mb-4 text-white relative z-10">
+                <h3 className="font-serif text-xl mb-2 relative z-10" style={{ color: colors.text }}>
                   {feature.title}
                 </h3>
-                <p className="text-white/50 relative z-10">
+                <p className="text-sm relative z-10" style={{ color: colors.textMuted }}>
                   {feature.description}
                 </p>
               </motion.div>
@@ -540,7 +487,7 @@ const NumiStellar = () => {
       </section>
 
       {/* App Showcase - Screenshots */}
-      <section className="py-32 px-6 md:px-8" style={{ background: '#0f0f1a' }}>
+      <section className="py-32 px-6 md:px-8" style={{ background: colors.bg }}>
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -551,35 +498,37 @@ const NumiStellar = () => {
           >
             <motion.span 
               className="font-serif italic text-sm tracking-[0.3em] block mb-6"
-              style={{ color: '#9370DB' }}
+              style={{ color: colors.accent }}
             >
               🌌 Explore the Cosmos 🌌
             </motion.span>
-            <h2 className="font-serif text-4xl md:text-5xl text-white">
+            <h2 className="font-serif text-4xl md:text-5xl" style={{ color: colors.text }}>
               Ancient wisdom meets AI
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {screenshots.map((screenshot, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 40, scale: 0.9 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.05 }}
-                whileHover={{ y: -10, scale: 1.02, rotate: idx % 2 === 0 ? -2 : 2 }}
-                className="p-3 rounded-[24px] cursor-pointer"
+                transition={{ duration: 0.6, delay: idx * 0.04 }}
+                whileHover={{ y: -8, scale: 1.03 }}
+                className="p-2 rounded-[20px] cursor-pointer"
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  background: colors.card,
+                  border: `1px solid ${colors.accent}10`,
+                  boxShadow: '0 4px 16px rgba(61, 50, 41, 0.06)',
                 }}
               >
                 <img
                   src={screenshot.src}
                   alt={screenshot.alt}
-                  className="w-full h-auto rounded-[16px]"
+                  className="w-full h-auto rounded-[14px]"
                 />
+                <p className="text-center mt-2 text-xs" style={{ color: colors.textMuted }}>{screenshot.alt}</p>
               </motion.div>
             ))}
           </div>
@@ -587,7 +536,7 @@ const NumiStellar = () => {
       </section>
 
       {/* Benefits List */}
-      <section className="py-32 px-6 md:px-8" style={{ background: 'rgba(15,15,26,0.8)' }}>
+      <section className="py-32 px-6 md:px-8" style={{ background: colors.bgDark }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -596,40 +545,41 @@ const NumiStellar = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-serif text-4xl md:text-5xl mb-8 text-white">
+              <h2 className="font-serif text-4xl md:text-5xl mb-8" style={{ color: colors.text }}>
                 Why NumiStellar?
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {[
-                  'Personal birth chart analysis',
-                  'Real-time planetary positions',
-                  'Schumann resonance monitoring',
-                  'Solar activity tracking',
-                  'Astrocartography maps',
-                  'AI-powered Energy Chat',
-                  'Home screen widgets',
+                  'AI-powered Energy Chat with personalized guidance',
+                  'Complete birth chart with Big Three analysis',
+                  'Real-time planetary positions and transits',
+                  'Schumann resonance & solar activity monitoring',
+                  'Astrocartography world maps',
                   'Angel numbers interpretation',
-                  'Daily & weekly horoscopes',
+                  'Daily, weekly & monthly cosmic outlook',
+                  '90-day future preview',
+                  'Home screen widgets',
+                  'Chakra energy analysis',
                 ].map((item, idx) => (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    transition={{ duration: 0.5, delay: idx * 0.08 }}
                     className="flex items-center gap-4"
                   >
                     <motion.div 
-                      className="w-8 h-8 rounded-full flex items-center justify-center"
+                      className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{
-                        background: 'rgba(139, 92, 246, 0.15)',
+                        background: `${colors.accent}15`,
                       }}
                       whileHover={{ scale: 1.2, rotate: 180 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <Star className="w-4 h-4 text-violet-400" />
+                      <Star className="w-4 h-4" style={{ color: colors.accent }} />
                     </motion.div>
-                    <span className="text-white/70">{item}</span>
+                    <span style={{ color: colors.textLight }}>{item}</span>
                   </motion.div>
                 ))}
               </div>
@@ -644,19 +594,23 @@ const NumiStellar = () => {
             >
               {/* Orbiting decoration */}
               <motion.div
-                className="absolute w-64 h-64 rounded-full border border-violet-500/20"
+                className="absolute w-64 h-64 rounded-full"
+                style={{ border: `1px solid ${colors.accent}20` }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <div className="absolute -top-2 left-1/2 w-4 h-4 rounded-full bg-violet-400 shadow-lg shadow-violet-400/50" />
+                <div 
+                  className="absolute -top-2 left-1/2 w-4 h-4 rounded-full shadow-lg" 
+                  style={{ background: colors.accent, boxShadow: `0 0 10px ${colors.accent}50` }} 
+                />
               </motion.div>
 
               <div
                 className="p-4 rounded-[40px] relative z-10"
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  boxShadow: '0 32px 64px rgba(0,0,0,0.4)',
+                  background: colors.card,
+                  border: `1px solid ${colors.accent}10`,
+                  boxShadow: '0 32px 64px rgba(61, 50, 41, 0.1)',
                 }}
               >
                 <img
@@ -671,7 +625,7 @@ const NumiStellar = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 px-6 md:px-8" style={{ background: '#0f0f1a' }}>
+      <section className="py-32 px-6 md:px-8" style={{ background: colors.bg }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -681,40 +635,35 @@ const NumiStellar = () => {
         >
           {/* Floating zodiac around CTA */}
           <motion.div
-            className="absolute -top-10 left-10 text-3xl opacity-20"
+            className="absolute -top-10 left-10 text-3xl opacity-15"
             animate={{ y: [-10, 10, -10], rotate: [0, 15, -15, 0] }}
             transition={{ duration: 5, repeat: Infinity }}
+            style={{ color: colors.accent }}
           >
             ♈
           </motion.div>
           <motion.div
-            className="absolute -bottom-5 right-10 text-3xl opacity-20"
+            className="absolute -bottom-5 right-10 text-3xl opacity-15"
             animate={{ y: [10, -10, 10], rotate: [0, -15, 15, 0] }}
             transition={{ duration: 6, repeat: Infinity }}
+            style={{ color: colors.accent }}
           >
             ♎
-          </motion.div>
-          <motion.div
-            className="absolute top-1/2 -left-5 text-2xl opacity-15"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.3, 0.15] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          >
-            ✦
           </motion.div>
 
           <div
             className="p-12 md:p-16 rounded-[40px] relative overflow-hidden"
             style={{
-              background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #9370DB 100%)',
-              boxShadow: '0 32px 64px rgba(147, 112, 219, 0.3)',
+              background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentDark} 100%)`,
+              boxShadow: `0 32px 64px ${colors.accent}30`,
             }}
           >
             <motion.div
-              className="absolute top-0 right-0 w-64 h-64 opacity-20"
+              className="absolute top-0 right-0 w-64 h-64 opacity-10"
               animate={{ rotate: 360 }}
               transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
             >
-              <Orbit className="w-full h-full text-white" />
+              <Sparkles className="w-full h-full text-white" />
             </motion.div>
 
             <h2 className="font-serif text-4xl md:text-5xl text-white mb-6 relative z-10">
@@ -725,13 +674,13 @@ const NumiStellar = () => {
               Your stars are waiting to guide you.
             </p>
             <motion.a
-              href="https://apps.apple.com/at/app/numistellar/id6745343823"
+              href="https://apps.apple.com/at/app/numistellar/id6478859654"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium relative z-10"
               style={{
                 background: 'white',
-                color: '#9370DB',
+                color: colors.accent,
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -744,12 +693,12 @@ const NumiStellar = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 md:px-8" style={{ background: '#0a0a12' }}>
+      <footer className="py-12 px-6 md:px-8" style={{ background: colors.text }}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <motion.div 
               className="w-8 h-8 rounded-lg flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #9370DB 100%)' }}
+              style={{ background: colors.accent }}
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
@@ -758,11 +707,12 @@ const NumiStellar = () => {
             <span className="font-serif text-xl text-white">NumiStellar</span>
           </div>
           <p className="text-sm text-white/40">
-            © 2024 NumiStellar. A product by AWEN28.
+            © 2026 NumiStellar. A product by AWEN28.
           </p>
           <Link 
             to="/"
-            className="flex items-center gap-2 text-sm text-violet-400"
+            className="flex items-center gap-2 text-sm transition-colors hover:text-white"
+            style={{ color: colors.accentLight }}
           >
             Visit AWEN28
             <ChevronRight className="w-4 h-4" />
