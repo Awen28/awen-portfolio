@@ -115,11 +115,11 @@ function App() {
           <Route path="/download-suremate-pro" element={<DownloadSurematePro />} />
           <Route path="/agentportal" element={<AgentPortal />} />
           <Route path="/callback" element={<Callback />} />
-          <Route path="*" element={<NotFound />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/privacy-apps" element={<PrivacyApps />} />
           <Route path="/cookies" element={<Cookies />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <CookieConsent />
       </div>
