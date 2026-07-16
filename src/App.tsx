@@ -14,6 +14,7 @@ import Elow from './pages/Elow';
 import Awenya from './pages/Awenya';
 import PrayPro from './pages/PrayPro';
 import Orbit from './pages/Orbit';
+import OrbitPrivacy from './pages/OrbitPrivacy';
 import SMS2004 from './pages/SMS2004';
 import AgentRegister from './pages/AgentRegister';
 import CreateAgent from './pages/CreateAgent';
@@ -33,7 +34,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const location = useLocation();
-  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/awenya', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback', '/sms2004'].includes(location.pathname);
+  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/awenya', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback', '/sms2004', '/orbit', '/orbit/privacy'].includes(location.pathname);
 
   useEffect(() => {
     // Faster refresh for better performance
@@ -106,6 +107,7 @@ function App() {
           <Route path="/awenya" element={<Awenya />} />
           <Route path="/praypro" element={<PrayPro />} />
           <Route path="/orbit" element={<Orbit />} />
+          <Route path="/orbit/privacy" element={<OrbitPrivacy />} />
           <Route path="/sms2004" element={<SMS2004 />} />
           <Route path="/agentregister" element={<AgentRegister />} />
           <Route path="/createAgent" element={<CreateAgent />} />

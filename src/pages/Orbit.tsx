@@ -628,10 +628,15 @@ const Orbit = () => {
           <p className="text-sm text-white/40">
             © 2026 Orbit. A product by AWEN28.
           </p>
-          <Link to="/" onClick={handleBackClick} className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
-            Visit AWEN28
-            <ChevronRight className="w-4 h-4" />
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/orbit/privacy" className="text-sm text-white/40 hover:text-white/60 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/" onClick={handleBackClick} className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
+              Visit AWEN28
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </footer>
     </div>
