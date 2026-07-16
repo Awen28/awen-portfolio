@@ -15,7 +15,7 @@ const OrbitPrivacy = () => {
   return (
     <div className="min-h-screen" style={{ background: '#0a0a12' }}>
       <SEO
-        title="Privacy Policy | Orbit - The Game"
+        title="Privacy Policy | Orbit - The Game | AWEN28"
         description="Privacy Policy for Orbit - The Game iOS app by AWEN28."
         canonical="https://www.awen28.com/orbit/privacy"
       />
@@ -118,14 +118,12 @@ const OrbitPrivacy = () => {
           >
             <div className="space-y-10">
 
-              {/* Intro */}
               <section>
                 <p className="text-sm leading-relaxed text-white/60">
                   This Privacy Policy describes how AWEN28 ("we", "us", or "our") collects, uses, and protects your personal information when you use the Orbit mobile application (the "App"). By using the App, you agree to the collection and use of information in accordance with this policy.
                 </p>
               </section>
 
-              {/* Data Controller */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   Data Controller
@@ -143,7 +141,6 @@ const OrbitPrivacy = () => {
                 </div>
               </section>
 
-              {/* Information We Collect */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   Information We Collect
@@ -174,7 +171,6 @@ const OrbitPrivacy = () => {
                 </div>
               </section>
 
-              {/* How We Use Your Information */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   How We Use Your Information
@@ -200,7 +196,6 @@ const OrbitPrivacy = () => {
                 </div>
               </section>
 
-              {/* Third-Party Services */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   Third-Party Services
@@ -251,31 +246,28 @@ const OrbitPrivacy = () => {
                 </div>
               </section>
 
-              {/* Data Sharing */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   Data Sharing
                 </h2>
                 <p className="text-sm leading-relaxed text-white/60">
-                  We do not sell your personal information. We may share information with third-party service providers 
-                  (as listed above) solely for the purposes described in this policy. These providers are obligated to 
+                  We do not sell your personal information. We may share information with third-party service providers
+                  (as listed above) solely for the purposes described in this policy. These providers are obligated to
                   protect your data and use it only for the purposes we specify.
                 </p>
               </section>
 
-              {/* Data Retention */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   Data Retention
                 </h2>
                 <p className="text-sm leading-relaxed text-white/60">
-                  We retain your game data and high scores as long as you use the App. If you delete the App, 
-                  your game progress and scores will be lost. Advertising and analytics data may be retained 
-                  by third-party providers according to their own retention policies.
+                  We retain your game data and high scores as long as you use the App.
+                  If you delete the App, your game progress and scores will be lost.
+                  Advertising and analytics data may be retained by third-party providers according to their own retention policies.
                 </p>
               </section>
 
-              {/* Your Rights */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   Your Rights (GDPR)
@@ -299,31 +291,28 @@ const OrbitPrivacy = () => {
                 </div>
               </section>
 
-              {/* Children's Privacy */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   Children's Privacy
                 </h2>
                 <p className="text-sm leading-relaxed text-white/60">
-                  The App is rated 4+ and suitable for all ages. We do not knowingly collect personally identifiable 
-                  information from children under 13. If we become aware that a child under 13 has provided us with 
+                  The App is rated 4+ and suitable for all ages. We do not knowingly collect personally identifiable
+                  information from children under 13. If we become aware that a child under 13 has provided us with
                   personal information, we will take steps to delete such information promptly.
                 </p>
               </section>
 
-              {/* Changes to This Policy */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   Changes to This Policy
                 </h2>
                 <p className="text-sm leading-relaxed text-white/60">
-                  We may update this Privacy Policy from time to time. We will notify you of any changes by posting 
-                  the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically 
+                  We may update this Privacy Policy from time to time. We will notify you of any changes by posting
+                  the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically
                   for any changes.
                 </p>
               </section>
 
-              {/* Contact */}
               <section>
                 <h2 className="font-serif text-2xl mb-4 text-white">
                   Contact Us
@@ -340,7 +329,6 @@ const OrbitPrivacy = () => {
                 </p>
               </section>
 
-              {/* Stand */}
               <section>
                 <p
                   className="text-xs text-center pt-8 border-t"
@@ -378,7 +366,7 @@ const OrbitPrivacy = () => {
             <span className="font-serif text-2xl text-white">Orbit</span>
           </div>
           <p className="text-sm text-white/40">
-            © 2026 Orbit. A product by AWEN28.
+            &copy; 2026 Orbit. A product by AWEN28.
           </p>
           <Link to="/" onClick={handleBackClick} className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
             Visit AWEN28

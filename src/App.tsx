@@ -106,8 +106,8 @@ function App() {
           <Route path="/elow" element={<Elow />} />
           <Route path="/awenya" element={<Awenya />} />
           <Route path="/praypro" element={<PrayPro />} />
-          <Route path="/orbit" element={<Orbit />} />
           <Route path="/orbit/privacy" element={<OrbitPrivacy />} />
+          <Route path="/orbit" element={<Orbit />} />
           <Route path="/sms2004" element={<SMS2004 />} />
           <Route path="/agentregister" element={<AgentRegister />} />
           <Route path="/createAgent" element={<CreateAgent />} />
