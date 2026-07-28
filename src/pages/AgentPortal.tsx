@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, type User as FirebaseUser } from 'firebase/auth';
 import { getDatabase, ref, get } from 'firebase/database';
+import { getFirestore, collection, getDocs, doc, getDoc, query, where } from 'firebase/firestore';
 import { SEO } from '../components/SEO';
 
 // Firebase Configuration
@@ -37,6 +38,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+const db = getFirestore(app);
 
 // Types
 interface Client {
@@ -227,15 +229,12 @@ const AgentPortal = () => {
 
   const loadKfzDamages = async () => {
     if (!currentClient) return;
-    const kfzRef = ref(database, `Users/${currentClient.uid}/kfzSchäden`);
     try {
-      const snapshot = await get(kfzRef);
+      const snapshot = await getDocs(collection(db, "Users", currentClient.uid, "kfzSchaden"));
       const damages: string[] = [];
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          damages.push(child.key!);
-        });
-      }
+      snapshot.forEach((doc) => {
+        damages.push(doc.id);
+      });
       setKfzDamages(sortDamagesByDate(damages));
       setCurrentView('kfz');
     } catch (error) {
@@ -245,15 +244,12 @@ const AgentPortal = () => {
 
   const loadAccidents = async () => {
     if (!currentClient) return;
-    const accidentsRef = ref(database, `Users/${currentClient.uid}/unfall`);
     try {
-      const snapshot = await get(accidentsRef);
+      const snapshot = await getDocs(collection(db, "Users", currentClient.uid, "unfall"));
       const items: string[] = [];
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          items.push(child.key!);
-        });
-      }
+      snapshot.forEach((doc) => {
+        items.push(doc.id);
+      });
       setAccidents(sortDamagesByDate(items));
       setCurrentView('accidents');
     } catch (error) {
@@ -263,15 +259,13 @@ const AgentPortal = () => {
 
   const loadFireDamages = async () => {
     if (!currentClient) return;
-    const fireRef = ref(database, `Users/${currentClient.uid}/hausHaltSchaden/feuer`);
     try {
-      const snapshot = await get(fireRef);
+      const q = query(collection(db, "Users", currentClient.uid, "hausHaltSchaden"), where("schadenKategorie", "==", "feuer"));
+      const snapshot = await getDocs(q);
       const damages: string[] = [];
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          damages.push(child.key!);
-        });
-      }
+      snapshot.forEach((doc) => {
+        damages.push(doc.id);
+      });
       setFireDamages(sortDamagesByDate(damages));
       setCurrentView('fire');
     } catch (error) {
@@ -281,15 +275,13 @@ const AgentPortal = () => {
 
   const loadWaterDamages = async () => {
     if (!currentClient) return;
-    const waterRef = ref(database, `Users/${currentClient.uid}/hausHaltSchaden/leitungswasser`);
     try {
-      const snapshot = await get(waterRef);
+      const q = query(collection(db, "Users", currentClient.uid, "hausHaltSchaden"), where("schadenKategorie", "==", "wasser"));
+      const snapshot = await getDocs(q);
       const damages: string[] = [];
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          damages.push(child.key!);
-        });
-      }
+      snapshot.forEach((doc) => {
+        damages.push(doc.id);
+      });
       setWaterDamages(sortDamagesByDate(damages));
       setCurrentView('water');
     } catch (error) {
@@ -299,15 +291,13 @@ const AgentPortal = () => {
 
   const loadBurglaryDamages = async () => {
     if (!currentClient) return;
-    const burglaryRef = ref(database, `Users/${currentClient.uid}/hausHaltSchaden/einbruch`);
     try {
-      const snapshot = await get(burglaryRef);
+      const q = query(collection(db, "Users", currentClient.uid, "hausHaltSchaden"), where("schadenKategorie", "==", "einbruch"));
+      const snapshot = await getDocs(q);
       const damages: string[] = [];
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          damages.push(child.key!);
-        });
-      }
+      snapshot.forEach((doc) => {
+        damages.push(doc.id);
+      });
       setBurglaryDamages(sortDamagesByDate(damages));
       setCurrentView('burglary');
     } catch (error) {
@@ -317,15 +307,13 @@ const AgentPortal = () => {
 
   const loadGlasDamages = async () => {
     if (!currentClient) return;
-    const glasRef = ref(database, `Users/${currentClient.uid}/hausHaltSchaden/glas`);
     try {
-      const snapshot = await get(glasRef);
+      const q = query(collection(db, "Users", currentClient.uid, "hausHaltSchaden"), where("schadenKategorie", "==", "glas"));
+      const snapshot = await getDocs(q);
       const damages: string[] = [];
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          damages.push(child.key!);
-        });
-      }
+      snapshot.forEach((doc) => {
+        damages.push(doc.id);
+      });
       setGlasDamages(sortDamagesByDate(damages));
       setCurrentView('glas');
     } catch (error) {
@@ -335,15 +323,13 @@ const AgentPortal = () => {
 
   const loadNaturalDamages = async () => {
     if (!currentClient) return;
-    const naturalRef = ref(database, `Users/${currentClient.uid}/hausHaltSchaden/naturgewalt`);
     try {
-      const snapshot = await get(naturalRef);
+      const q = query(collection(db, "Users", currentClient.uid, "hausHaltSchaden"), where("schadenKategorie", "==", "naturgewalt"));
+      const snapshot = await getDocs(q);
       const damages: string[] = [];
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          damages.push(child.key!);
-        });
-      }
+      snapshot.forEach((doc) => {
+        damages.push(doc.id);
+      });
       setNaturalDamages(sortDamagesByDate(damages));
       setCurrentView('natural');
     } catch (error) {
@@ -353,15 +339,13 @@ const AgentPortal = () => {
 
   const loadLiabilityDamages = async () => {
     if (!currentClient) return;
-    const liabilityRef = ref(database, `Users/${currentClient.uid}/hausHaltSchaden/haftpflicht`);
     try {
-      const snapshot = await get(liabilityRef);
+      const q = query(collection(db, "Users", currentClient.uid, "hausHaltSchaden"), where("schadenKategorie", "==", "haftpflicht"));
+      const snapshot = await getDocs(q);
       const damages: string[] = [];
-      if (snapshot.exists()) {
-        snapshot.forEach((child) => {
-          damages.push(child.key!);
-        });
-      }
+      snapshot.forEach((doc) => {
+        damages.push(doc.id);
+      });
       setLiabilityDamages(sortDamagesByDate(damages));
       setCurrentView('liability');
     } catch (error) {
@@ -378,17 +362,24 @@ const AgentPortal = () => {
 
   const viewReport = async () => {
     if (!currentClient || !currentDamageId) return;
-    let damageRef;
-    if (currentHouseholdType) {
-      damageRef = ref(database, `Users/${currentClient.uid}/hausHaltSchaden/${currentHouseholdType}/${currentDamageId}/schadenmeldung`);
-    } else {
-      damageRef = ref(database, `Users/${currentClient.uid}/${currentDamageType}/${currentDamageId}/schadenmeldung`);
-    }
     try {
-      const snapshot = await get(damageRef);
-      const pdfUrl = snapshot.val();
-      if (pdfUrl) {
-        window.open(pdfUrl, '_blank');
+      let docRef;
+      if (currentHouseholdType) {
+        // Haushalt: flat collection, schadenKategorie in document
+        docRef = doc(db, "Users", currentClient.uid, "hausHaltSchaden", currentDamageId);
+      } else {
+        // KFZ/Unfall: own collections
+        docRef = doc(db, "Users", currentClient.uid, currentDamageType!, currentDamageId);
+      }
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        const pdfUrl = data?.schadenmeldung;
+        if (pdfUrl) {
+          window.open(pdfUrl, '_blank');
+        } else {
+          alert('Kein Bericht vorhanden.');
+        }
       } else {
         alert('Kein Bericht vorhanden.');
       }
@@ -400,17 +391,22 @@ const AgentPortal = () => {
 
   const downloadPhotos = async () => {
     if (!currentClient || !currentDamageId) return;
-    let damageRef;
-    if (currentHouseholdType) {
-      damageRef = ref(database, `Users/${currentClient.uid}/hausHaltSchaden/${currentHouseholdType}/${currentDamageId}/fotos`);
-    } else {
-      damageRef = ref(database, `Users/${currentClient.uid}/${currentDamageType}/${currentDamageId}/fotos`);
-    }
     try {
-      const snapshot = await get(damageRef);
-      const zipUrl = snapshot.val();
-      if (zipUrl) {
-        window.location.href = zipUrl;
+      let docRef;
+      if (currentHouseholdType) {
+        docRef = doc(db, "Users", currentClient.uid, "hausHaltSchaden", currentDamageId);
+      } else {
+        docRef = doc(db, "Users", currentClient.uid, currentDamageType!, currentDamageId);
+      }
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        const zipUrl = data?.fotos;
+        if (zipUrl) {
+          window.location.href = zipUrl;
+        } else {
+          alert('Keine Fotos vorhanden.');
+        }
       } else {
         alert('Keine Fotos vorhanden.');
       }
@@ -820,7 +816,7 @@ const AgentPortal = () => {
                     switch (currentView) {
                       case 'kfz':
                         damages = kfzDamages;
-                        type = 'kfzSchäden';
+                        type = 'kfzSchaden';
                         break;
                       case 'accidents':
                         damages = accidents;
