@@ -14,13 +14,14 @@ import {
   Image as ImageIcon,
   ChevronRight,
   X,
-  Download
+  Download,
+  CheckCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, type User as FirebaseUser } from 'firebase/auth';
 import { getDatabase, ref, get } from 'firebase/database';
-import { getFirestore, collection, getDocs, doc, getDoc, query, where } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, doc, getDoc, updateDoc, query, where } from 'firebase/firestore';
 import { SEO } from '../components/SEO';
 
 // Firebase Configuration
@@ -118,6 +119,8 @@ const AgentPortal = () => {
   const [currentDamageId, setCurrentDamageId] = useState<string | null>(null);
   const [currentDamageType, setCurrentDamageType] = useState<string | null>(null);
   const [currentHouseholdType, setCurrentHouseholdType] = useState<string | null>(null);
+  const [hasPhotos, setHasPhotos] = useState(false);
+  const [damageStatus, setDamageStatus] = useState('');
 
   // Check auth state on mount
   useEffect(() => {
@@ -353,10 +356,31 @@ const AgentPortal = () => {
     }
   };
 
-  const openDamageModal = (damageId: string, type: string, householdType?: string) => {
+  const openDamageModal = async (damageId: string, type: string, householdType?: string) => {
     setCurrentDamageId(damageId);
     setCurrentDamageType(type);
     if (householdType) setCurrentHouseholdType(householdType);
+    setHasPhotos(false);
+    setDamageStatus('');
+    // Check if fotos exist and get status
+    if (currentClient) {
+      try {
+        let docRef;
+        if (householdType) {
+          docRef = doc(db, "Users", currentClient.uid, "hausHaltSchaden", damageId);
+        } else {
+          docRef = doc(db, "Users", currentClient.uid, type, damageId);
+        }
+        const snapshot = await getDoc(docRef);
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          if (data?.fotos) setHasPhotos(true);
+          if (data?.status) setDamageStatus(data.status);
+        }
+      } catch (error) {
+        console.error('Fehler beim Prüfen des Schadens:', error);
+      }
+    }
     setShowModal(true);
   };
 
@@ -414,6 +438,26 @@ const AgentPortal = () => {
       console.error('Fehler beim Abrufen der Fotos:', error);
     }
     setShowModal(false);
+  };
+
+  const completeDamage = async () => {
+    if (!currentClient || !currentDamageId || !currentDamageType) return;
+    const schadenNummer = prompt('Schadennummer eingeben:');
+    if (!schadenNummer || schadenNummer.trim() === '') return;
+    try {
+      let docRef;
+      if (currentHouseholdType) {
+        docRef = doc(db, "Users", currentClient.uid, "hausHaltSchaden", currentDamageId);
+      } else {
+        docRef = doc(db, "Users", currentClient.uid, currentDamageType, currentDamageId);
+      }
+      await updateDoc(docRef, { status: "done", schadenNummer: schadenNummer.trim() });
+      setDamageStatus('done');
+      setShowModal(false);
+    } catch (error) {
+      console.error('Fehler beim Abschließen des Schadens:', error);
+      alert('Fehler beim Abschließen des Schadens.');
+    }
   };
 
   // Loading State
@@ -947,23 +991,45 @@ const AgentPortal = () => {
                   <ChevronRight className="w-5 h-5 text-white/40 group-hover:text-white" />
                 </button>
 
-                <button
-                  onClick={downloadPhotos}
-                  className="w-full p-5 rounded-2xl flex items-center gap-4 transition-all hover:scale-[1.02] group"
-                  style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.1)' }}
-                >
-                  <div 
-                    className="w-12 h-12 rounded-xl flex items-center justify-center"
-                    style={{ background: 'rgba(255, 255, 255, 0.1)' }}
+                {hasPhotos && (
+                  <button
+                    onClick={downloadPhotos}
+                    className="w-full p-5 rounded-2xl flex items-center gap-4 transition-all hover:scale-[1.02] group"
+                    style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.1)' }}
                   >
-                    <ImageIcon className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <p className="text-white font-medium">Fotos anzeigen</p>
-                    <p className="text-white/50 text-sm">ZIP herunterladen</p>
-                  </div>
-                  <Download className="w-5 h-5 text-white/40 group-hover:text-white" />
-                </button>
+                    <div 
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
+                      style={{ background: 'rgba(255, 255, 255, 0.1)' }}
+                    >
+                      <ImageIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <p className="text-white font-medium">Fotos anzeigen</p>
+                      <p className="text-white/50 text-sm">ZIP herunterladen</p>
+                    </div>
+                    <Download className="w-5 h-5 text-white/40 group-hover:text-white" />
+                  </button>
+                )}
+
+                {damageStatus !== 'done' && (
+                  <button
+                    onClick={completeDamage}
+                    className="w-full p-5 rounded-2xl flex items-center gap-4 transition-all hover:scale-[1.02] group"
+                    style={{ background: 'rgba(34, 197, 94, 0.15)', border: '1px solid rgba(34, 197, 94, 0.3)' }}
+                  >
+                    <div 
+                      className="w-12 h-12 rounded-xl flex items-center justify-center"
+                      style={{ background: 'linear-gradient(135deg, #22c55e, #16a34a)' }}
+                    >
+                      <CheckCircle className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <p className="text-white font-medium">Schaden abschließen</p>
+                      <p className="text-white/50 text-sm">Schadennummer vergeben</p>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-white/40 group-hover:text-white" />
+                  </button>
+                )}
 
                 <button
                   onClick={() => setShowModal(false)}
