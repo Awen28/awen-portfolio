@@ -356,20 +356,25 @@ const AgentPortal = () => {
     }
   };
 
-  const openDamageModal = async (damageId: string, type: string, householdType?: string) => {
+  const openDamageModal = (damageId: string, type: string, householdType?: string) => {
     setCurrentDamageId(damageId);
     setCurrentDamageType(type);
-    if (householdType) setCurrentHouseholdType(householdType);
+    setCurrentHouseholdType(householdType || '');
     setHasPhotos(false);
     setDamageStatus('');
-    // Check if fotos exist and get status
-    if (currentClient) {
+    setShowModal(true);
+  };
+
+  // Fetch modal data when modal opens
+  useEffect(() => {
+    if (!showModal || !currentClient || !currentDamageId || !currentDamageType) return;
+    const fetchModalData = async () => {
       try {
         let docRef;
-        if (householdType) {
-          docRef = doc(db, "Users", currentClient.uid, "hausHaltSchaden", damageId);
+        if (currentHouseholdType) {
+          docRef = doc(db, "Users", currentClient.uid, "hausHaltSchaden", currentDamageId);
         } else {
-          docRef = doc(db, "Users", currentClient.uid, type, damageId);
+          docRef = doc(db, "Users", currentClient.uid, currentDamageType, currentDamageId);
         }
         const snapshot = await getDoc(docRef);
         if (snapshot.exists()) {
@@ -380,9 +385,9 @@ const AgentPortal = () => {
       } catch (error) {
         console.error('Fehler beim Prüfen des Schadens:', error);
       }
-    }
-    setShowModal(true);
-  };
+    };
+    fetchModalData();
+  }, [showModal]);
 
   const viewReport = async () => {
     if (!currentClient || !currentDamageId) return;
