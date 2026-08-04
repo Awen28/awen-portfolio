@@ -8,6 +8,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
+    id: 'stradahub',
+    name: 'StradaHub',
+    category: 'iOS App',
+    description: 'Community-Verkehrs-App für den DACH-Raum. Unfälle, Baustellen, Stau und Gefahren in Echtzeit auf der Karte. Keine Blitzer-Warnung!',
+    image: '/apps/stradaHub_show_control.png',
+    color: '#C49070',
+    year: '2026',
+    tags: ['Community', 'Verkehr', 'Karte'],
+  },
+  {
     id: '369',
     name: '369',
     category: 'iOS App',
@@ -544,6 +554,16 @@ const AppShowcase = () => {
                       style={{ background: '#525048', color: '#FAF9F7' }}
                     >
                       Play Game
+                      <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  ) : project.id === 'stradahub' ? (
+                    <Link
+                      to="/stradahub"
+                      onClick={(e) => e.stopPropagation()}
+                      className="group px-4 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm tracking-wider transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer"
+                      style={{ background: '#525048', color: '#FAF9F7' }}
+                    >
+                      View App
                       <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   ) : project.link ? (
