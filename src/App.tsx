@@ -17,6 +17,7 @@ import Orbit from './pages/Orbit';
 import OrbitPrivacy from './pages/OrbitPrivacy';
 import SMS2004 from './pages/SMS2004';
 import StradaHub from './pages/StradaHub';
+import StradaHubPrivacy from './pages/StradaHubPrivacy';
 import AgentRegister from './pages/AgentRegister';
 import CreateAgent from './pages/CreateAgent';
 import ForgotCode from './pages/ForgotCode';
@@ -35,7 +36,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const location = useLocation();
-  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/awenya', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback', '/sms2004', '/orbit', '/orbit/privacy', '/stradahub'].includes(location.pathname);
+  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/awenya', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback', '/sms2004', '/orbit', '/orbit/privacy', '/stradahub', '/stradahub/privacy'].includes(location.pathname);
 
   useEffect(() => {
     // Faster refresh for better performance
@@ -112,6 +113,7 @@ function App() {
           <Route path="/orbit/privacy" element={<OrbitPrivacy />} />
           <Route path="/orbit" element={<Orbit />} />
           <Route path="/sms2004" element={<SMS2004 />} />
+          <Route path="/stradahub/privacy" element={<StradaHubPrivacy />} />
           <Route path="/stradahub" element={<StradaHub />} />
           <Route path="/agentregister" element={<AgentRegister />} />
           <Route path="/createAgent" element={<CreateAgent />} />

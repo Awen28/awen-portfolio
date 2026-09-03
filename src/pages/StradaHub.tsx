@@ -866,14 +866,23 @@ const StradaHub = () => {
             <p className="text-sm" style={{ color: INK_SOFT }}>
               © 2026 StradaHub. A product by AWEN28.
             </p>
-            <Link
-              to="/"
-              className="flex items-center gap-2 text-sm"
-              style={{ color: TERRACOTTA }}
-            >
-              Visit AWEN28
-              <ChevronRight className="w-4 h-4" />
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link
+                to="/stradahub/privacy"
+                className="text-xs transition-opacity hover:opacity-70"
+                style={{ color: INK_SOFT }}
+              >
+                Datenschutz
+              </Link>
+              <Link
+                to="/"
+                className="flex items-center gap-2 text-sm"
+                style={{ color: TERRACOTTA }}
+              >
+                Visit AWEN28
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </footer>
       </div>
