@@ -11,11 +11,8 @@ import ThreeSixNine from './pages/ThreeSixNine';
 import NumiStellar from './pages/NumiStellar';
 import KiBook from './pages/KiBook';
 import Elow from './pages/Elow';
-import Awenya from './pages/Awenya';
-import PrayPro from './pages/PrayPro';
 import Orbit from './pages/Orbit';
 import OrbitPrivacy from './pages/OrbitPrivacy';
-import SMS2004 from './pages/SMS2004';
 import StradaHub from './pages/StradaHub';
 import StradaHubPrivacy from './pages/StradaHubPrivacy';
 import Abwun from './pages/Abwun';
@@ -37,7 +34,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const location = useLocation();
-  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/awenya', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback', '/sms2004', '/orbit', '/orbit/privacy', '/stradahub', '/stradahub/privacy', '/abwun'].includes(location.pathname);
+  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback', '/orbit', '/orbit/privacy', '/stradahub', '/stradahub/privacy', '/abwun'].includes(location.pathname);
 
   useEffect(() => {
     // Faster refresh for better performance
@@ -56,7 +53,6 @@ function App() {
       '/numistellar': 'NumiStellar - Astrology & Numerology App | AWEN28',
       '/kibook': 'kiBook - AI Story Generator for Kids | AWEN28',
       '/elow': 'Elow - AI Music Generator | AWEN28',
-      '/awenya': 'Awenya - Meditation & Sleep Stories App | AWEN28',
       '/suremate': 'Suremate - Smart Insurance Management | AWEN28',
       '/suremate-pro': 'Suremate Pro - Insurance Agent Tools | AWEN28',
       '/agentregister': 'Suremate Pro - Agent Registration | AWEN28',
@@ -64,7 +60,6 @@ function App() {
       '/forgotcode': 'Suremate Pro - Forgot Agent Code | AWEN28',
       '/download-suremate-pro': 'Download Suremate Pro | iOS App',
       '/visai': 'VisAI - AI Vision Board App | AWEN28',
-      '/sms2004': 'SMS 2004 - Nostalgic Phone Simulator Game | AWEN28',
       '/stradahub': 'StradaHub - Community-Verkehrs-App für DACH | AWEN28',
       '/abwun': 'ABWUN - Trust Him | Prayer App | AWEN28',
     };
@@ -79,7 +74,6 @@ function App() {
       '/numistellar': 'NumiStellar vereint Astrologie, Numerologie und kosmische Energie. Echtzeit Planetenpositionen, Schumann Resonanz und Astrocartographie.',
       '/kibook': 'kiBook verwandelt Ideen in wunderschön illustrierte Geschichten. AI Story Generator für Kinder mit verschiedenen Kunststilen.',
       '/elow': 'Elow ist ein AI Music Generator der Emotionen in Musik verwandelt. Erstelle einzigartige Soundscapes für jede Stimmung und jeden Anlass.',
-      '/awenya': 'Awenya ist dein persönliches Heiligtum für Achtsamkeit. AI-geführte Meditationen, Sleep Stories und Solfeggio Frequenzen.',
       '/suremate': 'Suremate - Smartes Versicherungsmanagement für Verbraucher. Schadensfälle verfolgen, Policen verwalten.',
       '/suremate-pro': 'Suremate Pro - Professionelle Versicherungstools für Agenten. Kundenmanagement und Analytik.',
       '/agentregister': 'Registriere dich als Suremate Pro Agent. Professionelle Versicherungs-Tools mit Kundenmanagement, Analytik und PDF-Reports.',
@@ -87,7 +81,6 @@ function App() {
       '/forgotcode': 'Finde deinen Suremate Pro Agent-Code per E-Mail. Einfach E-Mail eingeben und Code anzeigen lassen.',
       '/download-suremate-pro': 'Lade Suremate Pro für iOS herunter. Die professionelle Versicherungs-App für Agenten.',
       '/visai': 'VisAI - Erstelle Vision Boards mit KI-Unterstützung. Visualisiere deine Ziele und Träume.',
-      '/sms2004': 'SMS 2004 - Nostalgischer Handysimulator mit T9-Tippen, Snake, Klingelton-Komponist und authentischen 2004er Handy-Skins.',
       '/stradahub': 'StradaHub - Die Community-Verkehrs-App für den DACH-Raum. Unfälle, Baustellen, Straßensperren, Stau und Gefahren in Echtzeit auf der Karte. Kostenlos, ohne Registrierung, ohne Werbung. Keine Blitzer- oder Radarwarnung.',
       '/abwun': 'ABWUN ist das Gegenteil von Manifestation. Ein täglicher Weg mit Gott in drei Übergaben: Morgen, Mittag und Abend. KI-Gebetsbegleiter, biblisch fundierte Gebete, die mit "im Namen Jesu" enden. "Trust Him."',
     };
@@ -111,11 +104,8 @@ function App() {
           <Route path="/numistellar" element={<NumiStellar />} />
           <Route path="/kibook" element={<KiBook />} />
           <Route path="/elow" element={<Elow />} />
-          <Route path="/awenya" element={<Awenya />} />
-          <Route path="/praypro" element={<PrayPro />} />
           <Route path="/orbit/privacy" element={<OrbitPrivacy />} />
           <Route path="/orbit" element={<Orbit />} />
-          <Route path="/sms2004" element={<SMS2004 />} />
           <Route path="/stradahub/privacy" element={<StradaHubPrivacy />} />
           <Route path="/stradahub" element={<StradaHub />} />
           <Route path="/abwun" element={<Abwun />} />

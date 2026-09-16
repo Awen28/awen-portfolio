@@ -123,7 +123,7 @@ const PrivacyApps = () => {
                 >
                   Diese Datenschutzerklärung gilt für alle iOS-Anwendungen von AWEN28, 
                   einschließlich aber nicht beschränkt auf: kiBook, Suremate, Suremate Pro, 
-                  VisAI, 369 Manifestation, NumiStellar, Awenya und Elow.
+                  VisAI, 369 Manifestation, NumiStellar und Elow.
                 </p>
               </section>
 

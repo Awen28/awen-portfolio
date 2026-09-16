@@ -60,7 +60,7 @@ const breadcrumbData = generateBreadcrumbData([
 const faqData = generateFAQData([
   { question: "What is Orbit game?", answer: "Orbit is an epic space adventure arcade game for iOS where players navigate through cosmic environments, dodge asteroids, and collect power-ups." },
   { question: "Is Orbit free?", answer: "Yes, Orbit is free to download on the App Store with optional in-app purchases for premium features." },
-  { question: "What are the best iOS games 2026?", answer: "Orbit and SMS 2004 by AWEN28 are among the best iOS games of 2026, offering unique arcade gameplay with stunning visuals." },
+  { question: "What are the best iOS games 2026?", answer: "Orbit by AWEN28 is among the best iOS games of 2026, offering unique arcade gameplay with stunning visuals and an epic space journey." },
 ]);
 
 // Easter egg components

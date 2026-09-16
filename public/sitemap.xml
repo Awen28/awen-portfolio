@@ -70,19 +70,6 @@
     </image:image>
   </url>
 
-  <!-- Awenya -->
-  <url>
-    <loc>https://www.awen28.com/awenya</loc>
-    <lastmod>2026-04-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://www.awen28.com/apps/Awenye_en_homescreen.png</image:loc>
-      <image:title>Awenya - Best Meditation & Sleep Stories App Austria</image:title>
-      <image:caption>AI-guided meditations, sleep stories, and mindfulness sessions</image:caption>
-    </image:image>
-  </url>
-
   <!-- Suremate -->
   <url>
     <loc>https://www.awen28.com/suremate</loc>
@@ -122,19 +109,6 @@
     </image:image>
   </url>
 
-  <!-- PrayPro -->
-  <url>
-    <loc>https://www.awen28.com/praypro</loc>
-    <lastmod>2026-04-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://www.awen28.com/apps/pray_home.png</image:loc>
-      <image:title>PrayPro - Daily Prayer Companion with Bible Verses</image:title>
-      <image:caption>Beautiful sacred art, daily prayers, and spiritual guidance</image:caption>
-    </image:image>
-  </url>
-
   <!-- Orbit -->
   <url>
     <loc>https://www.awen28.com/orbit</loc>
@@ -145,19 +119,6 @@
       <image:loc>https://www.awen28.com/apps/orbit_gameplay1.png</image:loc>
       <image:title>Orbit - Best iOS Space Arcade Game 2026</image:title>
       <image:caption>Epic space journey with asteroid dodging and power-ups</image:caption>
-    </image:image>
-  </url>
-
-  <!-- SMS 2004 -->
-  <url>
-    <loc>https://www.awen28.com/sms2004</loc>
-    <lastmod>2026-04-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://www.awen28.com/apps/sms_home.png</image:loc>
-      <image:title>SMS 2004 - Best Retro iOS Game 2026</image:title>
-      <image:caption>Nostalgic phone simulator with T9 typing, Snake, and 2004 skins</image:caption>
     </image:image>
   </url>
 

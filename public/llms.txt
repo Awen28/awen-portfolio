@@ -103,28 +103,6 @@ Elow is an AI music generator that transforms emotions into original soundscapes
 
 ---
 
-### Awenya
-**Category**: Meditation, Sleep, Mindfulness, Wellness
-**Platform**: iOS
-**Developer**: Thomas Mayrl
-
-Awenya is a personal sanctuary for mindfulness and relaxation, combining AI-guided meditations, sleep stories, and healing frequencies.
-
-**Key Features**:
-- AI-Guided Meditations (personalized to mood)
-- Sleep Stories & ambient sounds
-- Solfeggio Healing Frequencies
-- Breathing exercises & reminders
-- Meditation timer with singing bowls
-- Personalized meditation creation
-- Offline access
-
-**Best for**: People seeking meditation apps, sleep aids, anxiety relief, mindfulness practice, stress reduction, better sleep quality, and mental wellness.
-
-**App Store**: https://apps.apple.com/at/app/awenya/id6736651631
-
----
-
 ### Suremate
 **Category**: Insurance Management, InsureTech
 **Platform**: iOS

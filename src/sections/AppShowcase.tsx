@@ -58,17 +58,6 @@ const projects = [
     tags: ['AI', 'Audio'],
   },
   {
-    id: 'praypro',
-    name: 'PrayPro',
-    category: 'iOS App',
-    description: 'Your daily prayer companion with Bible verses and beautiful sacred art.',
-    image: '/apps/pray_home.png',
-    color: '#E9CFB9',
-    year: '2026',
-    tags: ['Faith', 'Spirituality'],
-    link: 'https://www.awen28.com/praypro',
-  },
-  {
     id: 'orbit',
     name: 'Orbit',
     category: 'iOS Game',
@@ -78,17 +67,6 @@ const projects = [
     year: '2026',
     tags: ['Game', 'Space', 'Arcade'],
     link: 'https://www.awen28.com/orbit',
-  },
-  {
-    id: 'sms2004',
-    name: 'SMS 2004',
-    category: 'iOS Game',
-    description: 'Nostalgic phone simulator with T9 typing, Snake, ringtone composer, and authentic 2004 skins.',
-    image: '/apps/sms_home.png',
-    color: '#4ade80',
-    year: '2026',
-    tags: ['Retro', 'Game', 'T9'],
-    link: 'https://www.awen28.com/sms2004',
   },
   {
     id: 'kibook',
@@ -121,16 +99,6 @@ const projects = [
     year: '2024',
     tags: ['InsureTech', 'Swift'],
     link: 'https://www.awen28.com/suremate-pro',
-  },
-  {
-    id: 'awenya',
-    name: 'Awenya',
-    category: 'iOS App',
-    description: 'Your personal sanctuary. Expertly crafted meditations and sleep stories.',
-    image: '/apps/Awenya_homescree.png',
-    color: '#E8E5E0',
-    year: '2025',
-    tags: ['AI Voice', 'OpenAI'],
   },
   {
     id: 'visai',
@@ -526,39 +494,9 @@ const AppShowcase = () => {
                       View Case
                       <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
-                  ) : project.id === 'awenya' ? (
-                    <Link
-                      to="/awenya"
-                      onClick={(e) => e.stopPropagation()}
-                      className="group px-4 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm tracking-wider transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer"
-                      style={{ background: '#525048', color: '#FAF9F7' }}
-                    >
-                      View Case
-                      <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  ) : project.id === 'praypro' ? (
-                    <Link
-                      to="/praypro"
-                      onClick={(e) => e.stopPropagation()}
-                      className="group px-4 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm tracking-wider transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer"
-                      style={{ background: '#525048', color: '#FAF9F7' }}
-                    >
-                      View App
-                      <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
                   ) : project.id === 'orbit' ? (
                     <Link
                       to="/orbit"
-                      onClick={(e) => e.stopPropagation()}
-                      className="group px-4 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm tracking-wider transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer"
-                      style={{ background: '#525048', color: '#FAF9F7' }}
-                    >
-                      Play Game
-                      <ArrowRight className="w-3 md:w-4 h-3 md:h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  ) : project.id === 'sms2004' ? (
-                    <Link
-                      to="/sms2004"
                       onClick={(e) => e.stopPropagation()}
                       className="group px-4 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm tracking-wider transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-pointer"
                       style={{ background: '#525048', color: '#FAF9F7' }}
