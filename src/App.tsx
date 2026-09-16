@@ -18,6 +18,7 @@ import OrbitPrivacy from './pages/OrbitPrivacy';
 import SMS2004 from './pages/SMS2004';
 import StradaHub from './pages/StradaHub';
 import StradaHubPrivacy from './pages/StradaHubPrivacy';
+import Abwun from './pages/Abwun';
 import AgentRegister from './pages/AgentRegister';
 import CreateAgent from './pages/CreateAgent';
 import ForgotCode from './pages/ForgotCode';
@@ -36,7 +37,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const location = useLocation();
-  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/awenya', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback', '/sms2004', '/orbit', '/orbit/privacy', '/stradahub', '/stradahub/privacy'].includes(location.pathname);
+  const isAppPage = ['/suremate', '/suremate-pro', '/visai', '/369', '/numistellar', '/kibook', '/elow', '/awenya', '/agentregister', '/createAgent', '/forgotcode', '/download-suremate-pro', '/agentportal', '/callback', '/sms2004', '/orbit', '/orbit/privacy', '/stradahub', '/stradahub/privacy', '/abwun'].includes(location.pathname);
 
   useEffect(() => {
     // Faster refresh for better performance
@@ -65,6 +66,7 @@ function App() {
       '/visai': 'VisAI - AI Vision Board App | AWEN28',
       '/sms2004': 'SMS 2004 - Nostalgic Phone Simulator Game | AWEN28',
       '/stradahub': 'StradaHub - Community-Verkehrs-App für DACH | AWEN28',
+      '/abwun': 'ABWUN - Trust Him | Prayer App | AWEN28',
     };
     
     const defaultTitle = 'AWEN28 | Premium iOS Apps & Web Development Tirol';
@@ -87,6 +89,7 @@ function App() {
       '/visai': 'VisAI - Erstelle Vision Boards mit KI-Unterstützung. Visualisiere deine Ziele und Träume.',
       '/sms2004': 'SMS 2004 - Nostalgischer Handysimulator mit T9-Tippen, Snake, Klingelton-Komponist und authentischen 2004er Handy-Skins.',
       '/stradahub': 'StradaHub - Die Community-Verkehrs-App für den DACH-Raum. Unfälle, Baustellen, Straßensperren, Stau und Gefahren in Echtzeit auf der Karte. Kostenlos, ohne Registrierung, ohne Werbung. Keine Blitzer- oder Radarwarnung.',
+      '/abwun': 'ABWUN ist das Gegenteil von Manifestation. Ein täglicher Weg mit Gott in drei Übergaben: Morgen, Mittag und Abend. KI-Gebetsbegleiter, biblisch fundierte Gebete, die mit "im Namen Jesu" enden. "Trust Him."',
     };
     
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -115,6 +118,7 @@ function App() {
           <Route path="/sms2004" element={<SMS2004 />} />
           <Route path="/stradahub/privacy" element={<StradaHubPrivacy />} />
           <Route path="/stradahub" element={<StradaHub />} />
+          <Route path="/abwun" element={<Abwun />} />
           <Route path="/agentregister" element={<AgentRegister />} />
           <Route path="/createAgent" element={<CreateAgent />} />
           <Route path="/forgotcode" element={<ForgotCode />} />
