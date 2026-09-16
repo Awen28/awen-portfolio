@@ -115,7 +115,9 @@ const Footer = () => {
               Services
             </h4>
             <nav className="space-y-3">
-              {['iOS Development', 'Web Design', 'Brand Identity', 'AI Integration', 'Backend'].map((service) => (
+              <Link to="/webdesign-tirol" className="block text-lg transition-colors" style={{ color: 'rgba(82, 80, 72, 0.7)' }}>Homepage programmieren</Link>
+              <Link to="/app-entwicklung-tirol" className="block text-lg transition-colors" style={{ color: 'rgba(82, 80, 72, 0.7)' }}>App Entwicklung (iOS & Android)</Link>
+              {['Web Design', 'AI Integration', 'Backend'].map((service) => (
                 <motion.a
                   key={service}
                   href="#services"

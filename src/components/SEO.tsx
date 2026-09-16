@@ -298,17 +298,22 @@ export const generateLocalBusinessData = () => ({
   ],
   "serviceType": [
     "iOS App Entwicklung",
+    "Android App Entwicklung",
     "iPhone App Programmierung",
     "Swift Entwicklung",
     "Webentwicklung",
+    "Webdesign Tirol",
+    "Homepage Programmierung",
+    "Homepage erstellen",
     "UI/UX Design",
     "AI Integration",
+    "KI-Integration",
     "App Store Optimization",
     "B2B2C Plattform Entwicklung"
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "App Development Services",
+    "name": "AWEN28 Digital Services",
     "itemListElement": [
       {
         "@type": "Offer",
@@ -322,8 +327,16 @@ export const generateLocalBusinessData = () => ({
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Web Development",
-          "description": "Modern responsive websites with React, TypeScript, Vite"
+          "name": "Android App Entwicklung",
+          "description": "Native and cross-platform Android app development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Web Development & Homepage Programmierung",
+          "description": "Modern responsive websites and web applications with React, TypeScript, Vite"
         }
       },
       {
@@ -332,6 +345,14 @@ export const generateLocalBusinessData = () => ({
           "@type": "Service",
           "name": "AI Integration",
           "description": "OpenAI, DALL-E, machine learning features for apps"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "App Store Optimization",
+          "description": "Proven ASO strategies for #1 App Store rankings"
         }
       }
     ]

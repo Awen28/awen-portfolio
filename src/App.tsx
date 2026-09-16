@@ -16,6 +16,8 @@ import OrbitPrivacy from './pages/OrbitPrivacy';
 import StradaHub from './pages/StradaHub';
 import StradaHubPrivacy from './pages/StradaHubPrivacy';
 import Abwun from './pages/Abwun';
+import WebdesignTirol from './pages/WebdesignTirol';
+import AppEntwicklungTirol from './pages/AppEntwicklungTirol';
 import AgentRegister from './pages/AgentRegister';
 import CreateAgent from './pages/CreateAgent';
 import ForgotCode from './pages/ForgotCode';
@@ -62,6 +64,8 @@ function App() {
       '/visai': 'VisAI - AI Vision Board App | AWEN28',
       '/stradahub': 'StradaHub - Community-Verkehrs-App für DACH | AWEN28',
       '/abwun': 'ABWUN - Trust Him | Prayer App | AWEN28',
+      '/webdesign-tirol': 'Homepage programmieren Tirol & Österreich - Webdesign | AWEN28',
+      '/app-entwicklung-tirol': 'App erstellen lassen Tirol & Österreich - iOS & Android | AWEN28',
     };
     
     const defaultTitle = 'AWEN28 | Premium iOS Apps & Web Development Tirol';
@@ -83,6 +87,8 @@ function App() {
       '/visai': 'VisAI - Erstelle Vision Boards mit KI-Unterstützung. Visualisiere deine Ziele und Träume.',
       '/stradahub': 'StradaHub - Die Community-Verkehrs-App für den DACH-Raum. Unfälle, Baustellen, Straßensperren, Stau und Gefahren in Echtzeit auf der Karte. Kostenlos, ohne Registrierung, ohne Werbung. Keine Blitzer- oder Radarwarnung.',
       '/abwun': 'ABWUN ist das Gegenteil von Manifestation. Ein täglicher Weg mit Gott in drei Übergaben: Morgen, Mittag und Abend. KI-Gebetsbegleiter, biblisch fundierte Gebete, die mit "im Namen Jesu" enden. "Trust Him."',
+      '/webdesign-tirol': 'Homepage programmieren lassen in Tirol & Österreich: AWEN28 erstellt schnelle, moderne, Google-optimierte Websites mit React & TypeScript. One-Pager, Business-Sites, Shops & KI-Features.',
+      '/app-entwicklung-tirol': 'App erstellen lassen in Tirol & Österreich: AWEN28 entwickelt iOS & Android Apps mit KI-Integration, modernem Design und ASO. 50.000+ Downloads, 11+ Apps im App Store.',
     };
     
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -109,6 +115,8 @@ function App() {
           <Route path="/stradahub/privacy" element={<StradaHubPrivacy />} />
           <Route path="/stradahub" element={<StradaHub />} />
           <Route path="/abwun" element={<Abwun />} />
+          <Route path="/webdesign-tirol" element={<WebdesignTirol />} />
+          <Route path="/app-entwicklung-tirol" element={<AppEntwicklungTirol />} />
           <Route path="/agentregister" element={<AgentRegister />} />
           <Route path="/createAgent" element={<CreateAgent />} />
           <Route path="/forgotcode" element={<ForgotCode />} />
