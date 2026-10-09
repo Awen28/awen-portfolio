@@ -1,6 +1,8 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
+  "framework": null,
+  "installCommand": "echo no-install",
   "buildCommand": "echo static-site",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "trailingSlash": false
 }

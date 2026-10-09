@@ -1,0 +1,9 @@
+{
+  "name": "awen-portfolio-redirect",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Redirect screen for awen28.com leading to elior.studio",
+  "scripts": {
+    "build": "echo static-site"
+  }
+}
